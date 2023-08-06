@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target includeMode="feature" name="Running Platform">
+	<environment>
+		<arch>x86_64</arch>
+		<os>win32</os>
+		<ws>win32</ws>
+		<nl>pl_PL</nl>
+	</environment>
+	<locations>
+		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/tracecompass/releases/9.0.0/rcp-repository/"/>
+			<unit id="org.eclipse.tracecompass.rcp" version="9.0.0.202306160814"/>
+			<unit id="org.eclipse.tracecompass.rcp.branding.feature.feature.group" version="9.0.0.202306160814"/>
+		</location>
+	</locations>
+</target>

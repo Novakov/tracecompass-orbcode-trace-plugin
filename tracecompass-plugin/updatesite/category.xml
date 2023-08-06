@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="org.orbcode.trace.tracecompass.traceplugin">
+      <category name="org.orbcode.trace.tracecompass"/>
+   </feature>
+   <category-def name="org.orbcode.trace.tracecompass" label="Orbcode-based tracing"/>
+</site>

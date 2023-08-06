@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RTOS Events trace type
+Bundle-SymbolicName: org.orbcode.trace.tracecompass.tracetype;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: tracetype

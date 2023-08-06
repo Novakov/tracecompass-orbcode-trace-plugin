@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+         point="org.eclipse.tracecompass.tmf.core.custom.trace">
+      <customTrace
+            file="resources/rtos-parser.xml"
+            traceContentType="text">
+      </customTrace>
+   </extension>
+</plugin>

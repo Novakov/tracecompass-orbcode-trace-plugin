@@ -1,0 +1,68 @@
+<tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/tracecompass/tracecompass/master/tmf/org.eclipse.tracecompass.tmf.analysis.xml.core/src/org/eclipse/tracecompass/tmf/analysis/xml/core/module/xmlDefinition.xsd">
+      
+    <xyView id="novakov.queue_count">
+        <head>
+            <analysis id="org.orbcode.tracing.rtos.analysis" />
+            <label value="Number of items in queue" />
+        </head>
+        <entry path="Queue/*">
+            <display type="constant" value="Count" />
+            <name type="self" />
+        </entry>
+    </xyView>
+
+    <xyView id="novakov.ready_task_count">
+        <head>
+            <analysis id="org.orbcode.tracing.rtos.analysis" />
+            <label value="Number of ready tasks" />
+        </head>
+        <entry path="ReadyTaskCount">
+            <display type="self" />
+            <name type="constant" value="Number of ready tasks"/>
+        </entry>
+    </xyView>
+
+    <xyView id="novakov.preempted_count">
+        <head>
+            <analysis id="org.orbcode.tracing.rtos.analysis" />
+            <label value="Number of times task was switched out when Ready" />
+        </head>
+        <entry path="Task/*">
+            <display type="constant" value="PreemptedCount" />
+            <name type="self" />
+        </entry>
+    </xyView>
+    
+    <timeGraphView id="org.orbcode.tracing.rtos.analysis.task_states">
+		<head>
+			<analysis id="org.orbcode.tracing.rtos.analysis" />
+			<label value="Task states" />
+		</head>
+
+		<definedValue name="Created" value="0"/>
+        <definedValue name="Running" value="1"/>
+        <definedValue name="Blocked" value="2"/>
+        <definedValue name="Ready" value="4"/>
+        <definedValue name="Delayed" value="5" />
+		
+		<entry path="Task/*" displayText="true">
+			<display type="constant" value="State" />
+            <name type="self" />
+        </entry>
+	</timeGraphView>
+	
+	<timeGraphView id="org.orbcode.tracing.rtos.analysis.task_block_reason">
+		<head>
+			<analysis id="org.orbcode.tracing.rtos.analysis" />
+			<label value="Task block reason" />
+		</head>
+	
+		<entry path="Task/*" displayText="true">
+			<display type="self" />	
+			<entry path="BlockLog/*" displayText="true">
+				<display type="self" />
+			</entry>
+        </entry>
+	</timeGraphView>
+</tmfxml>
