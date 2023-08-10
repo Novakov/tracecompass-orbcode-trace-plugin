@@ -1,0 +1,2 @@
+add_executable(OpenOCD::OpenOCD IMPORTED GLOBAL)
+set_property(TARGET OpenOCD::OpenOCD PROPERTY IMPORTED_LOCATION ${OPENOCD})
