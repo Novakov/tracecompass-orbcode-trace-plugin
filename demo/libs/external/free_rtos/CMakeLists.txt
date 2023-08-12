@@ -30,3 +30,7 @@ target_sources(${NAME} PRIVATE
 
     src/static.cpp
 )
+
+target_link_libraries(${NAME} PUBLIC 
+    rtos_trace_hooks
+)

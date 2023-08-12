@@ -9,6 +9,7 @@ target_sources(${NAME} PRIVATE
 target_link_libraries(${NAME} PRIVATE
     platform
     free_rtos
+    rtos_trace
 )
 
 target_flash(${NAME})

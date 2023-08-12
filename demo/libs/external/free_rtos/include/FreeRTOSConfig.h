@@ -15,10 +15,12 @@ extern uint32_t SystemCoreClock;
 #define configUSE_IDLE_HOOK 0
 #define configUSE_TICK_HOOK 0
 
+#define configUSE_TRACE_FACILITY 1
+
 #define configMAX_SYSCALL_INTERRUPT_PRIORITY (4 << 5)
 
-#define configSUPPORT_STATIC_ALLOCATION             1
-#define configSUPPORT_DYNAMIC_ALLOCATION            0
+#define configSUPPORT_STATIC_ALLOCATION 1
+#define configSUPPORT_DYNAMIC_ALLOCATION 0
 
 #define INCLUDE_vTaskDelay 1
 
@@ -26,4 +28,12 @@ extern uint32_t SystemCoreClock;
 #define xPortSysTickHandler SysTick_Handler
 #define vPortSVCHandler SVC_Handler
 
-#define configASSERT(x) if((x) == 0) { taskDISABLE_INTERRUPTS(); for(;;); }
+#define configASSERT(x)           \
+    if((x) == 0)                  \
+    {                             \
+        taskDISABLE_INTERRUPTS(); \
+        for(;;)                   \
+            ;                     \
+    }
+
+#include "TraceHooks.h"
