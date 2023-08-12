@@ -9,7 +9,7 @@ TraceCompass plugin
 # Build steps
 1. Clone the repository
 2. Go to `tracecompass-plugin` folder
-3. Run `mvn site`
+3. Run `mvn package`
 
 Eclipse update site will be located in `tracecompass-plugin/target/repository`.
 
