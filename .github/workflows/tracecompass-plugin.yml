@@ -18,3 +18,9 @@ jobs:
         cache: maven
     - name: Build plugin with Maven
       run: mvn -B clean verify site --file tracecompass-plugin/pom.xml
+
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: tracecompas-orbcode-trace-plugin
+        path: tracecompass-plugin/updatesite/target/repository/**/*.*
