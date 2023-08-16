@@ -22,5 +22,5 @@ jobs:
     - name: Archive code coverage results
       uses: actions/upload-artifact@v3
       with:
-        name: tracecompas-orbcode-trace-plugin
+        name: tracecompass-orbcode-trace-plugin
         path: tracecompass-plugin/updatesite/target/repository/**/*.*
