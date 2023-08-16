@@ -1,3 +1,17 @@
 {
-    "version": 6
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "ci/efm32gg",
+            "binaryDir": "${sourceDir}/build/efm32gg",
+            "generator": "Ninja Multi-Config"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "ci/efm32gg/release",
+            "configurePreset": "ci/efm32gg",
+            "configuration": "Release"
+        }
+    ]
 }
