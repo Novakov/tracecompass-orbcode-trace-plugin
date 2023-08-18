@@ -1,2 +1,3 @@
 add_subdirectory(blink_demo)
 add_subdirectory(busy_blinker)
+add_subdirectory(idle_timer_service)
