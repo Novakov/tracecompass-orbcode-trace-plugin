@@ -220,6 +220,8 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
 
 #define traceTASK_DELAY() CurrentTaskSwitchRecord.Reason = SWITCH_REASON_DELAYED;
 
+#define traceTASK_DELAY_UNTIL(xTimeToWake) CurrentTaskSwitchRecord.Reason = SWITCH_REASON_DELAYED;
+
 #define traceBLOCKING_ON_QUEUE_SEND(queue)           \
     CurrentTaskSwitchRecord.BlockedOnObject = queue; \
     CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_OTHER;
