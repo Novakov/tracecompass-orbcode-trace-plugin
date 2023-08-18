@@ -11,15 +11,15 @@ FetchContent_Populate(free_rtos)
 
 set(NAME free_rtos)
 
-add_library(${NAME} STATIC)
+add_library(${NAME} INTERFACE)
 
-target_include_directories(${NAME} PUBLIC
+target_include_directories(${NAME} INTERFACE
     include
     ${free_rtos_SOURCE_DIR}/include
     ${free_rtos_SOURCE_DIR}/portable/GCC/ARM_CM3
 )
 
-target_sources(${NAME} PRIVATE
+target_sources(${NAME} INTERFACE
     ${free_rtos_SOURCE_DIR}/tasks.c
     ${free_rtos_SOURCE_DIR}/timers.c
     ${free_rtos_SOURCE_DIR}/list.c
@@ -31,6 +31,6 @@ target_sources(${NAME} PRIVATE
     src/static.cpp
 )
 
-target_link_libraries(${NAME} PUBLIC 
+target_link_libraries(${NAME} INTERFACE
     rtos_trace_hooks
 )

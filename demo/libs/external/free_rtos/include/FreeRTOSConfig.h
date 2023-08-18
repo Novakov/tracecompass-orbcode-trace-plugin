@@ -36,4 +36,8 @@ extern uint32_t SystemCoreClock;
             ;                     \
     }
 
+#if __has_include("rtos_tune.h")
+#    include "rtos_tune.h"
+#endif
+
 #include "TraceHooks.h"
