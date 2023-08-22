@@ -1,6 +1,7 @@
 #include "em_cmu.h"
 #include "em_gpio.h"
 #include "platform.hpp"
+#include "trace.hpp"
 
 extern void demo_main();
 
@@ -74,10 +75,47 @@ void ToggleLed(Led led)
     }
 }
 
+void EnableTrace()
+{
+    TpiuOptions tpiu = {
+        .Protocol = TpiuProtocolParallel,
+        .FormattingEnabled = true,
+        .TracePortWidth = 4,
+    };
+
+    ITMOptions itm = {
+        .TraceBusID = 1,
+        .GlobalTimestampFrequency = ITMGlobalTimestampFrequencyDisabled,
+        .LocalTimestampPrescaler = ITMLocalTimestampPrescalerNoPrescaling,
+        .EnableLocalTimestamp = true,
+        .ForwardDWT = true,
+        .EnableSyncPacket = true,
+        .EnabledStimulusPorts = ITM_ENABLE_STIMULUS_PORTS_ALL,
+    };
+
+    DWTOptions dwt;
+    dwt.CycleTap = DWTCycleTap10;
+    dwt.CPICounterEvent = false;
+    dwt.ExceptionOverheadCounterEvent = false;
+    dwt.ExceptionTrace = false;
+    dwt.FoldedInstructionCounterEvent = false;
+    dwt.LSUCounterEvent = false;
+    dwt.PCSampling = false;
+    dwt.SamplingPrescaler = 1;
+    dwt.SleepCounterEvent = false;
+    dwt.SyncTap = DWTSyncTap28;
+
+    TpiuSetup(&tpiu);
+    ITMSetup(&itm);
+    DWTSetup(&dwt);
+}
+
 int main()
 {
     SetupClock();
     SetupGPIO();
+
+    EnableTrace();
 
     demo_main();
 }
