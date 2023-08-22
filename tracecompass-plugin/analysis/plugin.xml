@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
- 	<extension
-         point="org.eclipse.tracecompass.tmf.core.custom.trace">
-      <customTrace
-            file="resources/rtos-parser.xml"
-            traceContentType="text">
-      </customTrace>
-   </extension>
 	<extension
-         point="org.eclipse.linuxtools.tmf.analysis.xml.core.files">
-	    <xmlfile
-	          file="resources/statesystem.xml">
-	    </xmlfile>
-	    <xmlfile
-	          file="resources/patterns.xml">
-	    </xmlfile>
-	    <xmlfile
-	          file="resources/views.xml">
-	    </xmlfile>
- 	</extension> 
+		point="org.eclipse.linuxtools.tmf.analysis.xml.core.files">
+		<xmlfile
+			file="resources/patterns.xml">
+		</xmlfile>
+		<xmlfile
+			file="resources/views.xml">
+		</xmlfile>
+	</extension>
+	<extension
+		point="org.eclipse.linuxtools.tmf.core.analysis">
+		<module
+			id="org.orbcode.trace.tracecompass.analysis.rtos"
+			name="RTOS Analysis"
+			analysis_module="org.orbcode.trace.tracecompass.analysis.RTOSAnalysisModule"
+			automatic="true">
+			<tracetype id="custom.txt.trace:Orbuculum:RTOS trace" class="org.eclipse.tracecompass.tmf.core.parsers.custom.CustomTxtTrace" />
+		</module>
+	</extension>
 </plugin>
