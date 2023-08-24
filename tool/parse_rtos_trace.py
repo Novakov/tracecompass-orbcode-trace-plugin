@@ -19,6 +19,8 @@ EVENT_MUTEX_LOCKING = 7
 EVENT_QUEUE_CREATED = 8
 EVENT_QUEUE_PUSH_POP = 9
 EVENT_TASK_READIED = 10
+EVENT_COUNTING_SEM_CREATED = 11
+EVENT_COUNTING_SEM_GIVE_TAKE = 12
 
 
 def parse_args():
@@ -69,7 +71,7 @@ class Collector:
     def task_switched_out(self, tcb, switch_reason_data: int, blocked_on_object: int, flags: int):
         self.current_tcb = 0
         still_ready = (flags & (1 << 0)) == (1 << 0)
-        switch_reason = (switch_reason_data >> 28) & 0b111
+        switch_reason = (switch_reason_data >> 28) & 0b1111
 
         out_state = 'Blocked'
         blocked_on = ''
@@ -103,7 +105,21 @@ class Collector:
             blocked_on = 'EventGroup'
         elif switch_reason == 7:
             out_state = 'Blocked'
+            blocked_on = 'CountingSemaphore'
+            block_operation = 'Give'
+        elif switch_reason == 8:
+            out_state = 'Blocked'
+            blocked_on = 'CountingSemaphore'
+            block_operation = 'Take'
+        elif switch_reason == 9:
+            out_state = 'Blocked'
+            blocked_on = 'CountingSemaphore'
+            block_operation = 'Give'
+        elif switch_reason == 0xF:
+            out_state = 'Blocked'
             blocked_on = 'Other'
+        else:
+            print(f'Unknown switch out reason {switch_reason}')
 
         return {
             'TCB': f'0x{tcb:08X}',
@@ -124,6 +140,41 @@ class Collector:
     @event_handler(EVENT_BINARY_SEM_CREATED)
     def binary_semaphore_created(self, queue: int):
         return {'Semaphore': f'0x{queue:08X}'}
+
+    @event_handler(EVENT_COUNTING_SEM_CREATED)
+    def counting_semaphore_created(self, semaphore: int, max_count: int, initial_count: int):
+        return {'Semaphore': f'0x{semaphore:08X}', 'MaxCount': max_count, 'InitialCount': initial_count}
+
+    @event_handler(EVENT_COUNTING_SEM_GIVE_TAKE)
+    def counting_semaphore_give_take(self, queue: int, flags: int):
+        is_success = (flags & (1 << 2)) == (1 << 2)
+        is_isr = (flags & (1 << 1)) == (1 << 1)
+        is_take = (flags & (1 << 0)) == (1 << 0)
+        updated_items_count = (flags >> 16) & 0xFFFF
+
+        if is_isr:
+            tcb = 0
+        else:
+            tcb = self.current_tcb
+
+        data = {
+            'Semaphore': f'0x{queue:08X}',
+            'TCB': f'0x{tcb:08X}',
+            'TaskName': self.resolve_task_name(tcb),
+            'ISR': is_isr,
+            'UpdatedCount': updated_items_count,
+        }
+
+        if is_success:
+            if is_take:
+                return 'counting_semaphore_taken', data
+            else:
+                return 'counting_semaphore_given', data
+        else:
+            if is_take:
+                return 'counting_semaphore_take_failed', data
+            else:
+                return 'counting_semaphore_give_failed', data
 
     @event_handler(EVENT_MUTEX_CREATED)
     def mutex_created(self, mutex: int):

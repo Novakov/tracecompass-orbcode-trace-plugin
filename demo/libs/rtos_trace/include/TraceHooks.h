@@ -19,6 +19,10 @@ extern "C"
     extern void TraceOnBinarySemaphoreLock(void* queue, bool isr, bool success);
     extern void TraceOnBinarySemaphoreUnlock(void* queue, bool isr, bool success);
 
+    extern void TraceOnCountingSemaphoreCreate(void* semaphore, uint32_t maxCount, uint32_t initialCount);
+    extern void TraceOnCountingSemaphoreTake(void* semaphore, bool isr, bool success, uint32_t newCount);
+    extern void TraceOnCountingSemaphoreGive(void* semaphore, bool isr, bool success, uint32_t newCount);
+
     extern void TraceOnMutexCreate(void* mutex);
     extern void TraceOnMutexLock(void* mutex, bool isr, bool success);
     extern void TraceOnMutexUnlock(void* mutex, bool isr, bool success);
@@ -42,7 +46,9 @@ enum SwitchReason
     SWITCH_REASON_BLOCKED_QUEUE_POP = 4,
     SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE = 5,
     SWITCH_REASON_BLOCKED_EVENT_GROUP = 6,
-    SWITCH_REASON_BLOCKED_OTHER = 7,
+    SWITCH_REASON_COUNTING_SEMAPHORE_GIVE = 7,
+    SWITCH_REASON_COUNTING_SEMAPHORE_RECEIVE = 8,
+    SWITCH_REASON_BLOCKED_OTHER = 0xF,
 };
 
 struct SwitchRecord
@@ -77,10 +83,19 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     }                                                   \
     taskEXIT_CRITICAL();
 
+#define traceCREATE_COUNTING_SEMAPHORE()                                 \
+    taskENTER_CRITICAL();                                                \
+    TraceOnCountingSemaphoreCreate(xHandle, uxMaxCount, uxInitialCount); \
+    taskEXIT_CRITICAL();
+
 #define traceQUEUE_RECEIVE(queue)                                                                                     \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
         TraceOnBinarySemaphoreLock(queue, false, true);                                                               \
+    }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        TraceOnCountingSemaphoreTake(queue, false, true, queue->uxMessagesWaiting - 1);                               \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
@@ -97,6 +112,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     {                                                                                                                 \
         TraceOnBinarySemaphoreLock(queue, false, false);                                                              \
     }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        TraceOnCountingSemaphoreTake(queue, false, false, queue->uxMessagesWaiting);                                  \
+    }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
         TraceOnMutexLock(queue, false, false);                                                                        \
@@ -111,6 +130,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
         TraceOnBinarySemaphoreLock(queue, true, true);                                                                \
+    }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        TraceOnCountingSemaphoreTake(queue, true, true, queue->uxMessagesWaiting - 1);                                \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
@@ -127,6 +150,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     {                                                                                                                 \
         TraceOnBinarySemaphoreLock(queue, true, false);                                                               \
     }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        TraceOnCountingSemaphoreTake(queue, true, true, queue->uxMessagesWaiting);                                    \
+    }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
         TraceOnMutexLock(queue, true, false);                                                                         \
@@ -141,6 +168,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
         TraceOnBinarySemaphoreUnlock(queue, false, true);                                                             \
+    }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        TraceOnCountingSemaphoreGive(queue, false, true, queue->uxMessagesWaiting + 1);                               \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
@@ -164,6 +195,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     {                                                                                                                 \
         TraceOnBinarySemaphoreUnlock(queue, false, false);                                                            \
     }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        TraceOnCountingSemaphoreGive(queue, false, false, queue->uxMessagesWaiting);                                  \
+    }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
         TraceOnMutexUnlock(queue, false, false);                                                                      \
@@ -178,6 +213,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
         TraceOnBinarySemaphoreUnlock(queue, true, true);                                                              \
+    }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        TraceOnCountingSemaphoreGive(queue, true, true, queue->uxMessagesWaiting + 1);                                \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
@@ -201,6 +240,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     {                                                                                                                 \
         TraceOnBinarySemaphoreUnlock(queue, true, false);                                                             \
     }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        TraceOnCountingSemaphoreGive(queue, true, false, queue->uxMessagesWaiting);                                   \
+    }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
         TraceOnMutexUnlock(queue, true, false);                                                                       \
@@ -222,15 +265,26 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
 
 #define traceTASK_DELAY_UNTIL(xTimeToWake) CurrentTaskSwitchRecord.Reason = SWITCH_REASON_DELAYED;
 
-#define traceBLOCKING_ON_QUEUE_SEND(queue)           \
-    CurrentTaskSwitchRecord.BlockedOnObject = queue; \
-    CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_OTHER;
+#define traceBLOCKING_ON_QUEUE_SEND(queue)                                      \
+    CurrentTaskSwitchRecord.BlockedOnObject = queue;                            \
+    if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                \
+    {                                                                           \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_COUNTING_SEMAPHORE_GIVE; \
+    }                                                                           \
+    else                                                                        \
+    {                                                                           \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_OTHER;           \
+    }
 
 #define traceBLOCKING_ON_QUEUE_RECEIVE(queue)                                                                         \
     CurrentTaskSwitchRecord.BlockedOnObject = queue;                                                                  \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
         CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE;                                      \
+    }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
+    {                                                                                                                 \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_COUNTING_SEMAPHORE_RECEIVE;                                    \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \

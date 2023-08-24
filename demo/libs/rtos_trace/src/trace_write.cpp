@@ -15,6 +15,8 @@
 #define TRACE_EVENT_QUEUE_CREATED (8u << TRACE_EVENT_ID_SHIFT)
 #define TRACE_EVENT_QUEUE_PUSH_POP (9u << TRACE_EVENT_ID_SHIFT)
 #define TRACE_EVENT_TASK_READIED (10u << TRACE_EVENT_ID_SHIFT)
+#define TRACE_EVENT_COUNTING_SEM_CREATED (11u << TRACE_EVENT_ID_SHIFT)
+#define TRACE_EVENT_COUNTING_SEM_GIVE_TAKE (12u << TRACE_EVENT_ID_SHIFT)
 
 #define CYCCNT_MASK 0x0FFF'FFFFu
 
@@ -93,6 +95,34 @@ extern void TraceOnBinarySemaphoreUnlock(void* queue, bool isr, bool success)
     ITMWrite32(2, TRACE_EVENT_BINARY_SEM_LOCKING | (GetUs() & CYCCNT_MASK));
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(queue));
     ITMWrite8(2, (0 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2));
+    TraceFooter();
+}
+
+void TraceOnCountingSemaphoreCreate(void* semaphore, uint32_t maxCount, uint32_t initialCount)
+{
+    TraceHeader();
+    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_CREATED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, reinterpret_cast<std::uintptr_t>(semaphore));
+    ITMWrite32(2, maxCount);
+    ITMWrite32(2, initialCount);
+    TraceFooter();
+}
+
+void TraceOnCountingSemaphoreTake(void* semaphore, bool isr, bool success, uint32_t newCount)
+{
+    TraceHeader();
+    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_GIVE_TAKE | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, reinterpret_cast<std::uintptr_t>(semaphore));
+    ITMWrite32(2, (1 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2) | ((newCount & 0xFFFF) << 16));
+    TraceFooter();
+}
+
+void TraceOnCountingSemaphoreGive(void* semaphore, bool isr, bool success, uint32_t newCount)
+{
+    TraceHeader();
+    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_GIVE_TAKE | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, reinterpret_cast<std::uintptr_t>(semaphore));
+    ITMWrite32(2, (0 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2) | ((newCount & 0xFFFF) << 16));
     TraceFooter();
 }
 

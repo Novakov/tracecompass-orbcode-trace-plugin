@@ -168,6 +168,31 @@ public class RTOSAnalysisStateProvider extends AbstractTmfStateProvider {
 
 		rtos.binarySemaphoreUnlocked(semaphore);
 	}
+	
+	@EventHandler("counting_semaphore_created")
+	private void onCountingSemaphoreCreated(ITmfEvent event, RTOSOperations rtos) {
+		String semaphore = event.getContent().getFieldValue(String.class, "Semaphore");
+		int maxCount = Integer.parseInt(event.getContent().getFieldValue(String.class, "MaxCount"));
+		int initialCount = Integer.parseInt(event.getContent().getFieldValue(String.class, "InitialCount"));
+		
+		rtos.countingSemaphoreCreated(semaphore, maxCount, initialCount);
+	}
+	
+	@EventHandler("counting_semaphore_given")
+	private void onCountingSemaphoreGiven(ITmfEvent event, RTOSOperations rtos) {
+		String semaphore = event.getContent().getFieldValue(String.class, "Semaphore");
+		int updatedCount = Integer.parseInt(event.getContent().getFieldValue(String.class, "UpdatedCount"));
+		
+		rtos.countingSemaphoreGiven(semaphore, updatedCount);
+	}
+	
+	@EventHandler("counting_semaphore_taken")
+	private void onCountingSemaphoreTaken(ITmfEvent event, RTOSOperations rtos) {
+		String semaphore = event.getContent().getFieldValue(String.class, "Semaphore");
+		int updatedCount = Integer.parseInt(event.getContent().getFieldValue(String.class, "UpdatedCount"));
+		
+		rtos.countingSemaphoreTaken(semaphore, updatedCount);
+	}
 
 	@EventHandler("mutex_created")
 	private void onMutexCreated(ITmfEvent event, RTOSOperations rtos) {

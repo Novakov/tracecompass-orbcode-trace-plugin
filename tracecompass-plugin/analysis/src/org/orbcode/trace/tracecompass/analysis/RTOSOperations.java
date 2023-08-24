@@ -34,7 +34,7 @@ public class RTOSOperations {
 
 	public void taskSwitchedOutDelayed(String taskName) {
 		fStateSystem.setCurrentTask(fCurrentEvent, null);
-		
+
 		fStateSystem.setTaskState(fCurrentEvent, taskName, TASK_STATE_DELAYED);
 	}
 
@@ -115,9 +115,23 @@ public class RTOSOperations {
 		fStateSystem.setMutexLockedBy(fCurrentEvent, mutex, null);
 	}
 
+	public void countingSemaphoreCreated(String semaphore, int maxCount, int initialCount) {
+		fStateSystem.setCountingSemaphoreCapacity(fCurrentEvent, semaphore, maxCount);
+		fStateSystem.setCountingSemaphoreCount(fCurrentEvent, semaphore, initialCount);
+	}
+
+	public void countingSemaphoreGiven(String semaphore, int updatedCount) {
+		fStateSystem.setCountingSemaphoreCount(fCurrentEvent, semaphore, updatedCount);
+	}
+	
+	public void countingSemaphoreTaken(String semaphore, int updatedCount) {
+		fStateSystem.setCountingSemaphoreCount(fCurrentEvent, semaphore, updatedCount);
+	}
+
 	private void modifyReadyTaskCount(int delta) {
 		int readyCount = fStateSystem.getReadyTaskCount();
 		readyCount += delta;
 		fStateSystem.setReadyTaskCount(fCurrentEvent, readyCount);
 	}
+
 }

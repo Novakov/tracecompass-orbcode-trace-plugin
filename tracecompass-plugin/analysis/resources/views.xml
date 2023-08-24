@@ -11,6 +11,17 @@
             <name type="self" />
         </entry>
     </xyView>
+    
+     <xyView id="org.orbcode.tracing.analysis.rtos.views.queue_count">
+        <head>
+            <analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
+            <label value="Counting semaphores counts" />
+        </head>
+        <entry path="CountingSemaphore/*">
+            <display type="constant" value="Count" />
+            <name type="self" />
+        </entry>
+    </xyView>
 
     <xyView id="org.orbcode.tracing.analysis.rtos.views.ready_task_count">
         <head>

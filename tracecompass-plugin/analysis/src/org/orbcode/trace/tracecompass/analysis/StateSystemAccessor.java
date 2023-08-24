@@ -123,4 +123,14 @@ class StateSystemAccessor {
 		int quark = fStateSystem.getQuarkAbsoluteAndAdd("Mutex", mutex, "LockedBy");
 		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), lockedBy, quark);
 	}
+
+	public void setCountingSemaphoreCapacity(ITmfEvent event, String semaphore, int maxCount) {
+		int quark = fStateSystem.getQuarkAbsoluteAndAdd("CountingSemaphore", semaphore, "Capacity");
+		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), maxCount, quark);
+	}
+
+	public void setCountingSemaphoreCount(ITmfEvent event, String semaphore, int count) {
+		int quark = fStateSystem.getQuarkAbsoluteAndAdd("CountingSemaphore", semaphore, "Count");
+		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), count, quark);
+	}
 }
