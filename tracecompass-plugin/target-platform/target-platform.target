@@ -15,5 +15,9 @@
 			<unit id="org.eclipse.tracecompass.rcp" version="9.0.0.202306160814"/>
 			<unit id="org.eclipse.tracecompass.tmf.cli.feature.group" version="9.0.0.202306160814"/>
 		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<unit id="org.eclipse.jdt.annotation" version="0.0.0"/>
+			<repository location="https://download.eclipse.org/eclipse/updates/4.28/R-4.28-202306050440/"/>
+		</location>
 	</locations>
 </target>
