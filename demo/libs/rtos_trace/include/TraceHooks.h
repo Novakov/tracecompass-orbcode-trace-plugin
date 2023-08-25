@@ -271,6 +271,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     {                                                                           \
         CurrentTaskSwitchRecord.Reason = SWITCH_REASON_COUNTING_SEMAPHORE_GIVE; \
     }                                                                           \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                         \
+    {                                                                           \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_QUEUE_PUSH;      \
+    }                                                                           \
     else                                                                        \
     {                                                                           \
         CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_OTHER;           \

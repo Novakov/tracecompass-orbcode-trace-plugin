@@ -4,58 +4,98 @@
 #include "queue.h"
 #include "task.h"
 
-// Scenario 1:
-//  S1T1 - high priority, pushes elements to queue in loop
-//  S1T2 - low priority, pops elements from queue in loop
-
-static StaticQueue_t Scenario1QueueHeader;
-static QueueHandle_t Scenario1Queue;
-static int Scenario1QueueStorage[10];
-static void Scenario1Task1Proc(void*)
+static void BusyDelay(portTickType delay)
 {
-    int value = 0;
+    auto delayTo = xTaskGetTickCount() + delay;
+    while(xTaskGetTickCount() < delayTo)
+    {
+        __asm__ volatile("nop");
+    }
+}
+
+static StaticQueue_t FillingQueueBuffer;
+static int FillingQueueBufferStorage[10];
+static QueueHandle_t FillingQueue;
+
+static void PeriodicFiller(void*)
+{
     while(true)
     {
-        value++;
-        xQueueSendToBack(Scenario1Queue, reinterpret_cast<std::uint8_t*>(&value), portMAX_DELAY);
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
-        // simulate generation of next element
-        for(int i = 0; i < 10'000; i++)
+        for(int i = 0; i < 10; i++)
         {
-            __asm__ volatile("nop");
+            int x = 0;
+            xQueueSendToBack(FillingQueue, &x, portMAX_DELAY);
         }
     }
 }
 
-static StackType_t Scenario1Task1Stack[256];
-static StaticTask_t Scenario1Task1;
+static StackType_t PeriodicFillerStack[256];
+static StaticTask_t PeriodicFillerTask;
 
-static void Scenario1Task2Proc(void*)
+static void Consumer(void*)
 {
     while(true)
     {
-        std::uint8_t buf[sizeof(int)];
-        xQueueReceive(Scenario1Queue, &buf, portMAX_DELAY);
+        int x;
+        xQueueReceive(FillingQueue, &x, portMAX_DELAY);
+        BusyDelay(5);
+    }
+}
 
-        // simulate processing of each element
-        for(int i = 0; i < 10'000; i++)
+static StackType_t ConsumerStack[256];
+static StaticTask_t ConsumerTask;
+
+static StaticQueue_t ConsumingQueueBuffer;
+static int ConsumingQueueBufferStorage[10];
+static QueueHandle_t ConsumingQueue;
+
+static void PeriodicConsumer(void*)
+{
+    while(true)
+    {
+        vTaskDelay(pdMS_TO_TICKS(1000));
+
+        for(int i = 0; i < 10; i++)
         {
-            __asm__ volatile("nop");
+            int x;
+            xQueueReceive(ConsumingQueue, &x, 0);
         }
     }
 }
 
-static StackType_t Scenario1Task2Stack[256];
-static StaticTask_t Scenario1Task2;
+static StackType_t PeriodicConsumerStack[256];
+static StaticTask_t PeriodicConsumerTask;
+
+static void Producer(void*)
+{
+    while(true)
+    {
+        int x = 0;
+        xQueueSendToBack(ConsumingQueue, &x, portMAX_DELAY);
+        BusyDelay(5);
+    }
+}
+
+static StackType_t ProducerStack[256];
+static StaticTask_t ProducerTask;
 
 void demo_main()
 {
-    Scenario1Queue = xQueueCreateStatic(
-        std::size(Scenario1QueueStorage), sizeof(int), reinterpret_cast<std::uint8_t*>(Scenario1QueueStorage), &Scenario1QueueHeader);
+    FillingQueue = xQueueCreateStatic(
+        std::size(FillingQueueBufferStorage), sizeof(int), reinterpret_cast<std::uint8_t*>(FillingQueueBufferStorage), &FillingQueueBuffer);
 
     xTaskCreateStatic(
-        Scenario1Task1Proc, "S1T1", std::size(Scenario1Task1Stack), nullptr, configMAX_PRIORITIES - 1, Scenario1Task1Stack, &Scenario1Task1);
-    xTaskCreateStatic(Scenario1Task2Proc, "S1T2", std::size(Scenario1Task2Stack), nullptr, 1, Scenario1Task2Stack, &Scenario1Task2);
+        PeriodicFiller, "PeriodicFiller", std::size(PeriodicFillerStack), nullptr, configMAX_PRIORITIES - 1, PeriodicFillerStack, &PeriodicFillerTask);
+    xTaskCreateStatic(Consumer, "Consumer", std::size(ConsumerStack), nullptr, 1, ConsumerStack, &ConsumerTask);
+
+    ConsumingQueue = xQueueCreateStatic(
+        std::size(ConsumingQueueBufferStorage), sizeof(int), reinterpret_cast<std::uint8_t*>(ConsumingQueueBufferStorage), &ConsumingQueueBuffer);
+
+    xTaskCreateStatic(
+        PeriodicConsumer, "PeriodicConsumer", std::size(PeriodicConsumerStack), nullptr, configMAX_PRIORITIES - 1, PeriodicConsumerStack, &PeriodicConsumerTask);
+    xTaskCreateStatic(Producer, "Producer", std::size(ProducerStack), nullptr, 1, ProducerStack, &ProducerTask);
 
     vTaskStartScheduler();
 }

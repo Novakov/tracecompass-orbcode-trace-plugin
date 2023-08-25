@@ -12,7 +12,7 @@
         </entry>
     </xyView>
     
-     <xyView id="org.orbcode.tracing.analysis.rtos.views.queue_count">
+     <xyView id="org.orbcode.tracing.analysis.rtos.views.counting_semaphores_count">
         <head>
             <analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
             <label value="Counting semaphores counts" />
