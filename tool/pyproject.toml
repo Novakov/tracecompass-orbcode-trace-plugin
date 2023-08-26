@@ -1,0 +1,27 @@
+[build-system]
+build-backend = 'hatchling.build'
+requires = [
+    'hatchling==1.18.0',
+]
+
+[project]
+name = 'orbcode-rtos-trace'
+version = '1.0.0'
+readme = 'README.md'
+
+requires-python = '>=3.9'
+dependencies = []
+
+[tool.hatch.build.targets.wheel]
+packages = ['src/orbcode']
+
+[tool.hatch.envs.dev]
+dependencies = [
+    'pytest'
+]
+
+[tool.hatch.envs.dev.scripts]
+tests = 'pytest src/tests {args:}'
+
+[project.scripts]
+orbrtos_trace = 'orbcode.rtos_trace.tool:main'

@@ -1,0 +1,57 @@
+name: RTOS trace parsing tool
+
+on:
+  - push
+
+jobs:
+  build-orbuculum-windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: false
+          msystem: MINGW64
+          install: >-
+            base-devel
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-zeromq
+            mingw-w64-x86_64-SDL2
+            mingw-w64-x86_64-libelf
+            mingw-w64-x86_64-capstone
+            mingw-w64-x86_64-libusb
+            git
+            zip
+            mingw-w64-x86_64-meson
+            mingw-w64-x86_64-ca-certificates
+      - uses: actions/checkout@v3
+        with:
+          repository: orbcode/orbuculum
+          ref: 09a612d8fae23b0b5e5940aaac885fb5a7657616
+      - run: meson setup ./build --prefix A:/
+      - run: ninja -C ./build
+      - run: meson install -C ./build --destdir ./install --strip
+      - uses: actions/upload-artifact@v3
+        with:
+          name: orbuculum-win64
+          path: ./build/install/**/*.*
+          if-no-files-found: error
+
+  build-windows:
+    runs-on: windows-latest
+    needs: build-orbuculum-windows
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: orbuculum-win64
+          path: ./orbuculum
+      - run: pipx install hatch
+      - run: hatch build --clean
+        working-directory: ./tool
+      - run: hatch run dev:tests
+        working-directory: ./tool
+        env:
+          LIBORB_PATH: "${{ github.workspace }}/orbuculum/bin/liborb-2.1.0.dll"
