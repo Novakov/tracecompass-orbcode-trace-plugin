@@ -1,65 +1,66 @@
 <tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/tracecompass/tracecompass/master/tmf/org.eclipse.tracecompass.tmf.analysis.xml.core/src/org/eclipse/tracecompass/tmf/analysis/xml/core/module/xmlDefinition.xsd">
-      
-    <xyView id="org.orbcode.tracing.analysis.rtos.views.queue_count">
-        <head>
-            <analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
-            <label value="Number of items in queue" />
-        </head>
-        <entry path="Queue/*">
-            <display type="constant" value="Count" />
-            <name type="self" />
-        </entry>
-    </xyView>
-    
-     <xyView id="org.orbcode.tracing.analysis.rtos.views.counting_semaphores_count">
-        <head>
-            <analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
-            <label value="Counting semaphores counts" />
-        </head>
-        <entry path="CountingSemaphore/*">
-            <display type="constant" value="Count" />
-            <name type="self" />
-        </entry>
-    </xyView>
+	xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/tracecompass/tracecompass/master/tmf/org.eclipse.tracecompass.tmf.analysis.xml.core/src/org/eclipse/tracecompass/tmf/analysis/xml/core/module/xmlDefinition.xsd">
 
-    <xyView id="org.orbcode.tracing.analysis.rtos.views.ready_task_count">
-        <head>
-            <analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
-            <label value="Number of ready tasks" />
-        </head>
-        <entry path="ReadyTaskCount">
-            <display type="self" />
-            <name type="constant" value="Number of ready tasks"/>
-        </entry>
-    </xyView>
+	<xyView id="org.orbcode.tracing.analysis.rtos.views.queue_count">
+		<head>
+			<analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
+			<label value="Number of items in queue" />
+		</head>
+		<entry path="Queue/*">
+			<display type="constant" value="Count" />
+			<name type="self" />
+		</entry>
+	</xyView>
 
-    <xyView id="org.orbcode.tracing.analysis.rtos.views.preempted_count">
-        <head>
-            <analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
-            <label value="Number of times task was switched out when Ready" />
-        </head>
-        <entry path="Task/*">
-            <display type="constant" value="PreemptedCount" />
-            <name type="self" />
-        </entry>
-    </xyView>
-    
-    <timeGraphView id="org.orbcode.tracing.rtos.analysis.task_states">
+	<xyView
+		id="org.orbcode.tracing.analysis.rtos.views.counting_semaphores_count">
+		<head>
+			<analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
+			<label value="Counting semaphores counts" />
+		</head>
+		<entry path="CountingSemaphore/*">
+			<display type="constant" value="Count" />
+			<name type="self" />
+		</entry>
+	</xyView>
+
+	<xyView id="org.orbcode.tracing.analysis.rtos.views.ready_task_count">
+		<head>
+			<analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
+			<label value="Number of ready tasks" />
+		</head>
+		<entry path="ReadyTaskCount">
+			<display type="self" />
+			<name type="constant" value="Number of ready tasks" />
+		</entry>
+	</xyView>
+
+	<xyView id="org.orbcode.tracing.analysis.rtos.views.preempted_count">
+		<head>
+			<analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
+			<label value="Number of times task was switched out when Ready" />
+		</head>
+		<entry path="Task/*">
+			<display type="constant" value="PreemptedCount" />
+			<name type="self" />
+		</entry>
+	</xyView>
+
+	<timeGraphView id="org.orbcode.tracing.rtos.analysis.task_states">
 		<head>
 			<analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
 			<label value="Task states" />
 		</head>
 
-		<definedValue name="Created" value="0"/>
-        <definedValue name="Running" value="1"/>
-        <definedValue name="Blocked" value="2"/>
-        <definedValue name="Ready" value="4"/>
-        <definedValue name="Delayed" value="5" />
-		
+		<definedValue name="Created" value="0" />
+		<definedValue name="Running" value="1" />
+		<definedValue name="Blocked" value="2" />
+		<definedValue name="Ready" value="4" />
+		<definedValue name="Delayed" value="5" />
+
 		<entry path="Task/*" displayText="true">
 			<display type="constant" value="State" />
-            <name type="self" />
-        </entry>
+			<name type="self" />
+		</entry>
 	</timeGraphView>
 </tmfxml>

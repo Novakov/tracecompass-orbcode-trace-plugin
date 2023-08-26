@@ -31,6 +31,9 @@ extern "C"
     extern void TraceOnQueuePush(void* queue, bool isr, bool success, uint32_t updatedItemsCount);
     extern void TraceOnQueuePop(void* queue, bool isr, bool success, uint32_t updatedItemsCount);
 
+    extern void OnTaskNotify(void* task, uint32_t index, uint32_t action, uint32_t updatedValue);
+    extern void OnTaskNotifyReceived(void* task, uint32_t index, uint32_t updatedValue);
+
 #ifdef __cplusplus
 }
 #endif
@@ -48,6 +51,7 @@ enum SwitchReason
     SWITCH_REASON_BLOCKED_EVENT_GROUP = 6,
     SWITCH_REASON_COUNTING_SEMAPHORE_GIVE = 7,
     SWITCH_REASON_COUNTING_SEMAPHORE_RECEIVE = 8,
+    SWITCH_REASON_TASK_NOTIFY_WAIT = 9,
     SWITCH_REASON_BLOCKED_OTHER = 0xF,
 };
 
@@ -309,3 +313,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
 #define traceEVENT_GROUP_SYNC_BLOCK(event_group, set_bits, wait_bits) \
     CurrentTaskSwitchRecord.BlockedOnObject = event_group;            \
     CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_EVENT_GROUP;
+
+#define traceTASK_NOTIFY_WAIT_BLOCK(index)                  \
+    CurrentTaskSwitchRecord.BlockedOnObject = (void*)index; \
+    CurrentTaskSwitchRecord.Reason = SWITCH_REASON_TASK_NOTIFY_WAIT;
+
+#define traceTASK_NOTIFY(index) OnTaskNotify(pxTCB, index, eAction, pxTCB->ulNotifiedValue[index]);
+#define traceTASK_NOTIFY_WAIT(index) OnTaskNotifyReceived(pxCurrentTCB, index, pxCurrentTCB->ulNotifiedValue[index] & ~ulBitsToClearOnExit);

@@ -74,6 +74,20 @@ class StateSystemAccessor {
 		}
 	}
 	
+	public void setTaskNotify(ITmfEvent event, String taskName, int index, int value) {
+		int quarkTaskNotify = fStateSystem.getQuarkAbsoluteAndAdd("Task", taskName, "TaskNotify", Integer.toString(index));
+		int quarkValue = fStateSystem.getQuarkRelativeAndAdd(quarkTaskNotify, "Value");
+		
+		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), value, quarkValue);
+	}
+	
+	public void setTaskNotifyState(ITmfEvent event, String taskName, int index, int state) {
+		int quarkTaskNotify = fStateSystem.getQuarkAbsoluteAndAdd("Task", taskName, "TaskNotify", Integer.toString(index));
+		int quarkState = fStateSystem.getQuarkRelativeAndAdd(quarkTaskNotify, "State");
+		
+		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), state, quarkState);
+	}
+	
 	public void setReadyTaskCount(ITmfEvent event, int count) {
 		int quark = fStateSystem.getQuarkAbsoluteAndAdd("ReadyTaskCount");
 		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), count, quark);

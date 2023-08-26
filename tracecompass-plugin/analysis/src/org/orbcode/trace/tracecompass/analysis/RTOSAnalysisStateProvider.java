@@ -114,13 +114,31 @@ public class RTOSAnalysisStateProvider extends AbstractTmfStateProvider {
 			rtos.taskSwitchedOutBlocked(taskName, objectType, address, operation);
 		} else if (outStateName.equals("Delayed")) {
 			rtos.taskSwitchedOutDelayed(taskName);
-		} 
+		}
 	}
 
 	@EventHandler("task_readied")
 	private void onTaskReadied(ITmfEvent event, RTOSOperations rtos) {
 		String taskName = event.getContent().getFieldValue(String.class, "TaskName");
 		rtos.taskReadied(taskName);
+	}
+
+	@EventHandler("task_notified")
+	private void onTaskNotified(ITmfEvent event, RTOSOperations rtos) {
+		String taskName = event.getContent().getFieldValue(String.class, "TaskName");
+		int index = Integer.parseInt(event.getContent().getFieldValue(String.class, "NotifyIndex"));
+		int updatedValue = Integer.parseInt(event.getContent().getFieldValue(String.class, "UpdatedValue"));
+		
+		rtos.taskNotified(taskName, index, updatedValue);
+	}
+	
+	@EventHandler("task_notify_received")
+	private void onTaskNotifyReceied(ITmfEvent event, RTOSOperations rtos) {
+		String taskName = event.getContent().getFieldValue(String.class, "TaskName");
+		int index = Integer.parseInt(event.getContent().getFieldValue(String.class, "NotifyIndex"));
+		int updatedValue = Integer.parseInt(event.getContent().getFieldValue(String.class, "UpdatedValue"));
+		
+		rtos.taskNotifyReceived(taskName, index, updatedValue);
 	}
 
 	@EventHandler("queue_created")
@@ -168,29 +186,29 @@ public class RTOSAnalysisStateProvider extends AbstractTmfStateProvider {
 
 		rtos.binarySemaphoreUnlocked(semaphore);
 	}
-	
+
 	@EventHandler("counting_semaphore_created")
 	private void onCountingSemaphoreCreated(ITmfEvent event, RTOSOperations rtos) {
 		String semaphore = event.getContent().getFieldValue(String.class, "Semaphore");
 		int maxCount = Integer.parseInt(event.getContent().getFieldValue(String.class, "MaxCount"));
 		int initialCount = Integer.parseInt(event.getContent().getFieldValue(String.class, "InitialCount"));
-		
+
 		rtos.countingSemaphoreCreated(semaphore, maxCount, initialCount);
 	}
-	
+
 	@EventHandler("counting_semaphore_given")
 	private void onCountingSemaphoreGiven(ITmfEvent event, RTOSOperations rtos) {
 		String semaphore = event.getContent().getFieldValue(String.class, "Semaphore");
 		int updatedCount = Integer.parseInt(event.getContent().getFieldValue(String.class, "UpdatedCount"));
-		
+
 		rtos.countingSemaphoreGiven(semaphore, updatedCount);
 	}
-	
+
 	@EventHandler("counting_semaphore_taken")
 	private void onCountingSemaphoreTaken(ITmfEvent event, RTOSOperations rtos) {
 		String semaphore = event.getContent().getFieldValue(String.class, "Semaphore");
 		int updatedCount = Integer.parseInt(event.getContent().getFieldValue(String.class, "UpdatedCount"));
-		
+
 		rtos.countingSemaphoreTaken(semaphore, updatedCount);
 	}
 

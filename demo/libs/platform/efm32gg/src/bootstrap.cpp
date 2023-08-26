@@ -117,5 +117,10 @@ int main()
 
     EnableTrace();
 
+    for(int i = 0; i < 10'000; i++)
+    {
+        __asm__ volatile("nop");
+    }
+
     demo_main();
 }

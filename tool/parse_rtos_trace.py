@@ -21,6 +21,16 @@ EVENT_QUEUE_PUSH_POP = 9
 EVENT_TASK_READIED = 10
 EVENT_COUNTING_SEM_CREATED = 11
 EVENT_COUNTING_SEM_GIVE_TAKE = 12
+EVENT_TASK_NOTIFY = 13
+EVENT_TASK_NOTIFY_RECEIVED = 14
+
+NOTIFY_ACTIONS = {
+    0: 'NoAction',
+    1: 'SetBits',
+    2: 'Increment',
+    3: 'SetValueWithOverwrite',
+    4: 'SetValueWithoutOverwrite',
+}
 
 
 def parse_args():
@@ -113,8 +123,8 @@ class Collector:
             block_operation = 'Take'
         elif switch_reason == 9:
             out_state = 'Blocked'
-            blocked_on = 'CountingSemaphore'
-            block_operation = 'Give'
+            blocked_on = 'TaskNotify'
+            block_operation = 'Wait'
         elif switch_reason == 0xF:
             out_state = 'Blocked'
             blocked_on = 'Other'
@@ -274,6 +284,29 @@ class Collector:
             else:
                 return 'queue_popped_failed', data
 
+    @event_handler(EVENT_TASK_NOTIFY)
+    def task_notified(self, task: int, flags: int, updated_value: int):
+        index = (flags & 0xFFFF)
+        action = (flags >> 16) & 0xFFFF
+        return {
+            'TCB': f'0x{task:08X}',
+            'TaskName': self.resolve_task_name(task),
+            'NotifyIndex': index,
+            'NotifyAction': NOTIFY_ACTIONS[action],
+            'UpdatedValue': updated_value,
+        }
+
+    @event_handler(EVENT_TASK_NOTIFY_RECEIVED)
+    def task_notify_received(self, task: int, flags: int, updated_value: int):
+        index = (flags & 0xFFFF)
+
+        return {
+            'TCB': f'0x{task:08X}',
+            'TaskName': self.resolve_task_name(task),
+            'NotifyIndex': index,
+            'UpdatedValue': updated_value,
+        }
+
     def event_map(self):
         result = {}
         for name, member in inspect.getmembers(self):
@@ -286,9 +319,14 @@ class Collector:
 
         return result
 
+def lines_ignore_empty(lines):
+    for line in lines:
+        line = line.strip()
+        if line != '':
+            yield line
 
 def main(args):
-    lines = iter(args.input.readlines())
+    lines = iter(lines_ignore_empty(args.input.readlines()))
 
     line_counter = 0
 
@@ -314,6 +352,8 @@ def main(args):
         while line != '0xDEADBEEF':
             line_counter += 1
             line = next(lines).strip()
+            if line == '':
+                continue
 
         return read_line()
 

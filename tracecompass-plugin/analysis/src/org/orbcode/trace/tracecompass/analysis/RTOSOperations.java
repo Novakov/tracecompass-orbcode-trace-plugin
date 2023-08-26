@@ -17,6 +17,9 @@ public class RTOSOperations {
 	public static final int LOCK_STATE_LOCKED = 10;
 	public static final int LOCK_STATE_UNLOCKED = 11;
 
+	public static final int TASK_NOTIFY_STATE_PENDING = 20;
+	public static final int TASK_NOTIFY_STATE_RECEIVED = 21;
+
 	public RTOSOperations(StateSystemAccessor stateSystem, ITmfEvent currentEvent) {
 		fStateSystem = stateSystem;
 		fCurrentEvent = currentEvent;
@@ -72,6 +75,16 @@ public class RTOSOperations {
 		}
 	}
 
+	public void taskNotified(String taskName, int index, int value) {
+		fStateSystem.setTaskNotify(fCurrentEvent, taskName, index, value);
+		fStateSystem.setTaskNotifyState(fCurrentEvent, taskName, index, TASK_NOTIFY_STATE_PENDING);
+	}
+	
+	public void taskNotifyReceived(String taskName, int index, int value) {
+		fStateSystem.setTaskNotify(fCurrentEvent, taskName, index, value);
+		fStateSystem.setTaskNotifyState(fCurrentEvent, taskName, index, TASK_NOTIFY_STATE_RECEIVED);
+	}
+
 	public void queueCreated(String queue, int capacity) {
 		fStateSystem.setQueueCapacity(fCurrentEvent, queue, capacity);
 		fStateSystem.setQueueCount(fCurrentEvent, queue, 0);
@@ -123,7 +136,7 @@ public class RTOSOperations {
 	public void countingSemaphoreGiven(String semaphore, int updatedCount) {
 		fStateSystem.setCountingSemaphoreCount(fCurrentEvent, semaphore, updatedCount);
 	}
-	
+
 	public void countingSemaphoreTaken(String semaphore, int updatedCount) {
 		fStateSystem.setCountingSemaphoreCount(fCurrentEvent, semaphore, updatedCount);
 	}

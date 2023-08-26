@@ -17,6 +17,8 @@
 #define TRACE_EVENT_TASK_READIED (10u << TRACE_EVENT_ID_SHIFT)
 #define TRACE_EVENT_COUNTING_SEM_CREATED (11u << TRACE_EVENT_ID_SHIFT)
 #define TRACE_EVENT_COUNTING_SEM_GIVE_TAKE (12u << TRACE_EVENT_ID_SHIFT)
+#define TRACE_EVENT_TASK_NOTIFY (13u << TRACE_EVENT_ID_SHIFT)
+#define TRACE_EVENT_TASK_NOTIFY_RECEIVED (14u << TRACE_EVENT_ID_SHIFT)
 
 #define CYCCNT_MASK 0x0FFF'FFFFu
 
@@ -179,38 +181,24 @@ void TraceOnQueuePop(void* queue, bool isr, bool success, uint32_t updatedItemsC
     TraceFooter();
 }
 
-void SetupTrace()
+extern void OnTaskNotify(void* task, uint32_t index, uint32_t action, uint32_t updatedValue)
 {
-    TpiuOptions tpiu;
-    tpiu.TracePortWidth = 4;
-    tpiu.FormattingEnabled = true;
-    tpiu.Protocol = TpiuProtocolParallel;
-    tpiu.SwoPrescaler = 0;
+    TraceHeader();
+    ITMWrite32(2, TRACE_EVENT_TASK_NOTIFY | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, reinterpret_cast<std::uintptr_t>(task));
+    ITMWrite32(2, (index & 0xFFFF) | ((action & 0xFFFF)) << 16);
+    ITMWrite32(2, updatedValue);
+    TraceFooter();
+}
 
-    ITMOptions itm;
-    itm.EnabledStimulusPorts = ITM_ENABLE_STIMULUS_PORTS_ALL;
-    itm.EnableLocalTimestamp = false;
-    itm.EnableSyncPacket = false;
-    itm.ForwardDWT = false;
-    itm.GlobalTimestampFrequency = ITMGlobalTimestampFrequencyDisabled;
-    itm.LocalTimestampPrescaler = ITMLocalTimestampPrescalerNoPrescaling;
-    itm.TraceBusID = 1;
-
-    DWTOptions dwt;
-    dwt.CycleTap = DWTCycleTap10;
-    dwt.CPICounterEvent = false;
-    dwt.ExceptionOverheadCounterEvent = false;
-    dwt.ExceptionTrace = false;
-    dwt.FoldedInstructionCounterEvent = false;
-    dwt.LSUCounterEvent = false;
-    dwt.PCSampling = false;
-    dwt.SamplingPrescaler = 1;
-    dwt.SleepCounterEvent = false;
-    dwt.SyncTap = DWTSyncTap28;
-
-    TpiuSetup(&tpiu);
-    ITMSetup(&itm);
-    DWTSetup(&dwt);
+extern void OnTaskNotifyReceived(void* task, uint32_t index, uint32_t updatedValue)
+{
+    TraceHeader();
+    ITMWrite32(2, TRACE_EVENT_TASK_NOTIFY_RECEIVED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, reinterpret_cast<std::uintptr_t>(task));
+    ITMWrite16(2, index);
+    ITMWrite32(2, updatedValue);
+    TraceFooter();
 }
 
 static inline std::uint32_t GetUs()
