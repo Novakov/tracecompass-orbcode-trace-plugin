@@ -22,6 +22,8 @@ dependencies = [
 
 [tool.hatch.envs.quality]
 dependencies = [
+    'pytest~=7.4',
+
     'mypy~=1.5',
     'flake8~=6.1',
     'yapf~=0.40',
@@ -48,3 +50,17 @@ check = [
 
 [project.scripts]
 orbrtos_trace = 'orbcode.rtos_trace.tool:main'
+
+[tool.mypy]
+warn_unused_configs = true
+strict = true
+explicit_package_bases = true
+mypy_path = "src"
+
+[tool.yapf]
+based_on_style = "pep8"
+column_limit = 140
+indent_width = 4
+split_all_top_level_comma_separated_values = true
+split_before_first_argument = true
+blank_line_before_nested_class_or_def = false
