@@ -28,21 +28,22 @@ See README inside each directory for more information.
     84.4 KBits/sec  1: 74%  2:  0%  Waste: 26%
     ```
 3. With orbuculum running in the background, hold target board in reset (by holding reset button)
-4. Start `orbcat` and redirect output to file
+4. Start `orbdump` and redirect output to file
     ```
-    shell> orbcat  -c '2,0x%08X\n' > ./trace_raw.txt
+    shell> orbdump -l <record length in milliseconds> -o trace.dat
     ```
 5. Release reset button on target board
-6. Wait for some time to generate some trace data
-7. Terminate `orbcat` with Ctrl+C
-8. At this point `./trace_raw.txt` file should contain lots of hexadecimals numbers, one per line
-9. Parse trace data into TraceCompass format
+6. Wait for `orbdump` to finish capturing data
+7. `trace.dat` will contain raw trace data including data from RTOS hooks
+8. Parse trace data into TraceCompass format
     ```
-    shell> python tool/parse_rtos_trace ./trace_raw.txt ./trace.log
+    shell> cd tool && hatch run dev:orbrtos_trace --trace-file trace.dat trace.log
     ```
-10. Open TraceCompass and install RTOS analysis plugin (see [./tracecompass-plugin](tracecompass-plugin/README.md)) - you can use artifacts from GitHub actions to not build plugin yourself.
-11. Create Trace project and open `trace.log` file. Trace type should be assigned automatically.
-12. In Project Explorer open `Tracing -> Traces -> trace.log -> View -> RTOS analysis -> Tasks states` view. It should display three tasks (`Blink1`, `Blink2` and `IDLE`) and alternating pattern of `Ready` and `Running` states.
+
+    Hatch can be installed using pipx. If above command fails with error saying that it can't find `liborb` shared library add `orbuculum` build directory to PATH (for Windows) or LD_LIBRARY_PATH (for Linux) environment variable. Alternatively you can set `LIBORB_PATH` environment variable to point to `liborb` shared library (full path to file, not containing directory).
+9. Open TraceCompass and install RTOS analysis plugin (see [./tracecompass-plugin](tracecompass-plugin/README.md)) - you can use artifacts from GitHub actions to not build plugin yourself.
+10. Create Trace project and open `trace.log` file. Trace type should be assigned automatically.
+11. In Project Explorer open `Tracing -> Traces -> trace.log -> View -> RTOS analysis -> Tasks states` view. It should display three tasks (`Blink1`, `Blink2` and `IDLE`) and alternating pattern of `Ready` and `Running` states.
     ![TraceCompass showing tasks states view for busy_blinker scenario. Displays three tasks (Blink1, Blink2 and IDLE) and alternating pattern of `Ready` and `Running` states.](./docs/images/busy_blinker_tasks_states.jpg)
 
 ## RTOS analysis
