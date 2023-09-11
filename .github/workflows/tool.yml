@@ -51,6 +51,8 @@ jobs:
       - run: pipx install hatch
       - run: hatch build --clean
         working-directory: ./tool
+      - run: hatch run quality:check
+        working-directory: ./tool
       - run: hatch run dev:tests
         working-directory: ./tool
         env:

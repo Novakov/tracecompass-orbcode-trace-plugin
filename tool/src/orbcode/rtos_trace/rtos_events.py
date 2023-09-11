@@ -1,5 +1,6 @@
 from functools import wraps
 import inspect
+from typing import Callable, Dict, Optional, Tuple, Union
 
 
 EVENT_TASK_SWITCHED_IN = 1
@@ -26,18 +27,22 @@ NOTIFY_ACTIONS = {
 }
 
 
-def event_handler(event_id: int):
-    def wrapper(f):
-        f.event_id = event_id
+TraceEventData = Dict[str, Union[None, str, int, bool]]
+TraceEvent = Union[Tuple[str, TraceEventData], TraceEventData]
+
+
+def event_handler(event_id: int) -> Callable[[Callable[..., TraceEvent]], Callable[..., TraceEvent]]:
+    def wrapper(f: Callable[..., TraceEvent]) -> Callable[..., TraceEvent]:
+        f.event_id = event_id  # type: ignore
 
         @wraps(f)
-        def wrapped(*args, **kwargs):
+        def wrapped(*args, **kwargs) -> TraceEvent:  # type: ignore
             result = f(*args, **kwargs)
 
             if not isinstance(result, tuple):
                 return f.__name__, result
             elif len(result) == 1:
-                return f.__name__, *result
+                return f.__name__, result[0]  # type: ignore
             else:
                 return result
 
@@ -47,15 +52,15 @@ def event_handler(event_id: int):
 
 
 class Collector:
-    def __init__(self):
+    def __init__(self) -> None:
         self.current_tcb = 0
-        self.task_names = {}
+        self.task_names: Dict[int, str] = {}
 
-    def resolve_task_name(self, task_tcb: int) -> int:
+    def resolve_task_name(self, task_tcb: int) -> str:
         return self.task_names.get(task_tcb, f'0x{task_tcb:08X}')
 
     @event_handler(EVENT_TASK_SWITCHED_IN)
-    def task_switched_in(self, tcb):
+    def task_switched_in(self, tcb: int) -> TraceEvent:
         self.current_tcb = tcb
 
         return {
@@ -64,7 +69,7 @@ class Collector:
         }
 
     @event_handler(EVENT_TASK_SWITCHED_OUT)
-    def task_switched_out(self, tcb, switch_reason_data: int, blocked_on_object: int, flags: int):
+    def task_switched_out(self, tcb: int, switch_reason_data: int, blocked_on_object: Optional[int], flags: int) -> TraceEvent:
         self.current_tcb = 0
         still_ready = (flags & (1 << 0)) == (1 << 0)
         switch_reason = (switch_reason_data >> 28) & 0b1111
@@ -127,22 +132,22 @@ class Collector:
         }
 
     @event_handler(EVENT_TASK_READIED)
-    def task_readied(self, tcb: int):
+    def task_readied(self, tcb: int) -> TraceEvent:
         return {
             'TCB': f'0x{tcb:08X}',
             'TaskName': self.resolve_task_name(tcb)
         }
 
     @event_handler(EVENT_BINARY_SEM_CREATED)
-    def binary_semaphore_created(self, queue: int):
+    def binary_semaphore_created(self, queue: int) -> TraceEvent:
         return {'Semaphore': f'0x{queue:08X}'}
 
     @event_handler(EVENT_COUNTING_SEM_CREATED)
-    def counting_semaphore_created(self, semaphore: int, max_count: int, initial_count: int):
+    def counting_semaphore_created(self, semaphore: int, max_count: int, initial_count: int) -> TraceEvent:
         return {'Semaphore': f'0x{semaphore:08X}', 'MaxCount': max_count, 'InitialCount': initial_count}
 
     @event_handler(EVENT_COUNTING_SEM_GIVE_TAKE)
-    def counting_semaphore_give_take(self, queue: int, flags: int):
+    def counting_semaphore_give_take(self, queue: int, flags: int) -> TraceEvent:
         is_success = (flags & (1 << 2)) == (1 << 2)
         is_isr = (flags & (1 << 1)) == (1 << 1)
         is_take = (flags & (1 << 0)) == (1 << 0)
@@ -153,7 +158,7 @@ class Collector:
         else:
             tcb = self.current_tcb
 
-        data = {
+        data: TraceEventData = {
             'Semaphore': f'0x{queue:08X}',
             'TCB': f'0x{tcb:08X}',
             'TaskName': self.resolve_task_name(tcb),
@@ -173,11 +178,11 @@ class Collector:
                 return 'counting_semaphore_give_failed', data
 
     @event_handler(EVENT_MUTEX_CREATED)
-    def mutex_created(self, mutex: int):
+    def mutex_created(self, mutex: int) -> TraceEvent:
         return {'Mutex': f'0x{mutex:08X}'}
 
     @event_handler(EVENT_BINARY_SEM_LOCKING)
-    def binary_semaphore_locking(self, queue: int, flags: int):
+    def binary_semaphore_locking(self, queue: int, flags: int) -> TraceEvent:
         is_success = (flags & (1 << 2)) == (1 << 2)
         is_isr = (flags & (1 << 1)) == (1 << 1)
         is_lock = (flags & (1 << 0)) == (1 << 0)
@@ -187,7 +192,7 @@ class Collector:
         else:
             tcb = self.current_tcb
 
-        data = {
+        data: TraceEventData = {
             'Semaphore': f'0x{queue:08X}',
             'TCB': f'0x{tcb:08X}',
             'TaskName': self.resolve_task_name(tcb),
@@ -206,7 +211,7 @@ class Collector:
                 return 'binary_semaphore_unlock_failed', data
 
     @event_handler(EVENT_MUTEX_LOCKING)
-    def mutex_locking(self, mutex: int, flags: int):
+    def mutex_locking(self, mutex: int, flags: int) -> TraceEvent:
         is_success = (flags & (1 << 2)) == (1 << 2)
         is_isr = (flags & (1 << 1)) == (1 << 1)
         is_lock = (flags & (1 << 0)) == (1 << 0)
@@ -216,7 +221,7 @@ class Collector:
         else:
             tcb = self.current_tcb
 
-        data = {
+        data: TraceEventData = {
             'Mutex': f'0x{mutex:08X}',
             'TCB': f'0x{tcb:08X}',
             'TaskName': self.resolve_task_name(tcb),
@@ -235,15 +240,14 @@ class Collector:
                 return 'mutex_unlock_failed', data
 
     @event_handler(EVENT_QUEUE_CREATED)
-    def queue_created(self, queue: int, capacity: int):
+    def queue_created(self, queue: int, capacity: int) -> TraceEvent:
         return {'Queue': f'0x{queue:08X}', 'Capacity': capacity}
 
     @event_handler(EVENT_QUEUE_PUSH_POP)
-    def queue_push_pop(self, queue: int, flags: int):
+    def queue_push_pop(self, queue: int, flags: int) -> TraceEvent:
         is_success = (flags & (1 << 2)) == (1 << 2)
         is_isr = (flags & (1 << 1)) == (1 << 1)
         is_push = (flags & (1 << 0)) == (0 << 0)
-        is_pop = not is_push
         updated_items_count = (flags >> 16) & 0xFFFF
 
         if is_isr:
@@ -251,7 +255,7 @@ class Collector:
         else:
             tcb = self.current_tcb
 
-        data = {
+        data: TraceEventData = {
             'Queue': f'0x{queue:08X}',
             'TCB': f'0x{tcb:08X}',
             'TaskName': self.resolve_task_name(tcb),
@@ -271,7 +275,7 @@ class Collector:
                 return 'queue_popped_failed', data
 
     @event_handler(EVENT_TASK_NOTIFY)
-    def task_notified(self, task: int, flags: int, updated_value: int):
+    def task_notified(self, task: int, flags: int, updated_value: int) -> TraceEvent:
         index = (flags & 0xFFFF)
         action = (flags >> 16) & 0xFFFF
         return {
@@ -283,7 +287,7 @@ class Collector:
         }
 
     @event_handler(EVENT_TASK_NOTIFY_RECEIVED)
-    def task_notify_received(self, task: int, flags: int, updated_value: int):
+    def task_notify_received(self, task: int, flags: int, updated_value: int) -> TraceEvent:
         index = (flags & 0xFFFF)
 
         return {
@@ -294,7 +298,8 @@ class Collector:
         }
 
     @event_handler(EVENT_TASK_CREATED)
-    def task_created(self, tcb: int, name_length: int, *name_bytes: int):
+    def task_created(self, tcb: int, name_length: int, *name_bytes: int) -> TraceEvent:
+        del name_length
         name = b''.join([p.to_bytes(byteorder='little', length=32).strip(b'\0') for p in name_bytes]).decode('utf-8')
 
         if name not in self.task_names.values():
@@ -305,14 +310,14 @@ class Collector:
             'TaskName': self.resolve_task_name(tcb),
         }
 
-    def event_map(self):
-        result = {}
-        for name, member in inspect.getmembers(self):
+    def event_map(self) -> Dict[int, Callable[..., TraceEvent]]:
+        result: Dict[int, Callable[..., TraceEvent]] = {}
+        for _, member in inspect.getmembers(self):
             if not inspect.ismethod(member):
                 continue
             if not hasattr(member, 'event_id'):
                 continue
 
-            result[member.event_id] = member
+            result[member.event_id] = member  # type: ignore
 
         return result

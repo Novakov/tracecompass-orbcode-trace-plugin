@@ -14,6 +14,7 @@ def iterate_packets_from_trace(trace: pyorb.Orb) -> Iterable[pyorb.TraceMessage]
 
         yield packet
 
+
 def generate_packet_dump(trace_messages: Iterable[pyorb.TraceMessage], output: IO[str]) -> None:
     for msg in trace_messages:
         if not isinstance(msg, pyorb.swMsg):

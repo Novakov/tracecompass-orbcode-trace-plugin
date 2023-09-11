@@ -1,9 +1,10 @@
 from dataclasses import dataclass
-from typing import IO, Iterable
+from typing import IO, Iterable, List, Optional
 
 from orbcode import pyorb
 
-from .rtos_events import Collector
+from .rtos_events import Collector, TraceEvent
+
 
 @dataclass(frozen=True)
 class Packet:
@@ -16,8 +17,9 @@ EVENT_ID_SHIFT = 28
 EVENT_ID_MASK = 0b1111
 CYCCNT_MASK = 0x0FFF_FFFF
 
+
 def enumerate_packets_from_trace(trace_messages: Iterable[pyorb.TraceMessage]) -> Iterable[Packet]:
-    current_chunk = None
+    current_chunk: Optional[List[int]] = None
 
     for packet in trace_messages:
         if not isinstance(packet, pyorb.swMsg):
@@ -46,12 +48,13 @@ def enumerate_packets_from_trace(trace_messages: Iterable[pyorb.TraceMessage]) -
         if current_chunk is not None:
             current_chunk.append(packet.value)
 
-def generate_rtos_trace_from_trace(trace_messages: Iterable[pyorb.TraceMessage], output: IO[bytes]) -> None:
+
+def generate_rtos_trace_from_trace(trace_messages: Iterable[pyorb.TraceMessage], output: IO[str]) -> None:
     packets = enumerate_packets_from_trace(trace_messages)
     generate_rtos_trace(packets, output)
 
 
-def generate_rtos_trace(packets: Iterable[Packet], output: IO[bytes]) -> None:
+def generate_rtos_trace(packets: Iterable[Packet], output: IO[str]) -> None:
     cumulative_timestamp = 0
     last_timestamp = 0
 
@@ -69,10 +72,11 @@ def generate_rtos_trace(packets: Iterable[Packet], output: IO[bytes]) -> None:
 
         timestamp_s = cumulative_timestamp / 50e6
 
-        if packet.event_id in event_map:
-            handler = event_map.get(packet.event_id)
-
-            event_type, event_data = handler(*packet.payload)
+        handler = event_map.get(packet.event_id, None)
+        if handler is not None:
+            trace_event: TraceEvent = handler(*packet.payload)
+            assert isinstance(trace_event, tuple)
+            event_type, event_data = trace_event
 
             output.write(f'Timestamp: {timestamp_s:.6f} Event type: {event_type}\n')
             for k, v in event_data.items():
