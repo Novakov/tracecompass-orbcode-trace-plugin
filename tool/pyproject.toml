@@ -17,7 +17,8 @@ packages = ['src/orbcode']
 
 [tool.hatch.envs.dev]
 dependencies = [
-    'pytest~=7.4'
+    'pytest~=7.4',
+    'pytest-cov~=4.1',
 ]
 
 [tool.hatch.envs.quality]
@@ -40,7 +41,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.dev.scripts]
-tests = 'pytest src/tests {args:}'
+tests = 'pytest --cov=orbcode --cov-report html src/tests {args:}'
 
 [tool.hatch.envs.quality.scripts]
 check = [
