@@ -41,8 +41,6 @@ def event_handler(event_id: int) -> Callable[[Callable[..., TraceEvent]], Callab
 
             if not isinstance(result, tuple):
                 return f.__name__, result
-            elif len(result) == 1:
-                return f.__name__, result[0]  # type: ignore
             else:
                 return result
 
@@ -120,7 +118,7 @@ class Collector:
             out_state = 'Blocked'
             blocked_on = 'Other'
         else:
-            print(f'Unknown switch out reason {switch_reason}')
+            raise RuntimeError(f'Unknown switch out reason {switch_reason}')
 
         return {
             'TCB': f'0x{tcb:08X}',
@@ -302,8 +300,7 @@ class Collector:
         del name_length
         name = b''.join([p.to_bytes(byteorder='little', length=32).strip(b'\0') for p in name_bytes]).decode('utf-8')
 
-        if name not in self.task_names.values():
-            self.task_names[tcb] = name
+        self.task_names[tcb] = name
 
         return {
             'TCB': f'0x{tcb:08X}',

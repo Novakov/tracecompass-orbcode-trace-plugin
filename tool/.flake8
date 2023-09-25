@@ -9,7 +9,7 @@ ignore =
     PT004
 per-file-ignores =
     src/orbcode/pyorb/__init__.py:E221, E241, N801
-max-line-length = 140
+max-line-length = 145
 import-order-style = google
 unused-arguments-ignore-abstract-functions = True
 unused-arguments-ignore-lambdas = True

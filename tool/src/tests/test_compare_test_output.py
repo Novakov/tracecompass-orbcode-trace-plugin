@@ -27,6 +27,7 @@ def generate_packet_dump_from_packet_dump(lines: Iterable[str], output: IO[str])
 
 TRACES = [p.name for p in Path(__file__).parent.glob('traces/*') if p.is_dir()]
 
+
 @pytest.mark.parametrize('trace_name', TRACES)
 def test_generate_expected_trace_output(trace_name: str) -> None:
     raw_trace_path = Path(__file__).parent / 'traces' / trace_name / 'raw.trace'

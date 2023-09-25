@@ -41,7 +41,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.dev.scripts]
-tests = 'pytest --cov=orbcode --cov-report html src/tests {args:}'
+tests = 'pytest --cov=orbcode --cov-branch --cov-report html src/tests {args:}'
 
 [tool.hatch.envs.quality.scripts]
 check = [
