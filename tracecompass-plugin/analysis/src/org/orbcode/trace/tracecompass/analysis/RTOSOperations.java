@@ -1,5 +1,7 @@
 package org.orbcode.trace.tracecompass.analysis;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.tracecompass.tmf.core.event.ITmfEvent;
 
@@ -32,13 +34,14 @@ public class RTOSOperations {
 	public void taskSwitchedIn(String taskName) {
 		fStateSystem.setTaskState(fCurrentEvent, taskName, TASK_STATE_RUNNING);
 		fStateSystem.setCurrentTask(fCurrentEvent, taskName);
-		modifyReadyTaskCount(-1);
+		updateReadyTaskCount();
 	}
 
 	public void taskSwitchedOutDelayed(String taskName) {
 		fStateSystem.setCurrentTask(fCurrentEvent, null);
 
 		fStateSystem.setTaskState(fCurrentEvent, taskName, TASK_STATE_DELAYED);
+		updateReadyTaskCount();
 	}
 
 	public void taskSwitchedOutReady(String taskName) {
@@ -46,7 +49,7 @@ public class RTOSOperations {
 
 		fStateSystem.setTaskState(fCurrentEvent, taskName, TASK_STATE_READY);
 
-		modifyReadyTaskCount(1);
+		updateReadyTaskCount();
 		int preemptedCount = fStateSystem.getTaskPreemptedCount(taskName);
 		preemptedCount++;
 		fStateSystem.setTaskPreemptedCount(fCurrentEvent, taskName, preemptedCount);
@@ -57,15 +60,12 @@ public class RTOSOperations {
 
 		fStateSystem.setTaskState(fCurrentEvent, taskName, TASK_STATE_BLOCKED);
 		fStateSystem.setTaskBlockedOn(fCurrentEvent, taskName, objectType, address, operation);
-
+		updateReadyTaskCount();
 	}
 
 	public void taskReadied(String taskName) {
 		Integer currentState = fStateSystem.getTaskState(taskName);
 
-		if (currentState != null && currentState != TASK_STATE_READY && currentState != TASK_STATE_RUNNING) {
-			modifyReadyTaskCount(1);
-		}
 		if (currentState != null && currentState != TASK_STATE_RUNNING) {
 			fStateSystem.setTaskState(fCurrentEvent, taskName, TASK_STATE_READY);
 		}
@@ -73,6 +73,8 @@ public class RTOSOperations {
 		if (currentState != null && currentState == TASK_STATE_BLOCKED) {
 			fStateSystem.setTaskBlockedOn(fCurrentEvent, taskName, null, null, null);
 		}
+		
+		updateReadyTaskCount();
 	}
 
 	public void taskNotified(String taskName, int index, int value) {
@@ -141,10 +143,10 @@ public class RTOSOperations {
 		fStateSystem.setCountingSemaphoreCount(fCurrentEvent, semaphore, updatedCount);
 	}
 
-	private void modifyReadyTaskCount(int delta) {
-		int readyCount = fStateSystem.getReadyTaskCount();
-		readyCount += delta;
-		fStateSystem.setReadyTaskCount(fCurrentEvent, readyCount);
+	private void updateReadyTaskCount() {
+		List<Integer> states = fStateSystem.queryTaskStates();
+		
+		long readyCount = states.stream().filter(t -> t == TASK_STATE_READY).count();
+		fStateSystem.setReadyTaskCount(fCurrentEvent, (int)readyCount);
 	}
-
 }
