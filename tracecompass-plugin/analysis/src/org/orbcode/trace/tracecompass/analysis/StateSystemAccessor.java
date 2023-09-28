@@ -1,6 +1,7 @@
 package org.orbcode.trace.tracecompass.analysis;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.statesystem.core.ITmfStateSystemBuilder;
@@ -101,6 +102,24 @@ class StateSystemAccessor {
 		}
 		
 		return (int)ongoing;
+	}
+	
+	public List<Integer> queryTaskStates() {
+		@NonNull
+		List<@NonNull Integer> quarks = fStateSystem.getQuarks("Task", "*", "State");
+		
+		List<@NonNull Integer> states = new ArrayList<Integer>();
+		
+		for(int taskStateQuark: quarks) {
+			Object state = fStateSystem.queryOngoing(taskStateQuark);
+			if(state == null) {
+				continue;
+			}
+			
+			states.add((Integer)state);
+		}
+		
+		return states;
 	}
 	
 	public void setCurrentTask(ITmfEvent event, String taskName) {
