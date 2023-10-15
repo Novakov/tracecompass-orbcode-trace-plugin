@@ -1,32 +1,32 @@
-Timestamp: 0.002621 Event type: task_readied
+Timestamp: 0.002627 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.002813 Event type: task_created
+Timestamp: 0.002833 Event type: task_created
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.002841 Event type: task_readied
+Timestamp: 0.002846 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.002954 Event type: task_created
+Timestamp: 0.002968 Event type: task_created
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 0.002977 Event type: task_readied
+Timestamp: 0.002981 Event type: task_readied
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 0.002991 Event type: task_switched_in
+Timestamp: 0.002994 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.003025 Event type: task_switched_out
+Timestamp: 0.003034 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.003044 Event type: task_switched_in
+Timestamp: 0.003046 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.003069 Event type: task_switched_out
+Timestamp: 0.003076 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
@@ -36,2306 +36,2447 @@ Timestamp: 0.003069 Event type: task_switched_out
 Timestamp: 0.003088 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 0.195013 Event type: task_readied
+Timestamp: 0.196325 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.195029 Event type: task_switched_out
+Timestamp: 0.196347 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.195048 Event type: task_switched_in
+Timestamp: 0.196359 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.195063 Event type: task_notified
+Timestamp: 0.196377 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '1'
-Timestamp: 0.195080 Event type: task_readied
+Timestamp: 0.196390 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.195108 Event type: task_switched_out
+Timestamp: 0.196424 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.195127 Event type: task_switched_in
+Timestamp: 0.196436 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.195140 Event type: task_notify_received
+Timestamp: 0.196452 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 0.195171 Event type: task_switched_out
+Timestamp: 0.196485 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 0.195190 Event type: task_switched_in
+Timestamp: 0.196497 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 0.387013 Event type: task_readied
+Timestamp: 0.389635 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.387028 Event type: task_switched_out
+Timestamp: 0.389656 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.387047 Event type: task_switched_in
+Timestamp: 0.389668 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.387063 Event type: task_notified
+Timestamp: 0.389687 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '2'
-Timestamp: 0.387079 Event type: task_readied
+Timestamp: 0.389699 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.387108 Event type: task_switched_out
+Timestamp: 0.389733 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.387127 Event type: task_switched_in
+Timestamp: 0.389745 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.387140 Event type: task_notify_received
+Timestamp: 0.389762 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 0.387171 Event type: task_switched_out
+Timestamp: 0.389794 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 0.387190 Event type: task_switched_in
+Timestamp: 0.389806 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 0.579013 Event type: task_readied
+Timestamp: 0.582945 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.579028 Event type: task_switched_out
+Timestamp: 0.582966 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.579047 Event type: task_switched_in
+Timestamp: 0.582977 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.579063 Event type: task_notified
+Timestamp: 0.582996 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '3'
-Timestamp: 0.579079 Event type: task_readied
+Timestamp: 0.583009 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.579108 Event type: task_switched_out
+Timestamp: 0.583043 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.579127 Event type: task_switched_in
+Timestamp: 0.583054 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.579140 Event type: task_notify_received
+Timestamp: 0.583071 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 0.579171 Event type: task_switched_out
+Timestamp: 0.583104 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 0.579190 Event type: task_switched_in
+Timestamp: 0.583115 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 0.771013 Event type: task_readied
+Timestamp: 0.776254 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.771028 Event type: task_switched_out
+Timestamp: 0.776275 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.771047 Event type: task_switched_in
+Timestamp: 0.776287 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.771063 Event type: task_notified
+Timestamp: 0.776306 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '4'
-Timestamp: 0.771079 Event type: task_readied
+Timestamp: 0.776318 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.771108 Event type: task_switched_out
+Timestamp: 0.776352 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.771127 Event type: task_switched_in
+Timestamp: 0.776364 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.771140 Event type: task_notify_received
+Timestamp: 0.776381 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 0.771171 Event type: task_switched_out
+Timestamp: 0.776413 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 0.771190 Event type: task_switched_in
+Timestamp: 0.776425 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 0.963013 Event type: task_readied
+Timestamp: 0.969564 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.963028 Event type: task_switched_out
+Timestamp: 0.969585 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.963047 Event type: task_switched_in
+Timestamp: 0.969596 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 0.963063 Event type: task_notified
+Timestamp: 0.969615 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '5'
-Timestamp: 0.963079 Event type: task_readied
+Timestamp: 0.969628 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.963108 Event type: task_switched_out
+Timestamp: 0.969662 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 0.963127 Event type: task_switched_in
+Timestamp: 0.969674 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 0.963140 Event type: task_notify_received
+Timestamp: 0.969690 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 0.963171 Event type: task_switched_out
+Timestamp: 0.969723 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 0.963190 Event type: task_switched_in
+Timestamp: 0.969735 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 1.155013 Event type: task_readied
+Timestamp: 1.162873 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.155028 Event type: task_switched_out
+Timestamp: 1.162894 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.155047 Event type: task_switched_in
+Timestamp: 1.162906 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.155063 Event type: task_notified
+Timestamp: 1.162925 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '6'
-Timestamp: 1.155079 Event type: task_readied
+Timestamp: 1.162937 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.155108 Event type: task_switched_out
+Timestamp: 1.162971 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.155127 Event type: task_switched_in
+Timestamp: 1.162983 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.155140 Event type: task_notify_received
+Timestamp: 1.163000 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 1.155171 Event type: task_switched_out
+Timestamp: 1.163032 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 1.155190 Event type: task_switched_in
+Timestamp: 1.163044 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 1.347013 Event type: task_readied
+Timestamp: 1.356183 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.347028 Event type: task_switched_out
+Timestamp: 1.356204 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.347047 Event type: task_switched_in
+Timestamp: 1.356216 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.347063 Event type: task_notified
+Timestamp: 1.356234 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '7'
-Timestamp: 1.347079 Event type: task_readied
+Timestamp: 1.356247 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.347108 Event type: task_switched_out
+Timestamp: 1.356281 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.347127 Event type: task_switched_in
+Timestamp: 1.356293 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.347140 Event type: task_notify_received
+Timestamp: 1.356309 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 1.347171 Event type: task_switched_out
+Timestamp: 1.356342 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 1.347190 Event type: task_switched_in
+Timestamp: 1.356354 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 1.539013 Event type: task_readied
+Timestamp: 1.549492 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.539028 Event type: task_switched_out
+Timestamp: 1.549513 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.539047 Event type: task_switched_in
+Timestamp: 1.549525 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.539063 Event type: task_notified
+Timestamp: 1.549544 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '8'
-Timestamp: 1.539079 Event type: task_readied
+Timestamp: 1.549557 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.539108 Event type: task_switched_out
+Timestamp: 1.549591 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.539127 Event type: task_switched_in
+Timestamp: 1.549602 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.539140 Event type: task_notify_received
+Timestamp: 1.549619 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 1.539171 Event type: task_switched_out
+Timestamp: 1.549652 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 1.539190 Event type: task_switched_in
+Timestamp: 1.549663 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 1.731013 Event type: task_readied
+Timestamp: 1.742802 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.731028 Event type: task_switched_out
+Timestamp: 1.742823 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.731047 Event type: task_switched_in
+Timestamp: 1.742835 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.731063 Event type: task_notified
+Timestamp: 1.742854 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '9'
-Timestamp: 1.731079 Event type: task_readied
+Timestamp: 1.742866 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.731108 Event type: task_switched_out
+Timestamp: 1.742900 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.731127 Event type: task_switched_in
+Timestamp: 1.742912 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.731140 Event type: task_notify_received
+Timestamp: 1.742929 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 1.731171 Event type: task_switched_out
+Timestamp: 1.742961 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 1.731190 Event type: task_switched_in
+Timestamp: 1.742973 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 1.923013 Event type: task_readied
+Timestamp: 1.936112 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.923028 Event type: task_switched_out
+Timestamp: 1.936133 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.923047 Event type: task_switched_in
+Timestamp: 1.936144 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 1.923063 Event type: task_notified
+Timestamp: 1.936163 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '10'
-Timestamp: 1.923079 Event type: task_readied
+Timestamp: 1.936176 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.923108 Event type: task_switched_out
+Timestamp: 1.936210 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 1.923127 Event type: task_switched_in
+Timestamp: 1.936221 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 1.923140 Event type: task_notify_received
+Timestamp: 1.936238 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 1.923171 Event type: task_switched_out
+Timestamp: 1.936271 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 1.923190 Event type: task_switched_in
+Timestamp: 1.936283 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 2.115013 Event type: task_readied
+Timestamp: 2.129421 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.115028 Event type: task_switched_out
+Timestamp: 2.129442 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.115047 Event type: task_switched_in
+Timestamp: 2.129454 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.115063 Event type: task_notified
+Timestamp: 2.129473 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '11'
-Timestamp: 2.115079 Event type: task_readied
+Timestamp: 2.129485 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.115108 Event type: task_switched_out
+Timestamp: 2.129519 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.115127 Event type: task_switched_in
+Timestamp: 2.129531 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.115140 Event type: task_notify_received
+Timestamp: 2.129548 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 2.115171 Event type: task_switched_out
+Timestamp: 2.129580 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 2.115190 Event type: task_switched_in
+Timestamp: 2.129592 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 2.307013 Event type: task_readied
+Timestamp: 2.322731 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.307028 Event type: task_switched_out
+Timestamp: 2.322752 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.307047 Event type: task_switched_in
+Timestamp: 2.322764 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.307063 Event type: task_notified
+Timestamp: 2.322782 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '12'
-Timestamp: 2.307079 Event type: task_readied
+Timestamp: 2.322795 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.307108 Event type: task_switched_out
+Timestamp: 2.322829 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.307127 Event type: task_switched_in
+Timestamp: 2.322841 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.307140 Event type: task_notify_received
+Timestamp: 2.322857 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 2.307171 Event type: task_switched_out
+Timestamp: 2.322890 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 2.307190 Event type: task_switched_in
+Timestamp: 2.322902 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 2.499013 Event type: task_readied
+Timestamp: 2.516040 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.499028 Event type: task_switched_out
+Timestamp: 2.516061 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.499047 Event type: task_switched_in
+Timestamp: 2.516073 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.499063 Event type: task_notified
+Timestamp: 2.516092 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '13'
-Timestamp: 2.499079 Event type: task_readied
+Timestamp: 2.516104 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.499108 Event type: task_switched_out
+Timestamp: 2.516138 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.499127 Event type: task_switched_in
+Timestamp: 2.516150 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.499140 Event type: task_notify_received
+Timestamp: 2.516167 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 2.499171 Event type: task_switched_out
+Timestamp: 2.516199 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 2.499190 Event type: task_switched_in
+Timestamp: 2.516211 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 2.691013 Event type: task_readied
+Timestamp: 2.709350 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.691028 Event type: task_switched_out
+Timestamp: 2.709371 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.691047 Event type: task_switched_in
+Timestamp: 2.709383 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.691063 Event type: task_notified
+Timestamp: 2.709401 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '14'
-Timestamp: 2.691079 Event type: task_readied
+Timestamp: 2.709414 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.691108 Event type: task_switched_out
+Timestamp: 2.709448 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.691127 Event type: task_switched_in
+Timestamp: 2.709460 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.691140 Event type: task_notify_received
+Timestamp: 2.709477 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 2.691171 Event type: task_switched_out
+Timestamp: 2.709509 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 2.691190 Event type: task_switched_in
+Timestamp: 2.709521 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 2.883013 Event type: task_readied
+Timestamp: 2.902660 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.883028 Event type: task_switched_out
+Timestamp: 2.902681 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.883047 Event type: task_switched_in
+Timestamp: 2.902692 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 2.883063 Event type: task_notified
+Timestamp: 2.902711 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '15'
-Timestamp: 2.883079 Event type: task_readied
+Timestamp: 2.902724 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.883108 Event type: task_switched_out
+Timestamp: 2.902758 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 2.883127 Event type: task_switched_in
+Timestamp: 2.902769 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 2.883140 Event type: task_notify_received
+Timestamp: 2.902786 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '0'
-Timestamp: 2.883171 Event type: task_switched_out
+Timestamp: 2.902819 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 2.883190 Event type: task_switched_in
+Timestamp: 2.902830 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 3.075013 Event type: task_readied
+Timestamp: 3.095969 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.075028 Event type: task_switched_out
+Timestamp: 3.095990 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.075047 Event type: task_switched_in
+Timestamp: 3.096002 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.075063 Event type: task_notified
+Timestamp: 3.096021 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '16'
-Timestamp: 3.075079 Event type: task_readied
+Timestamp: 3.096033 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.075108 Event type: task_switched_out
+Timestamp: 3.096067 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.075127 Event type: task_switched_in
+Timestamp: 3.096079 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.075140 Event type: task_notify_received
+Timestamp: 3.096096 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 3.075171 Event type: task_switched_out
+Timestamp: 3.096128 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 3.075190 Event type: task_switched_in
+Timestamp: 3.096140 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 3.267013 Event type: task_readied
+Timestamp: 3.289279 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.267028 Event type: task_switched_out
+Timestamp: 3.289300 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.267047 Event type: task_switched_in
+Timestamp: 3.289311 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.267063 Event type: task_notified
+Timestamp: 3.289330 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '17'
-Timestamp: 3.267079 Event type: task_readied
+Timestamp: 3.289343 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.267108 Event type: task_switched_out
+Timestamp: 3.289377 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.267127 Event type: task_switched_in
+Timestamp: 3.289388 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.267140 Event type: task_notify_received
+Timestamp: 3.289405 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 3.267171 Event type: task_switched_out
+Timestamp: 3.289438 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 3.267190 Event type: task_switched_in
+Timestamp: 3.289450 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 3.459013 Event type: task_readied
+Timestamp: 3.482588 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.459028 Event type: task_switched_out
+Timestamp: 3.482609 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.459047 Event type: task_switched_in
+Timestamp: 3.482621 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.459063 Event type: task_notified
+Timestamp: 3.482640 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '18'
-Timestamp: 3.459079 Event type: task_readied
+Timestamp: 3.482652 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.459108 Event type: task_switched_out
+Timestamp: 3.482686 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.459127 Event type: task_switched_in
+Timestamp: 3.482698 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.459140 Event type: task_notify_received
+Timestamp: 3.482715 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 3.459171 Event type: task_switched_out
+Timestamp: 3.482747 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 3.459190 Event type: task_switched_in
+Timestamp: 3.482759 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 3.651013 Event type: task_readied
+Timestamp: 3.675898 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.651028 Event type: task_switched_out
+Timestamp: 3.675919 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.651047 Event type: task_switched_in
+Timestamp: 3.675931 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.651063 Event type: task_notified
+Timestamp: 3.675949 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '19'
-Timestamp: 3.651079 Event type: task_readied
+Timestamp: 3.675962 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.651108 Event type: task_switched_out
+Timestamp: 3.675996 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.651127 Event type: task_switched_in
+Timestamp: 3.676008 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.651140 Event type: task_notify_received
+Timestamp: 3.676024 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 3.651171 Event type: task_switched_out
+Timestamp: 3.676057 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 3.651190 Event type: task_switched_in
+Timestamp: 3.676069 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 3.843013 Event type: task_readied
+Timestamp: 3.869207 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.843028 Event type: task_switched_out
+Timestamp: 3.869228 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.843047 Event type: task_switched_in
+Timestamp: 3.869240 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 3.843063 Event type: task_notified
+Timestamp: 3.869259 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '20'
-Timestamp: 3.843079 Event type: task_readied
+Timestamp: 3.869272 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.843108 Event type: task_switched_out
+Timestamp: 3.869305 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 3.843127 Event type: task_switched_in
+Timestamp: 3.869317 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 3.843140 Event type: task_notify_received
+Timestamp: 3.869334 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 3.843171 Event type: task_switched_out
+Timestamp: 3.869367 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 3.843190 Event type: task_switched_in
+Timestamp: 3.869378 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 4.035013 Event type: task_readied
+Timestamp: 4.062517 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.035028 Event type: task_switched_out
+Timestamp: 4.062538 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.035047 Event type: task_switched_in
+Timestamp: 4.062550 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.035063 Event type: task_notified
+Timestamp: 4.062569 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '21'
-Timestamp: 4.035079 Event type: task_readied
+Timestamp: 4.062581 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.035108 Event type: task_switched_out
+Timestamp: 4.062615 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.035127 Event type: task_switched_in
+Timestamp: 4.062627 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.035140 Event type: task_notify_received
+Timestamp: 4.062644 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 4.035171 Event type: task_switched_out
+Timestamp: 4.062676 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 4.035190 Event type: task_switched_in
+Timestamp: 4.062688 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 4.227013 Event type: task_readied
+Timestamp: 4.255827 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.227028 Event type: task_switched_out
+Timestamp: 4.255848 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.227047 Event type: task_switched_in
+Timestamp: 4.255859 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.227063 Event type: task_notified
+Timestamp: 4.255878 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '22'
-Timestamp: 4.227079 Event type: task_readied
+Timestamp: 4.255891 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.227108 Event type: task_switched_out
+Timestamp: 4.255925 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.227127 Event type: task_switched_in
+Timestamp: 4.255936 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.227140 Event type: task_notify_received
+Timestamp: 4.255953 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 4.227171 Event type: task_switched_out
+Timestamp: 4.255986 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 4.227190 Event type: task_switched_in
+Timestamp: 4.255997 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 4.419013 Event type: task_readied
+Timestamp: 4.449136 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.419028 Event type: task_switched_out
+Timestamp: 4.449157 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.419047 Event type: task_switched_in
+Timestamp: 4.449169 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.419063 Event type: task_notified
+Timestamp: 4.449188 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '23'
-Timestamp: 4.419079 Event type: task_readied
+Timestamp: 4.449200 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.419108 Event type: task_switched_out
+Timestamp: 4.449234 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.419127 Event type: task_switched_in
+Timestamp: 4.449246 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.419140 Event type: task_notify_received
+Timestamp: 4.449263 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 4.419171 Event type: task_switched_out
+Timestamp: 4.449295 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 4.419190 Event type: task_switched_in
+Timestamp: 4.449307 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 4.611013 Event type: task_readied
+Timestamp: 4.642446 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.611028 Event type: task_switched_out
+Timestamp: 4.642467 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.611047 Event type: task_switched_in
+Timestamp: 4.642478 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.611063 Event type: task_notified
+Timestamp: 4.642497 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '24'
-Timestamp: 4.611079 Event type: task_readied
+Timestamp: 4.642510 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.611108 Event type: task_switched_out
+Timestamp: 4.642544 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.611127 Event type: task_switched_in
+Timestamp: 4.642556 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.611140 Event type: task_notify_received
+Timestamp: 4.642572 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 4.611171 Event type: task_switched_out
+Timestamp: 4.642605 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 4.611190 Event type: task_switched_in
+Timestamp: 4.642617 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 4.803013 Event type: task_readied
+Timestamp: 4.835755 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.803028 Event type: task_switched_out
+Timestamp: 4.835776 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.803047 Event type: task_switched_in
+Timestamp: 4.835788 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.803063 Event type: task_notified
+Timestamp: 4.835807 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '25'
-Timestamp: 4.803079 Event type: task_readied
+Timestamp: 4.835819 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.803108 Event type: task_switched_out
+Timestamp: 4.835853 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.803127 Event type: task_switched_in
+Timestamp: 4.835865 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.803140 Event type: task_notify_received
+Timestamp: 4.835882 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 4.803171 Event type: task_switched_out
+Timestamp: 4.835914 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 4.803190 Event type: task_switched_in
+Timestamp: 4.835926 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 4.995013 Event type: task_readied
+Timestamp: 5.029065 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.995028 Event type: task_switched_out
+Timestamp: 5.029086 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.995047 Event type: task_switched_in
+Timestamp: 5.029098 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 4.995063 Event type: task_notified
+Timestamp: 5.029116 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '26'
-Timestamp: 4.995079 Event type: task_readied
+Timestamp: 5.029129 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.995108 Event type: task_switched_out
+Timestamp: 5.029163 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 4.995127 Event type: task_switched_in
+Timestamp: 5.029175 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 4.995140 Event type: task_notify_received
+Timestamp: 5.029191 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 4.995171 Event type: task_switched_out
+Timestamp: 5.029224 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 4.995190 Event type: task_switched_in
+Timestamp: 5.029236 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 5.187013 Event type: task_readied
+Timestamp: 5.222374 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.187028 Event type: task_switched_out
+Timestamp: 5.222396 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.187047 Event type: task_switched_in
+Timestamp: 5.222407 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.187063 Event type: task_notified
+Timestamp: 5.222426 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '27'
-Timestamp: 5.187079 Event type: task_readied
+Timestamp: 5.222439 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.187108 Event type: task_switched_out
+Timestamp: 5.222473 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.187127 Event type: task_switched_in
+Timestamp: 5.222484 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.187140 Event type: task_notify_received
+Timestamp: 5.222501 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 5.187171 Event type: task_switched_out
+Timestamp: 5.222534 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 5.187190 Event type: task_switched_in
+Timestamp: 5.222545 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 5.379013 Event type: task_readied
+Timestamp: 5.415684 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.379028 Event type: task_switched_out
+Timestamp: 5.415705 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.379047 Event type: task_switched_in
+Timestamp: 5.415717 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.379063 Event type: task_notified
+Timestamp: 5.415736 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '28'
-Timestamp: 5.379079 Event type: task_readied
+Timestamp: 5.415748 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.379108 Event type: task_switched_out
+Timestamp: 5.415782 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.379127 Event type: task_switched_in
+Timestamp: 5.415794 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.379140 Event type: task_notify_received
+Timestamp: 5.415811 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 5.379171 Event type: task_switched_out
+Timestamp: 5.415843 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 5.379190 Event type: task_switched_in
+Timestamp: 5.415855 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 5.571013 Event type: task_readied
+Timestamp: 5.608994 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.571028 Event type: task_switched_out
+Timestamp: 5.609015 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.571047 Event type: task_switched_in
+Timestamp: 5.609026 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.571063 Event type: task_notified
+Timestamp: 5.609045 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '29'
-Timestamp: 5.571079 Event type: task_readied
+Timestamp: 5.609058 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.571108 Event type: task_switched_out
+Timestamp: 5.609092 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.571127 Event type: task_switched_in
+Timestamp: 5.609103 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.571140 Event type: task_notify_received
+Timestamp: 5.609120 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 5.571171 Event type: task_switched_out
+Timestamp: 5.609153 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 5.571190 Event type: task_switched_in
+Timestamp: 5.609165 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 5.763013 Event type: task_readied
+Timestamp: 5.802303 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.763028 Event type: task_switched_out
+Timestamp: 5.802324 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.763047 Event type: task_switched_in
+Timestamp: 5.802336 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.763063 Event type: task_notified
+Timestamp: 5.802355 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '30'
-Timestamp: 5.763079 Event type: task_readied
+Timestamp: 5.802367 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.763108 Event type: task_switched_out
+Timestamp: 5.802401 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.763127 Event type: task_switched_in
+Timestamp: 5.802413 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.763140 Event type: task_notify_received
+Timestamp: 5.802430 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 5.763171 Event type: task_switched_out
+Timestamp: 5.802462 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 5.763190 Event type: task_switched_in
+Timestamp: 5.802474 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 5.955013 Event type: task_readied
+Timestamp: 5.995613 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.955028 Event type: task_switched_out
+Timestamp: 5.995634 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.955047 Event type: task_switched_in
+Timestamp: 5.995646 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 5.955063 Event type: task_notified
+Timestamp: 5.995664 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '31'
-Timestamp: 5.955079 Event type: task_readied
+Timestamp: 5.995677 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.955108 Event type: task_switched_out
+Timestamp: 5.995711 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 5.955127 Event type: task_switched_in
+Timestamp: 5.995723 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 5.955140 Event type: task_notify_received
+Timestamp: 5.995739 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '16'
-Timestamp: 5.955171 Event type: task_switched_out
+Timestamp: 5.995772 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 5.955190 Event type: task_switched_in
+Timestamp: 5.995784 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 6.147013 Event type: task_readied
+Timestamp: 6.188922 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.147028 Event type: task_switched_out
+Timestamp: 6.188943 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.147047 Event type: task_switched_in
+Timestamp: 6.188955 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.147063 Event type: task_notified
+Timestamp: 6.188974 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '32'
-Timestamp: 6.147079 Event type: task_readied
+Timestamp: 6.188987 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.147108 Event type: task_switched_out
+Timestamp: 6.189020 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.147127 Event type: task_switched_in
+Timestamp: 6.189032 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.147140 Event type: task_notify_received
+Timestamp: 6.189049 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 6.147171 Event type: task_switched_out
+Timestamp: 6.189082 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 6.147190 Event type: task_switched_in
+Timestamp: 6.189093 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 6.339013 Event type: task_readied
+Timestamp: 6.382232 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.339028 Event type: task_switched_out
+Timestamp: 6.382253 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.339047 Event type: task_switched_in
+Timestamp: 6.382265 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.339063 Event type: task_notified
+Timestamp: 6.382284 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '33'
-Timestamp: 6.339079 Event type: task_readied
+Timestamp: 6.382296 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.339108 Event type: task_switched_out
+Timestamp: 6.382330 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.339127 Event type: task_switched_in
+Timestamp: 6.382342 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.339140 Event type: task_notify_received
+Timestamp: 6.382359 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 6.339171 Event type: task_switched_out
+Timestamp: 6.382391 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 6.339190 Event type: task_switched_in
+Timestamp: 6.382403 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 6.531013 Event type: task_readied
+Timestamp: 6.575542 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.531028 Event type: task_switched_out
+Timestamp: 6.575563 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.531047 Event type: task_switched_in
+Timestamp: 6.575574 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.531063 Event type: task_notified
+Timestamp: 6.575593 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '34'
-Timestamp: 6.531079 Event type: task_readied
+Timestamp: 6.575606 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.531108 Event type: task_switched_out
+Timestamp: 6.575640 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.531127 Event type: task_switched_in
+Timestamp: 6.575651 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.531140 Event type: task_notify_received
+Timestamp: 6.575668 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 6.531171 Event type: task_switched_out
+Timestamp: 6.575701 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 6.531190 Event type: task_switched_in
+Timestamp: 6.575712 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 6.723013 Event type: task_readied
+Timestamp: 6.768851 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.723028 Event type: task_switched_out
+Timestamp: 6.768872 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.723047 Event type: task_switched_in
+Timestamp: 6.768884 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.723063 Event type: task_notified
+Timestamp: 6.768903 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '35'
-Timestamp: 6.723079 Event type: task_readied
+Timestamp: 6.768915 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.723108 Event type: task_switched_out
+Timestamp: 6.768949 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.723127 Event type: task_switched_in
+Timestamp: 6.768961 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.723140 Event type: task_notify_received
+Timestamp: 6.768978 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 6.723171 Event type: task_switched_out
+Timestamp: 6.769010 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 6.723190 Event type: task_switched_in
+Timestamp: 6.769022 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 6.915013 Event type: task_readied
+Timestamp: 6.962161 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.915028 Event type: task_switched_out
+Timestamp: 6.962182 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.915047 Event type: task_switched_in
+Timestamp: 6.962193 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 6.915063 Event type: task_notified
+Timestamp: 6.962212 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '36'
-Timestamp: 6.915079 Event type: task_readied
+Timestamp: 6.962225 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.915108 Event type: task_switched_out
+Timestamp: 6.962259 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 6.915127 Event type: task_switched_in
+Timestamp: 6.962270 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 6.915140 Event type: task_notify_received
+Timestamp: 6.962287 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 6.915171 Event type: task_switched_out
+Timestamp: 6.962320 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 6.915190 Event type: task_switched_in
+Timestamp: 6.962332 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 7.107013 Event type: task_readied
+Timestamp: 7.155470 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.107028 Event type: task_switched_out
+Timestamp: 7.155491 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.107047 Event type: task_switched_in
+Timestamp: 7.155503 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.107063 Event type: task_notified
+Timestamp: 7.155522 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '37'
-Timestamp: 7.107079 Event type: task_readied
+Timestamp: 7.155534 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.107108 Event type: task_switched_out
+Timestamp: 7.155568 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.107127 Event type: task_switched_in
+Timestamp: 7.155580 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.107140 Event type: task_notify_received
+Timestamp: 7.155597 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 7.107171 Event type: task_switched_out
+Timestamp: 7.155629 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 7.107190 Event type: task_switched_in
+Timestamp: 7.155641 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 7.299013 Event type: task_readied
+Timestamp: 7.348780 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.299028 Event type: task_switched_out
+Timestamp: 7.348801 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.299047 Event type: task_switched_in
+Timestamp: 7.348813 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.299063 Event type: task_notified
+Timestamp: 7.348831 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '38'
-Timestamp: 7.299079 Event type: task_readied
+Timestamp: 7.348844 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.299108 Event type: task_switched_out
+Timestamp: 7.348878 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.299127 Event type: task_switched_in
+Timestamp: 7.348890 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.299140 Event type: task_notify_received
+Timestamp: 7.348906 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 7.299171 Event type: task_switched_out
+Timestamp: 7.348939 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 7.299190 Event type: task_switched_in
+Timestamp: 7.348951 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 7.491013 Event type: task_readied
+Timestamp: 7.542089 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.491028 Event type: task_switched_out
+Timestamp: 7.542110 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.491047 Event type: task_switched_in
+Timestamp: 7.542122 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.491063 Event type: task_notified
+Timestamp: 7.542141 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '39'
-Timestamp: 7.491079 Event type: task_readied
+Timestamp: 7.542154 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.491108 Event type: task_switched_out
+Timestamp: 7.542187 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.491127 Event type: task_switched_in
+Timestamp: 7.542199 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.491140 Event type: task_notify_received
+Timestamp: 7.542216 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 7.491171 Event type: task_switched_out
+Timestamp: 7.542249 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 7.491190 Event type: task_switched_in
+Timestamp: 7.542260 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 7.683013 Event type: task_readied
+Timestamp: 7.735399 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.683028 Event type: task_switched_out
+Timestamp: 7.735420 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.683047 Event type: task_switched_in
+Timestamp: 7.735432 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.683063 Event type: task_notified
+Timestamp: 7.735451 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '40'
-Timestamp: 7.683079 Event type: task_readied
+Timestamp: 7.735463 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.683108 Event type: task_switched_out
+Timestamp: 7.735497 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.683127 Event type: task_switched_in
+Timestamp: 7.735509 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.683140 Event type: task_notify_received
+Timestamp: 7.735526 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 7.683171 Event type: task_switched_out
+Timestamp: 7.735558 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 7.683190 Event type: task_switched_in
+Timestamp: 7.735570 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 7.875013 Event type: task_readied
+Timestamp: 7.928709 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.875028 Event type: task_switched_out
+Timestamp: 7.928730 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.875047 Event type: task_switched_in
+Timestamp: 7.928741 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 7.875063 Event type: task_notified
+Timestamp: 7.928760 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '41'
-Timestamp: 7.875079 Event type: task_readied
+Timestamp: 7.928773 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.875108 Event type: task_switched_out
+Timestamp: 7.928807 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 7.875127 Event type: task_switched_in
+Timestamp: 7.928818 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 7.875140 Event type: task_notify_received
+Timestamp: 7.928835 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 7.875171 Event type: task_switched_out
+Timestamp: 7.928868 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 7.875190 Event type: task_switched_in
+Timestamp: 7.928879 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 8.067013 Event type: task_readied
+Timestamp: 8.122018 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.067028 Event type: task_switched_out
+Timestamp: 8.122039 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.067047 Event type: task_switched_in
+Timestamp: 8.122051 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.067063 Event type: task_notified
+Timestamp: 8.122070 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '42'
-Timestamp: 8.067079 Event type: task_readied
+Timestamp: 8.122082 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.067108 Event type: task_switched_out
+Timestamp: 8.122116 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.067127 Event type: task_switched_in
+Timestamp: 8.122128 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.067140 Event type: task_notify_received
+Timestamp: 8.122145 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 8.067171 Event type: task_switched_out
+Timestamp: 8.122177 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 8.067190 Event type: task_switched_in
+Timestamp: 8.122189 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 8.259013 Event type: task_readied
+Timestamp: 8.315328 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.259028 Event type: task_switched_out
+Timestamp: 8.315349 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.259047 Event type: task_switched_in
+Timestamp: 8.315360 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.259063 Event type: task_notified
+Timestamp: 8.315379 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '43'
-Timestamp: 8.259079 Event type: task_readied
+Timestamp: 8.315392 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.259108 Event type: task_switched_out
+Timestamp: 8.315426 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.259127 Event type: task_switched_in
+Timestamp: 8.315438 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.259140 Event type: task_notify_received
+Timestamp: 8.315454 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 8.259171 Event type: task_switched_out
+Timestamp: 8.315487 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 8.259190 Event type: task_switched_in
+Timestamp: 8.315499 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 8.451013 Event type: task_readied
+Timestamp: 8.508637 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.451028 Event type: task_switched_out
+Timestamp: 8.508658 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.451047 Event type: task_switched_in
+Timestamp: 8.508670 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.451063 Event type: task_notified
+Timestamp: 8.508689 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '44'
-Timestamp: 8.451079 Event type: task_readied
+Timestamp: 8.508701 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.451108 Event type: task_switched_out
+Timestamp: 8.508735 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.451127 Event type: task_switched_in
+Timestamp: 8.508747 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.451140 Event type: task_notify_received
+Timestamp: 8.508764 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 8.451171 Event type: task_switched_out
+Timestamp: 8.508796 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 8.451190 Event type: task_switched_in
+Timestamp: 8.508808 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 8.643013 Event type: task_readied
+Timestamp: 8.701947 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.643028 Event type: task_switched_out
+Timestamp: 8.701968 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.643047 Event type: task_switched_in
+Timestamp: 8.701980 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.643063 Event type: task_notified
+Timestamp: 8.701998 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '45'
-Timestamp: 8.643079 Event type: task_readied
+Timestamp: 8.702011 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.643108 Event type: task_switched_out
+Timestamp: 8.702045 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.643127 Event type: task_switched_in
+Timestamp: 8.702057 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.643140 Event type: task_notify_received
+Timestamp: 8.702074 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 8.643171 Event type: task_switched_out
+Timestamp: 8.702106 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 8.643190 Event type: task_switched_in
+Timestamp: 8.702118 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 8.835013 Event type: task_readied
+Timestamp: 8.895257 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.835028 Event type: task_switched_out
+Timestamp: 8.895278 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.835047 Event type: task_switched_in
+Timestamp: 8.895289 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 8.835063 Event type: task_notified
+Timestamp: 8.895308 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '46'
-Timestamp: 8.835079 Event type: task_readied
+Timestamp: 8.895321 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.835108 Event type: task_switched_out
+Timestamp: 8.895355 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 8.835127 Event type: task_switched_in
+Timestamp: 8.895366 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 8.835140 Event type: task_notify_received
+Timestamp: 8.895383 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 8.835171 Event type: task_switched_out
+Timestamp: 8.895416 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 8.835190 Event type: task_switched_in
+Timestamp: 8.895427 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 9.027013 Event type: task_readied
+Timestamp: 9.088566 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 9.027028 Event type: task_switched_out
+Timestamp: 9.088587 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 9.027047 Event type: task_switched_in
+Timestamp: 9.088599 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 9.027063 Event type: task_notified
+Timestamp: 9.088618 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '47'
-Timestamp: 9.027079 Event type: task_readied
+Timestamp: 9.088630 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 9.027108 Event type: task_switched_out
+Timestamp: 9.088664 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 9.027127 Event type: task_switched_in
+Timestamp: 9.088676 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 9.027140 Event type: task_notify_received
+Timestamp: 9.088693 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '32'
-Timestamp: 9.027171 Event type: task_switched_out
+Timestamp: 9.088725 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 9.027190 Event type: task_switched_in
+Timestamp: 9.088737 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 9.219013 Event type: task_readied
+Timestamp: 9.281876 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 9.219028 Event type: task_switched_out
+Timestamp: 9.281897 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 9.219047 Event type: task_switched_in
+Timestamp: 9.281908 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 9.219063 Event type: task_notified
+Timestamp: 9.281927 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '48'
-Timestamp: 9.219079 Event type: task_readied
+Timestamp: 9.281940 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 9.219108 Event type: task_switched_out
+Timestamp: 9.281974 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 9.219127 Event type: task_switched_in
+Timestamp: 9.281985 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 9.219140 Event type: task_notify_received
+Timestamp: 9.282002 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '48'
-Timestamp: 9.219171 Event type: task_switched_out
+Timestamp: 9.282035 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 9.219190 Event type: task_switched_in
+Timestamp: 9.282047 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
-Timestamp: 9.411013 Event type: task_readied
+Timestamp: 9.475185 Event type: task_readied
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 9.411028 Event type: task_switched_out
+Timestamp: 9.475206 Event type: task_switched_out
     TCB: '0x20000A28'
     TaskName: 'IDLE'
     OutState: 'Ready'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 9.411047 Event type: task_switched_in
+Timestamp: 9.475218 Event type: task_switched_in
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
-Timestamp: 9.411063 Event type: task_notified
+Timestamp: 9.475237 Event type: task_notified
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
     UpdatedValue: '49'
-Timestamp: 9.411079 Event type: task_readied
+Timestamp: 9.475249 Event type: task_readied
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 9.411108 Event type: task_switched_out
+Timestamp: 9.475283 Event type: task_switched_out
     TCB: '0x200008F4'
     TaskName: 'PeriodicNotifie'
     OutState: 'Delayed'
     BlockedOn: ''
     BlockingOperation: ''
     BlockedOnObject: ''
-Timestamp: 9.411127 Event type: task_switched_in
+Timestamp: 9.475295 Event type: task_switched_in
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
-Timestamp: 9.411140 Event type: task_notify_received
+Timestamp: 9.475312 Event type: task_notify_received
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     UpdatedValue: '48'
-Timestamp: 9.411171 Event type: task_switched_out
+Timestamp: 9.475344 Event type: task_switched_out
     TCB: '0x2000049C'
     TaskName: '0x2000049C'
     OutState: 'Blocked'
     BlockedOn: 'TaskNotify'
     BlockingOperation: 'Wait'
     BlockedOnObject: '0x00000000'
-Timestamp: 9.411190 Event type: task_switched_in
+Timestamp: 9.475356 Event type: task_switched_in
+    TCB: '0x20000A28'
+    TaskName: 'IDLE'
+Timestamp: 9.668495 Event type: task_readied
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+Timestamp: 9.668516 Event type: task_switched_out
+    TCB: '0x20000A28'
+    TaskName: 'IDLE'
+    OutState: 'Ready'
+    BlockedOn: ''
+    BlockingOperation: ''
+    BlockedOnObject: ''
+Timestamp: 9.668528 Event type: task_switched_in
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+Timestamp: 9.668546 Event type: task_notified
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    NotifyIndex: '0'
+    NotifyAction: 'SetValueWithOverwrite'
+    UpdatedValue: '50'
+Timestamp: 9.668559 Event type: task_readied
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+Timestamp: 9.668593 Event type: task_switched_out
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+    OutState: 'Delayed'
+    BlockedOn: ''
+    BlockingOperation: ''
+    BlockedOnObject: ''
+Timestamp: 9.668605 Event type: task_switched_in
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+Timestamp: 9.668621 Event type: task_notify_received
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    NotifyIndex: '0'
+    UpdatedValue: '48'
+Timestamp: 9.668654 Event type: task_switched_out
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    OutState: 'Blocked'
+    BlockedOn: 'TaskNotify'
+    BlockingOperation: 'Wait'
+    BlockedOnObject: '0x00000000'
+Timestamp: 9.668666 Event type: task_switched_in
+    TCB: '0x20000A28'
+    TaskName: 'IDLE'
+Timestamp: 9.861804 Event type: task_readied
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+Timestamp: 9.861825 Event type: task_switched_out
+    TCB: '0x20000A28'
+    TaskName: 'IDLE'
+    OutState: 'Ready'
+    BlockedOn: ''
+    BlockingOperation: ''
+    BlockedOnObject: ''
+Timestamp: 9.861837 Event type: task_switched_in
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+Timestamp: 9.861856 Event type: task_notified
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    NotifyIndex: '0'
+    NotifyAction: 'SetValueWithOverwrite'
+    UpdatedValue: '51'
+Timestamp: 9.861869 Event type: task_readied
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+Timestamp: 9.861902 Event type: task_switched_out
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+    OutState: 'Delayed'
+    BlockedOn: ''
+    BlockingOperation: ''
+    BlockedOnObject: ''
+Timestamp: 9.861914 Event type: task_switched_in
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+Timestamp: 9.861931 Event type: task_notify_received
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    NotifyIndex: '0'
+    UpdatedValue: '48'
+Timestamp: 9.861964 Event type: task_switched_out
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    OutState: 'Blocked'
+    BlockedOn: 'TaskNotify'
+    BlockingOperation: 'Wait'
+    BlockedOnObject: '0x00000000'
+Timestamp: 9.861975 Event type: task_switched_in
+    TCB: '0x20000A28'
+    TaskName: 'IDLE'
+Timestamp: 10.055114 Event type: task_readied
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+Timestamp: 10.055135 Event type: task_switched_out
+    TCB: '0x20000A28'
+    TaskName: 'IDLE'
+    OutState: 'Ready'
+    BlockedOn: ''
+    BlockingOperation: ''
+    BlockedOnObject: ''
+Timestamp: 10.055147 Event type: task_switched_in
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+Timestamp: 10.055166 Event type: task_notified
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    NotifyIndex: '0'
+    NotifyAction: 'SetValueWithOverwrite'
+    UpdatedValue: '52'
+Timestamp: 10.055178 Event type: task_readied
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+Timestamp: 10.055212 Event type: task_switched_out
+    TCB: '0x200008F4'
+    TaskName: 'PeriodicNotifie'
+    OutState: 'Delayed'
+    BlockedOn: ''
+    BlockingOperation: ''
+    BlockedOnObject: ''
+Timestamp: 10.055224 Event type: task_switched_in
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+Timestamp: 10.055241 Event type: task_notify_received
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    NotifyIndex: '0'
+    UpdatedValue: '48'
+Timestamp: 10.055273 Event type: task_switched_out
+    TCB: '0x2000049C'
+    TaskName: '0x2000049C'
+    OutState: 'Blocked'
+    BlockedOn: 'TaskNotify'
+    BlockingOperation: 'Wait'
+    BlockedOnObject: '0x00000000'
+Timestamp: 10.055285 Event type: task_switched_in
     TCB: '0x20000A28'
     TaskName: 'IDLE'
