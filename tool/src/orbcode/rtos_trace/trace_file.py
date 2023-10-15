@@ -1,4 +1,4 @@
-from typing import IO, Iterable
+from typing import IO, Iterable, Sequence
 
 from orbcode import pyorb
 
@@ -13,6 +13,23 @@ def iterate_packets_from_trace(trace: pyorb.Orb) -> Iterable[pyorb.TraceMessage]
             continue
 
         yield packet
+
+
+def group_trace_packets_by_timestamp(trace_messages: Iterable[pyorb.TraceMessage]) -> Iterable[tuple[pyorb.TSMsg, Sequence[pyorb.TraceMessage]]]:
+    current_ts = None
+    current_group: list[pyorb.TraceMessage] = []
+
+    for msg in trace_messages:
+        if isinstance(msg, pyorb.TSMsg):
+            if current_ts is not None:
+                yield current_ts, current_group
+            current_ts = msg
+            current_group = []
+        else:
+            current_group.append(msg)
+
+    if current_ts is not None:
+        yield current_ts, current_group
 
 
 def generate_packet_dump(trace_messages: Iterable[pyorb.TraceMessage], output: IO[str]) -> None:

@@ -4,6 +4,7 @@ from typing import IO, Iterable, List, Optional
 from orbcode import pyorb
 
 from .rtos_events import Collector, TraceEvent
+from .trace_file import group_trace_packets_by_timestamp
 
 
 @dataclass(frozen=True)
@@ -13,40 +14,43 @@ class Packet:
     payload: list[int]
 
 
-EVENT_ID_SHIFT = 28
-EVENT_ID_MASK = 0b1111
-CYCCNT_MASK = 0x0FFF_FFFF
+EVENT_ID_SHIFT = 16
+EVENT_ID_MASK = 0xFFFF_FFFF
 
 
 def enumerate_packets_from_trace(trace_messages: Iterable[pyorb.TraceMessage]) -> Iterable[Packet]:
     current_chunk: Optional[List[int]] = None
+    grouped_by_timestamp = group_trace_packets_by_timestamp(trace_messages)
+    cumulative_ts = 0
 
-    for packet in trace_messages:
-        if not isinstance(packet, pyorb.swMsg):
-            continue
+    for ts, msgs in grouped_by_timestamp:
+        cumulative_ts += ts.timeInc
 
-        if packet.srcAddr != 2:
-            continue
+        for packet in msgs:
+            if not isinstance(packet, pyorb.swMsg):
+                continue
 
-        if packet.value == 0xDEADBEEF:
-            current_chunk = []
-            continue
+            if packet.srcAddr != 2:
+                continue
 
-        if packet.value == 0xCAFEBABE:
+            if packet.value == 0xDEADBEEF:
+                current_chunk = []
+                continue
+
+            if packet.value == 0xCAFEBABE:
+                if current_chunk is not None:
+                    [header, *payload] = current_chunk
+                    event_id = (header >> EVENT_ID_SHIFT) & EVENT_ID_MASK
+
+                    yield Packet(
+                        timestamp=cumulative_ts,
+                        event_id=event_id,
+                        payload=payload
+                    )
+                continue
+
             if current_chunk is not None:
-                [header, *payload] = current_chunk
-                event_id = (header >> EVENT_ID_SHIFT) & EVENT_ID_MASK
-                cycle_counter = (header & CYCCNT_MASK)
-
-                yield Packet(
-                    timestamp=cycle_counter,
-                    event_id=event_id,
-                    payload=payload
-                )
-            continue
-
-        if current_chunk is not None:
-            current_chunk.append(packet.value)
+                current_chunk.append(packet.value)
 
 
 def generate_rtos_trace_from_trace(trace_messages: Iterable[pyorb.TraceMessage], output: IO[str]) -> None:
@@ -55,22 +59,12 @@ def generate_rtos_trace_from_trace(trace_messages: Iterable[pyorb.TraceMessage],
 
 
 def generate_rtos_trace(packets: Iterable[Packet], output: IO[str]) -> None:
-    cumulative_timestamp = 0
-    last_timestamp = 0
-
     collector = Collector()
 
     event_map = collector.event_map()
 
     for packet in packets:
-        if packet.timestamp >= last_timestamp:
-            cumulative_timestamp += packet.timestamp - last_timestamp
-        else:
-            cumulative_timestamp += CYCCNT_MASK - last_timestamp + packet.timestamp
-
-        last_timestamp = packet.timestamp
-
-        timestamp_s = cumulative_timestamp / 50e6
+        timestamp_s = packet.timestamp / 50e6
 
         handler = event_map.get(packet.event_id, None)
         if handler is not None:

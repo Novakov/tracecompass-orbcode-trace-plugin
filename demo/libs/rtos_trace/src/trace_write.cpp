@@ -4,7 +4,7 @@
 #include "FreeRTOS.h"
 #include "trace.hpp"
 
-#define TRACE_EVENT_ID_SHIFT 28u
+#define TRACE_EVENT_ID_SHIFT 16u
 #define TRACE_EVENT_TASK_SWITCHED_IN (1u << TRACE_EVENT_ID_SHIFT)
 #define TRACE_EVENT_TASK_SWITCHED_OUT (2u << TRACE_EVENT_ID_SHIFT)
 #define TRACE_EVENT_TASK_CREATED (3u << TRACE_EVENT_ID_SHIFT)
@@ -19,10 +19,6 @@
 #define TRACE_EVENT_COUNTING_SEM_GIVE_TAKE (12u << TRACE_EVENT_ID_SHIFT)
 #define TRACE_EVENT_TASK_NOTIFY (13u << TRACE_EVENT_ID_SHIFT)
 #define TRACE_EVENT_TASK_NOTIFY_RECEIVED (14u << TRACE_EVENT_ID_SHIFT)
-
-#define CYCCNT_MASK 0x0FFF'FFFFu
-
-static std::uint32_t GetUs();
 
 SwitchRecord CurrentTaskSwitchRecord;
 
@@ -39,7 +35,7 @@ void TraceFooter()
 void TraceOnTaskSwitchedIn(void* tcb)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_TASK_SWITCHED_IN | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_TASK_SWITCHED_IN);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(tcb));
     TraceFooter();
 }
@@ -47,7 +43,7 @@ void TraceOnTaskSwitchedIn(void* tcb)
 void TraceOnTaskSwitchedOut(void* tcb, bool still_ready)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_TASK_SWITCHED_OUT | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_TASK_SWITCHED_OUT);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(tcb));
     ITMWrite32(2, (CurrentTaskSwitchRecord.Reason << 28));
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(CurrentTaskSwitchRecord.BlockedOnObject));
@@ -58,7 +54,7 @@ void TraceOnTaskSwitchedOut(void* tcb, bool still_ready)
 void TraceOnTaskReadied(void* tcb)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_TASK_READIED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_TASK_READIED);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(tcb));
     TraceFooter();
 }
@@ -66,7 +62,7 @@ void TraceOnTaskReadied(void* tcb)
 void TraceOnTaskCreated(void* tcb, const char* name)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_TASK_CREATED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_TASK_CREATED);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(tcb));
     std::string_view nameView{name};
     ITMWrite8(2, nameView.size());
@@ -77,7 +73,7 @@ void TraceOnTaskCreated(void* tcb, const char* name)
 void TraceOnBinarySemaphoreCreate(void* queue)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_BINARY_SEM_CREATED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_BINARY_SEM_CREATED);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(queue));
     TraceFooter();
 }
@@ -85,7 +81,7 @@ void TraceOnBinarySemaphoreCreate(void* queue)
 void TraceOnBinarySemaphoreLock(void* queue, bool isr, bool success)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_BINARY_SEM_LOCKING | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_BINARY_SEM_LOCKING);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(queue));
     ITMWrite8(2, (1 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2));
     TraceFooter();
@@ -94,7 +90,7 @@ void TraceOnBinarySemaphoreLock(void* queue, bool isr, bool success)
 extern void TraceOnBinarySemaphoreUnlock(void* queue, bool isr, bool success)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_BINARY_SEM_LOCKING | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_BINARY_SEM_LOCKING);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(queue));
     ITMWrite8(2, (0 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2));
     TraceFooter();
@@ -103,7 +99,7 @@ extern void TraceOnBinarySemaphoreUnlock(void* queue, bool isr, bool success)
 void TraceOnCountingSemaphoreCreate(void* semaphore, uint32_t maxCount, uint32_t initialCount)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_CREATED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_CREATED);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(semaphore));
     ITMWrite32(2, maxCount);
     ITMWrite32(2, initialCount);
@@ -113,7 +109,7 @@ void TraceOnCountingSemaphoreCreate(void* semaphore, uint32_t maxCount, uint32_t
 void TraceOnCountingSemaphoreTake(void* semaphore, bool isr, bool success, uint32_t newCount)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_GIVE_TAKE | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_GIVE_TAKE);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(semaphore));
     ITMWrite32(2, (1 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2) | ((newCount & 0xFFFF) << 16));
     TraceFooter();
@@ -122,7 +118,7 @@ void TraceOnCountingSemaphoreTake(void* semaphore, bool isr, bool success, uint3
 void TraceOnCountingSemaphoreGive(void* semaphore, bool isr, bool success, uint32_t newCount)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_GIVE_TAKE | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_COUNTING_SEM_GIVE_TAKE);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(semaphore));
     ITMWrite32(2, (0 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2) | ((newCount & 0xFFFF) << 16));
     TraceFooter();
@@ -131,7 +127,7 @@ void TraceOnCountingSemaphoreGive(void* semaphore, bool isr, bool success, uint3
 void TraceOnMutexCreate(void* mutex)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_MUTEX_CREATED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_MUTEX_CREATED);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(mutex));
     TraceFooter();
 }
@@ -139,7 +135,7 @@ void TraceOnMutexCreate(void* mutex)
 void TraceOnMutexLock(void* mutex, bool isr, bool success)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_MUTEX_LOCKING | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_MUTEX_LOCKING);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(mutex));
     ITMWrite8(2, (1 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2));
     TraceFooter();
@@ -148,7 +144,7 @@ void TraceOnMutexLock(void* mutex, bool isr, bool success)
 void TraceOnMutexUnlock(void* mutex, bool isr, bool success)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_MUTEX_LOCKING | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_MUTEX_LOCKING);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(mutex));
     ITMWrite8(2, (0 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2));
     TraceFooter();
@@ -157,7 +153,7 @@ void TraceOnMutexUnlock(void* mutex, bool isr, bool success)
 void TraceOnQueueCreate(void* queue, uint32_t capacity)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_QUEUE_CREATED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_QUEUE_CREATED);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(queue));
     ITMWrite16(2, capacity);
     TraceFooter();
@@ -166,7 +162,7 @@ void TraceOnQueueCreate(void* queue, uint32_t capacity)
 void TraceOnQueuePush(void* queue, bool isr, bool success, uint32_t updatedItemsCount)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_QUEUE_PUSH_POP | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_QUEUE_PUSH_POP);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(queue));
     ITMWrite32(2, (0 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2) | ((updatedItemsCount & 0xFFFF) << 16));
     TraceFooter();
@@ -175,7 +171,7 @@ void TraceOnQueuePush(void* queue, bool isr, bool success, uint32_t updatedItems
 void TraceOnQueuePop(void* queue, bool isr, bool success, uint32_t updatedItemsCount)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_QUEUE_PUSH_POP | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_QUEUE_PUSH_POP);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(queue));
     ITMWrite32(2, (1 << 0) | ((isr ? 1 : 0) << 1) | ((success ? 1 : 0) << 2) | ((updatedItemsCount & 0xFFFF) << 16));
     TraceFooter();
@@ -184,7 +180,7 @@ void TraceOnQueuePop(void* queue, bool isr, bool success, uint32_t updatedItemsC
 extern void OnTaskNotify(void* task, uint32_t index, uint32_t action, uint32_t updatedValue)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_TASK_NOTIFY | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_TASK_NOTIFY);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(task));
     ITMWrite32(2, (index & 0xFFFF) | ((action & 0xFFFF)) << 16);
     ITMWrite32(2, updatedValue);
@@ -194,14 +190,9 @@ extern void OnTaskNotify(void* task, uint32_t index, uint32_t action, uint32_t u
 extern void OnTaskNotifyReceived(void* task, uint32_t index, uint32_t updatedValue)
 {
     TraceHeader();
-    ITMWrite32(2, TRACE_EVENT_TASK_NOTIFY_RECEIVED | (GetUs() & CYCCNT_MASK));
+    ITMWrite32(2, TRACE_EVENT_TASK_NOTIFY_RECEIVED);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(task));
     ITMWrite16(2, index);
     ITMWrite32(2, updatedValue);
     TraceFooter();
-}
-
-static inline std::uint32_t GetUs()
-{
-    return DWT->CYCCNT;
 }
