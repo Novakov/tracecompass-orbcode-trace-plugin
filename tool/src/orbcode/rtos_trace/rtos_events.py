@@ -18,6 +18,11 @@ EVENT_COUNTING_SEM_GIVE_TAKE = 12
 EVENT_TASK_NOTIFY = 13
 EVENT_TASK_NOTIFY_RECEIVED = 14
 
+EVENT_DWT_EXCEPTION_ENTERED = 201
+EVENT_DWT_EXCEPTION_EXITED = 202
+EVENT_DWT_EXCEPTION_RETURNED = 203
+
+
 NOTIFY_ACTIONS = {
     0: 'NoAction',
     1: 'SetBits',
@@ -305,6 +310,24 @@ class Collector:
         return {
             'TCB': f'0x{tcb:08X}',
             'TaskName': self.resolve_task_name(tcb),
+        }
+
+    @event_handler(EVENT_DWT_EXCEPTION_ENTERED)
+    def exception_entered(self, exception: int) -> TraceEvent:
+        return {
+            'ExceptionNumber': exception,
+        }
+
+    @event_handler(EVENT_DWT_EXCEPTION_EXITED)
+    def exception_exited(self, exception: int) -> TraceEvent:
+        return {
+            'ExceptionNumber': exception,
+        }
+
+    @event_handler(EVENT_DWT_EXCEPTION_RETURNED)
+    def exception_returned(self, exception: int) -> TraceEvent:
+        return {
+            'ExceptionNumber': exception,
         }
 
     def event_map(self) -> Dict[int, Callable[..., TraceEvent]]:

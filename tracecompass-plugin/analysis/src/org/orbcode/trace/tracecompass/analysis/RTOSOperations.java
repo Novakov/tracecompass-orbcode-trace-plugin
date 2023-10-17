@@ -22,6 +22,8 @@ public class RTOSOperations {
 	public static final int TASK_NOTIFY_STATE_PENDING = 20;
 	public static final int TASK_NOTIFY_STATE_RECEIVED = 21;
 
+	public static final int EXCEPTION_STATE_ACTIVE = 100;
+
 	public RTOSOperations(StateSystemAccessor stateSystem, ITmfEvent currentEvent) {
 		fStateSystem = stateSystem;
 		fCurrentEvent = currentEvent;
@@ -73,7 +75,7 @@ public class RTOSOperations {
 		if (currentState != null && currentState == TASK_STATE_BLOCKED) {
 			fStateSystem.setTaskBlockedOn(fCurrentEvent, taskName, null, null, null);
 		}
-		
+
 		updateReadyTaskCount();
 	}
 
@@ -81,7 +83,7 @@ public class RTOSOperations {
 		fStateSystem.setTaskNotify(fCurrentEvent, taskName, index, value);
 		fStateSystem.setTaskNotifyState(fCurrentEvent, taskName, index, TASK_NOTIFY_STATE_PENDING);
 	}
-	
+
 	public void taskNotifyReceived(String taskName, int index, int value) {
 		fStateSystem.setTaskNotify(fCurrentEvent, taskName, index, value);
 		fStateSystem.setTaskNotifyState(fCurrentEvent, taskName, index, TASK_NOTIFY_STATE_RECEIVED);
@@ -143,10 +145,23 @@ public class RTOSOperations {
 		fStateSystem.setCountingSemaphoreCount(fCurrentEvent, semaphore, updatedCount);
 	}
 
+	public void exceptionEntered(int exceptionNumber) {
+		fStateSystem.setExceptionState(fCurrentEvent, exceptionNumber, EXCEPTION_STATE_ACTIVE);
+		fStateSystem.setCurrentExceptionNumber(fCurrentEvent, exceptionNumber);
+	}
+
+	public void exceptionExited(int exceptionNumber) {
+		fStateSystem.setExceptionState(fCurrentEvent, exceptionNumber, null);
+	}
+
+	public void exceptionReturned(int exceptionNumber) {
+		fStateSystem.setCurrentExceptionNumber(fCurrentEvent, exceptionNumber);
+	}
+
 	private void updateReadyTaskCount() {
 		List<Integer> states = fStateSystem.queryTaskStates();
-		
+
 		long readyCount = states.stream().filter(t -> t == TASK_STATE_READY).count();
-		fStateSystem.setReadyTaskCount(fCurrentEvent, (int)readyCount);
+		fStateSystem.setReadyTaskCount(fCurrentEvent, (int) readyCount);
 	}
 }
