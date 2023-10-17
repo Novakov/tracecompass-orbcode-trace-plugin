@@ -1,358 +1,462 @@
 <tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/tracecompass/tracecompass/master/tmf/org.eclipse.tracecompass.tmf.analysis.xml.core/src/org/eclipse/tracecompass/tmf/analysis/xml/core/module/xmlDefinition.xsd">
+	xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/tracecompass/tracecompass/master/tmf/org.eclipse.tracecompass.tmf.analysis.xml.core/src/org/eclipse/tracecompass/tmf/analysis/xml/core/module/xmlDefinition.xsd">
 	<pattern version="0" id="org.orbcode.tracing.rtos.analysis.context_switch">
 		<head>
-			<label value="RTOS: Context switches"/>
+			<label value="RTOS: Context switches" />
 		</head>
-        <patternHandler>
-            <action id="switching_out_task">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateValue type="string" value="Context switching" />
-                </stateChange>
-            </action>
-            <action id="switching_in_task">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateValue type="string" value="Task running" />
-                </stateChange>
-                <segment>
-                    <segType>
-                        <segName>
-                            <stateValue type="string" value="Switching" />
-                        </segName>
-                    </segType>
-                </segment>
-            </action>
-            <fsm id="org.orbcode.tracing.rtos.analysis.context_switch.fsm" initial="previous_task_running" multiple="true">
-                <state id="previous_task_running">
-                    <transition event="task_switched_out" target="selecting_task" action="switching_out_task"/>
-                </state>
-                <state id="selecting_task">
-                    <transition event="task_switched_in" target="next_task_running"  action="switching_in_task"/>
-                </state>
-                <final id="next_task_running"/>
-            </fsm>
-        </patternHandler>
-    </pattern>
-    <pattern id="org.orbcode.tracing.rtos.analysis.task_running" version="1">
+		<patternHandler>
+			<action id="switching_out_task">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateValue type="string" value="Context switching" />
+				</stateChange>
+			</action>
+			<action id="switching_in_task">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateValue type="string" value="Task running" />
+				</stateChange>
+				<segment>
+					<segType>
+						<segName>
+							<stateValue type="string" value="Switching" />
+						</segName>
+					</segType>
+				</segment>
+			</action>
+			<fsm id="org.orbcode.tracing.rtos.analysis.context_switch.fsm"
+				initial="previous_task_running" multiple="true">
+				<state id="previous_task_running">
+					<transition event="task_switched_out"
+						target="selecting_task" action="switching_out_task" />
+				</state>
+				<state id="selecting_task">
+					<transition event="task_switched_in"
+						target="next_task_running" action="switching_in_task" />
+				</state>
+				<final id="next_task_running" />
+			</fsm>
+		</patternHandler>
+	</pattern>
+	<pattern id="org.orbcode.tracing.rtos.analysis.task_running" version="1">
 		<head>
-			<label value="RTOS: Per-task runtime"/>
+			<label value="RTOS: Per-task runtime" />
 		</head>
-        <patternHandler>
-            <test id="task_condition">
-                <if>
-                    <condition operator="eq">
-                        <stateValue type="eventField" value="TaskName"/>
-                        <stateValue type="query">
-                            <stateAttribute type="constant" value="#CurrentScenario" />
-                            <stateAttribute type="constant" value="TaskName" />
-                        </stateValue>
-                    </condition>
-                </if>
-            </test>
-            <action id="switching_in_task">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="TaskName" />
-                    <stateValue type="eventField" value="TaskName" />
-                </stateChange>
-            </action>
-            <action id="switching_out_task">
-                <segment>
-                    <segType>
-                        <segName>
-                            <stateValue type="query">
-                                <stateAttribute type="constant" value="#CurrentScenario" />
-                                <stateAttribute type="constant" value="TaskName" />
-                            </stateValue>
-                        </segName>
-                    </segType>
-                </segment>
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="TaskName" />
-                    <stateValue type="null" />
-                </stateChange>
-            </action>
-            <fsm id="org.orbcode.tracing.rtos.analysis.task_running.fsm" initial="start" multiple="true">
-                <state id="start">
-                    <transition event="task_switched_in" target="task_active" action="switching_in_task"/>
-                </state>
-                <state id="task_active">
-                    <transition event="task_switched_out" target="stop" cond="task_condition" action="switching_out_task"/>
-                </state>
-                <final id="stop" />
-            </fsm>
-        </patternHandler>
-    </pattern>
-    <pattern id="org.orbcode.tracing.rtos.analysis.task_ready_waiting" version="0">
+		<patternHandler>
+			<test id="task_condition">
+				<if>
+					<condition operator="eq">
+						<stateValue type="eventField" value="TaskName" />
+						<stateValue type="query">
+							<stateAttribute type="constant"
+								value="#CurrentScenario" />
+							<stateAttribute type="constant" value="TaskName" />
+						</stateValue>
+					</condition>
+				</if>
+			</test>
+			<action id="switching_in_task">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="TaskName" />
+					<stateValue type="eventField" value="TaskName" />
+				</stateChange>
+			</action>
+			<action id="switching_out_task">
+				<segment>
+					<segType>
+						<segName>
+							<stateValue type="query">
+								<stateAttribute type="constant"
+									value="#CurrentScenario" />
+								<stateAttribute type="constant" value="TaskName" />
+							</stateValue>
+						</segName>
+					</segType>
+				</segment>
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="TaskName" />
+					<stateValue type="null" />
+				</stateChange>
+			</action>
+			<fsm id="org.orbcode.tracing.rtos.analysis.task_running.fsm"
+				initial="start" multiple="true">
+				<state id="start">
+					<transition event="task_switched_in" target="task_active"
+						action="switching_in_task" />
+				</state>
+				<state id="task_active">
+					<transition event="task_switched_out" target="stop"
+						cond="task_condition" action="switching_out_task" />
+				</state>
+				<final id="stop" />
+			</fsm>
+		</patternHandler>
+	</pattern>
+	<pattern id="org.orbcode.tracing.rtos.analysis.task_ready_waiting"
+		version="0">
 		<head>
-			<label value="RTOS: Waiting ready tasks"/>
+			<label value="RTOS: Waiting ready tasks" />
 		</head>
-        <patternHandler>
-            <test id="task_condition">
-                <if>
-                    <condition operator="eq">
-                        <stateValue type="eventField" value="TaskName"/>
-                        <stateValue type="query">
-                            <stateAttribute type="constant" value="#CurrentScenario" />
-                            <stateAttribute type="constant" value="TaskName" />
-                        </stateValue>
-                    </condition>
-                </if>
-            </test>
-            <test id="switched_out_ready">
-                <if>
-                    <condition operator="eq">
-                        <stateValue type="string" value="Ready" />
-                        <stateValue type="eventField" value="OutState" />
-                    </condition>
-                </if>
-            </test>
-            <action id="task_become_ready">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="TaskName" />
-                    <stateValue type="eventField" value="TaskName" />
-                </stateChange>
-            </action>
-            <action id="switching_in_task">
-                <segment>
-                    <segType>
-                        <segName>
-                            <stateValue type="query">
-                                <stateAttribute type="constant" value="#CurrentScenario" />
-                                <stateAttribute type="constant" value="TaskName" />
-                            </stateValue>
-                        </segName>
-                    </segType>
-                </segment>
-            </action>
-            <action id="task_done">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="TaskName" />
-                    <stateValue type="null" />
-                </stateChange>
-            </action>
-            <fsm id="org.orbcode.tracing.rtos.analysis.task_ready_waiting.fsm" initial="start" multiple="true">
-                <state id="start">
-                    <transition event="task_readied" target="ready_waiting" action="task_become_ready"/>
-                    <transition event="task_switched_out" cond="switched_out_ready" target="ready_waiting" action="task_become_ready"/>
-                </state>
-                <state id="ready_waiting">
-                    <transition event="task_readied" cond="task_condition" target="ready_waiting"/>
-                    <transition event="task_switched_in" target="running" cond="task_condition" action="switching_in_task"/>
-                </state>
-                <state id="running">
-                    <transition event="task_readied" cond="task_condition" target="running"/>
-                    <transition event="task_switched_out" cond="task_condition" target="switched_out_again" action="task_done"/>
-                </state>
-                <final id="switched_out_again" />
-            </fsm>
-        </patternHandler>
-    </pattern>
-    <pattern id="org.orbcode.tracing.rtos.analysis.task_blocked_on" version="3">
+		<patternHandler>
+			<test id="task_condition">
+				<if>
+					<condition operator="eq">
+						<stateValue type="eventField" value="TaskName" />
+						<stateValue type="query">
+							<stateAttribute type="constant"
+								value="#CurrentScenario" />
+							<stateAttribute type="constant" value="TaskName" />
+						</stateValue>
+					</condition>
+				</if>
+			</test>
+			<test id="switched_out_ready">
+				<if>
+					<condition operator="eq">
+						<stateValue type="string" value="Ready" />
+						<stateValue type="eventField" value="OutState" />
+					</condition>
+				</if>
+			</test>
+			<action id="task_become_ready">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="TaskName" />
+					<stateValue type="eventField" value="TaskName" />
+				</stateChange>
+			</action>
+			<action id="switching_in_task">
+				<segment>
+					<segType>
+						<segName>
+							<stateValue type="query">
+								<stateAttribute type="constant"
+									value="#CurrentScenario" />
+								<stateAttribute type="constant" value="TaskName" />
+							</stateValue>
+						</segName>
+					</segType>
+				</segment>
+			</action>
+			<action id="task_done">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="TaskName" />
+					<stateValue type="null" />
+				</stateChange>
+			</action>
+			<fsm id="org.orbcode.tracing.rtos.analysis.task_ready_waiting.fsm"
+				initial="start" multiple="true">
+				<state id="start">
+					<transition event="task_readied" target="ready_waiting"
+						action="task_become_ready" />
+					<transition event="task_switched_out"
+						cond="switched_out_ready" target="ready_waiting"
+						action="task_become_ready" />
+				</state>
+				<state id="ready_waiting">
+					<transition event="task_readied" cond="task_condition"
+						target="ready_waiting" />
+					<transition event="task_switched_in" target="running"
+						cond="task_condition" action="switching_in_task" />
+				</state>
+				<state id="running">
+					<transition event="task_readied" cond="task_condition"
+						target="running" />
+					<transition event="task_switched_out" cond="task_condition"
+						target="switched_out_again" action="task_done" />
+				</state>
+				<final id="switched_out_again" />
+			</fsm>
+		</patternHandler>
+	</pattern>
+	<pattern id="org.orbcode.tracing.rtos.analysis.task_blocked_on" version="3">
 		<head>
-			<label value="RTOS: Tasks blocked on"/>
+			<label value="RTOS: Tasks blocked on" />
 		</head>
-        <patternHandler>
-            <test id="task_condition">
-                <if>
-                    <condition operator="eq">
-                        <stateValue type="eventField" value="TaskName"/>
-                        <stateValue type="query">
-                            <stateAttribute type="constant" value="#CurrentScenario" />
-                            <stateAttribute type="constant" value="TaskName" />
-                        </stateValue>
-                    </condition>
-                </if>
-            </test>
+		<patternHandler>
+			<test id="task_condition">
+				<if>
+					<condition operator="eq">
+						<stateValue type="eventField" value="TaskName" />
+						<stateValue type="query">
+							<stateAttribute type="constant"
+								value="#CurrentScenario" />
+							<stateAttribute type="constant" value="TaskName" />
+						</stateValue>
+					</condition>
+				</if>
+			</test>
 
-            <test id="task_condition_and_blocked">
-                <if>
-                    <and>
-                        <condition operator="eq">
-                            <stateValue type="eventField" value="TaskName"/>
-                            <stateValue type="query">
-                                <stateAttribute type="constant" value="#CurrentScenario" />
-                                <stateAttribute type="constant" value="TaskName" />
-                            </stateValue>
-                        </condition>
-                        <condition operator="eq">
-                            <stateValue type="eventField" value="OutState"/>
-                            <stateValue type="string" value="Blocked"/>
-                        </condition>
-                    </and>
-                </if>
-            </test>
+			<test id="task_condition_and_blocked">
+				<if>
+					<and>
+						<condition operator="eq">
+							<stateValue type="eventField" value="TaskName" />
+							<stateValue type="query">
+								<stateAttribute type="constant"
+									value="#CurrentScenario" />
+								<stateAttribute type="constant" value="TaskName" />
+							</stateValue>
+						</condition>
+						<condition operator="eq">
+							<stateValue type="eventField" value="OutState" />
+							<stateValue type="string" value="Blocked" />
+						</condition>
+					</and>
+				</if>
+			</test>
 
-            <test id="task_condition_and_not_blocked">
-                <if>
-                    <and>
-                        <condition operator="eq">
-                            <stateValue type="eventField" value="TaskName"/>
-                            <stateValue type="query">
-                                <stateAttribute type="constant" value="#CurrentScenario" />
-                                <stateAttribute type="constant" value="TaskName" />
-                            </stateValue>
-                        </condition>
-                        <condition operator="ne">
-                            <stateValue type="eventField" value="OutState"/>
-                            <stateValue type="string" value="Blocked"/>
-                        </condition>
-                    </and>
-                </if>
-            </test>
+			<test id="task_condition_and_not_blocked">
+				<if>
+					<and>
+						<condition operator="eq">
+							<stateValue type="eventField" value="TaskName" />
+							<stateValue type="query">
+								<stateAttribute type="constant"
+									value="#CurrentScenario" />
+								<stateAttribute type="constant" value="TaskName" />
+							</stateValue>
+						</condition>
+						<condition operator="ne">
+							<stateValue type="eventField" value="OutState" />
+							<stateValue type="string" value="Blocked" />
+						</condition>
+					</and>
+				</if>
+			</test>
 
-            <action id="switching_in_task">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="TaskName" />
-                    <stateValue type="eventField" value="TaskName" />
-                </stateChange>
-            </action>
+			<action id="switching_in_task">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="TaskName" />
+					<stateValue type="eventField" value="TaskName" />
+				</stateChange>
+			</action>
 
-            <action id="blocking_task">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="BlockedOnObject" />
-                    <stateValue type="eventField" value="BlockedOnObject" />
-                </stateChange>
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="BlockTime" />
-                    <stateValue type="eventField" value="timestamp" />
-                </stateChange>
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="BlockedOn" />
-                    <stateValue type="eventField" value="BlockedOn" />
-                </stateChange>
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="BlockingOperation" />
-                    <stateValue type="eventField" value="BlockingOperation" />
-                </stateChange>
-            </action>
+			<action id="blocking_task">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="BlockedOnObject" />
+					<stateValue type="eventField" value="BlockedOnObject" />
+				</stateChange>
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="BlockTime" />
+					<stateValue type="eventField" value="timestamp" />
+				</stateChange>
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="BlockedOn" />
+					<stateValue type="eventField" value="BlockedOn" />
+				</stateChange>
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="BlockingOperation" />
+					<stateValue type="eventField" value="BlockingOperation" />
+				</stateChange>
+			</action>
 
-            <action id="unblocking_task">
-                <segment>
-                    <segType>
-                        <segName>
-                            <stateValue type="script" value="taskName + ' blocked on ' + objectType + ' ' + objectAddr + (operation != '' ? ' (operation:' + operation + ')' : '')">
-                                <stateValue id="taskName" type="query">
-                                    <stateAttribute type="constant" value="#CurrentScenario" />
-                                    <stateAttribute type="constant" value="TaskName" />
-                                </stateValue>
-                                <stateValue id="objectType" type="query">
-                                    <stateAttribute type="constant" value="#CurrentScenario" />
-                                    <stateAttribute type="constant" value="BlockedOn" />
-                                </stateValue>
-                                <stateValue id="objectAddr" type="query">
-                                    <stateAttribute type="constant" value="#CurrentScenario" />
-                                    <stateAttribute type="constant" value="BlockedOnObject" />
-                                </stateValue>
-                                <stateValue id="operation" type="query">
-                                    <stateAttribute type="constant" value="#CurrentScenario" />
-                                    <stateAttribute type="constant" value="BlockingOperation" />
-                                </stateValue>
-                            </stateValue>
-                        </segName>
-                    </segType>
-                    <segTime>
-                        <begin type="query">
-                            <stateAttribute type="constant" value="#CurrentScenario" />
-                            <stateAttribute type="constant" value="BlockTime" />
-                        </begin>
-                        <end type="eventField" value="timestamp"></end>
-                    </segTime>
-                </segment>
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="TaskName" />
-                    <stateValue type="null" />
-                </stateChange>
-            </action>
+			<action id="unblocking_task">
+				<segment>
+					<segType>
+						<segName>
+							<stateValue type="script"
+								value="taskName + ' blocked on ' + objectType + ' ' + objectAddr + (operation != '' ? ' (operation:' + operation + ')' : '')">
+								<stateValue id="taskName" type="query">
+									<stateAttribute type="constant"
+										value="#CurrentScenario" />
+									<stateAttribute type="constant"
+										value="TaskName" />
+								</stateValue>
+								<stateValue id="objectType" type="query">
+									<stateAttribute type="constant"
+										value="#CurrentScenario" />
+									<stateAttribute type="constant"
+										value="BlockedOn" />
+								</stateValue>
+								<stateValue id="objectAddr" type="query">
+									<stateAttribute type="constant"
+										value="#CurrentScenario" />
+									<stateAttribute type="constant"
+										value="BlockedOnObject" />
+								</stateValue>
+								<stateValue id="operation" type="query">
+									<stateAttribute type="constant"
+										value="#CurrentScenario" />
+									<stateAttribute type="constant"
+										value="BlockingOperation" />
+								</stateValue>
+							</stateValue>
+						</segName>
+					</segType>
+					<segTime>
+						<begin type="query">
+							<stateAttribute type="constant"
+								value="#CurrentScenario" />
+							<stateAttribute type="constant" value="BlockTime" />
+						</begin>
+						<end type="eventField" value="timestamp"></end>
+					</segTime>
+				</segment>
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="TaskName" />
+					<stateValue type="null" />
+				</stateChange>
+			</action>
 
-            <action id="switching_out_non_blocking">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="TaskName" />
-                    <stateValue type="null" />
-                </stateChange>
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="BlockTime" />
-                    <stateValue type="null" />
-                </stateChange>
-            </action>
+			<action id="switching_out_non_blocking">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="TaskName" />
+					<stateValue type="null" />
+				</stateChange>
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="BlockTime" />
+					<stateValue type="null" />
+				</stateChange>
+			</action>
 
-            <fsm id="org.orbcode.tracing.rtos.analysis.task_blocked_on.fsm" initial="start" multiple="true">
-                <state id="start">
-                    <transition event="task_switched_in" target="task_running" action="switching_in_task"/>
-                </state>
-                <state id="task_running">
-                    <transition event="task_switched_out" cond="task_condition_and_blocked" target="task_blocked" action="blocking_task" />
-                    <transition event="task_switched_out" cond="task_condition_and_not_blocked" target="task_unblocked" action="switching_out_non_blocking" />
-                </state>
-                <state id="task_blocked">
-                    <transition event="task_readied" cond="task_condition" target="task_unblocked" action="unblocking_task" />
-                </state>
-                <final id="task_unblocked" />
-            </fsm>
-        </patternHandler>
-    </pattern>
-    <pattern id="org.orbcode.tracing.rtos.analysis.mutex_locked" version="0">
+			<fsm id="org.orbcode.tracing.rtos.analysis.task_blocked_on.fsm"
+				initial="start" multiple="true">
+				<state id="start">
+					<transition event="task_switched_in" target="task_running"
+						action="switching_in_task" />
+				</state>
+				<state id="task_running">
+					<transition event="task_switched_out"
+						cond="task_condition_and_blocked" target="task_blocked"
+						action="blocking_task" />
+					<transition event="task_switched_out"
+						cond="task_condition_and_not_blocked"
+						target="task_unblocked"
+						action="switching_out_non_blocking" />
+				</state>
+				<state id="task_blocked">
+					<transition event="task_readied" cond="task_condition"
+						target="task_unblocked" action="unblocking_task" />
+				</state>
+				<final id="task_unblocked" />
+			</fsm>
+		</patternHandler>
+	</pattern>
+	<pattern id="org.orbcode.tracing.rtos.analysis.mutex_locked" version="0">
 		<head>
-			<label value="RTOS: Mutexes locked"/>
+			<label value="RTOS: Mutexes locked" />
 		</head>
-        <patternHandler>
-            <test id="mutex_condition">
-                <if>
-                    <condition operator="eq">
-                        <stateValue type="eventField" value="Mutex"/>
-                        <stateValue type="query">
-                            <stateAttribute type="constant" value="#CurrentScenario" />
-                            <stateAttribute type="constant" value="Mutex" />
-                        </stateValue>
-                    </condition>
-                </if>
-            </test>
-            <action id="locking_mutex">
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="Mutex" />
-                    <stateValue type="eventField" value="Mutex"/>
-                </stateChange>
-            </action>
-            <action id="unlocking_mutex">
-                <segment>
-                    <segType>
-                        <segName>
-                            <stateValue type="query">
-                                <stateAttribute type="constant" value="#CurrentScenario" />
-                                <stateAttribute type="constant" value="Mutex" />
-                            </stateValue>
-                        </segName>
-                    </segType>
-                </segment>
-                <stateChange>
-                    <stateAttribute type="constant" value="#CurrentScenario" />
-                    <stateAttribute type="constant" value="Mutex" />
-                    <stateValue type="null" />
-                </stateChange>
-            </action>
-            <fsm id="org.orbcode.tracing.rtos.analysis.mutex_locked.fsm" initial="start" multiple="true">
-                <state id="start">
-                    <transition event="mutex_locked" target="locked" action="locking_mutex"/>
-                </state>
-                <state id="locked">
-                    <transition event="mutex_unlocked" target="stop" cond="mutex_condition" action="unlocking_mutex" />
-                </state>
-                <final id="stop" />
-            </fsm>
-        </patternHandler>
-    </pattern>
+		<patternHandler>
+			<test id="mutex_condition">
+				<if>
+					<condition operator="eq">
+						<stateValue type="eventField" value="Mutex" />
+						<stateValue type="query">
+							<stateAttribute type="constant"
+								value="#CurrentScenario" />
+							<stateAttribute type="constant" value="Mutex" />
+						</stateValue>
+					</condition>
+				</if>
+			</test>
+			<action id="locking_mutex">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="Mutex" />
+					<stateValue type="eventField" value="Mutex" />
+				</stateChange>
+			</action>
+			<action id="unlocking_mutex">
+				<segment>
+					<segType>
+						<segName>
+							<stateValue type="query">
+								<stateAttribute type="constant"
+									value="#CurrentScenario" />
+								<stateAttribute type="constant" value="Mutex" />
+							</stateValue>
+						</segName>
+					</segType>
+				</segment>
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="Mutex" />
+					<stateValue type="null" />
+				</stateChange>
+			</action>
+			<fsm id="org.orbcode.tracing.rtos.analysis.mutex_locked.fsm"
+				initial="start" multiple="true">
+				<state id="start">
+					<transition event="mutex_locked" target="locked"
+						action="locking_mutex" />
+				</state>
+				<state id="locked">
+					<transition event="mutex_unlocked" target="stop"
+						cond="mutex_condition" action="unlocking_mutex" />
+				</state>
+				<final id="stop" />
+			</fsm>
+		</patternHandler>
+	</pattern>
+	<pattern id="org.orbcode.traceing.rtos.analysis.irq_active" version="0">
+		<head>
+			<label value="RTOS: IRQ active" />
+		</head>
+		<patternHandler>
+			<test id="exception_number_condition">
+				<if>
+					<condition operator="eq">
+						<stateValue type="eventField" value="ExceptionNumber" />
+						<stateValue type="query">
+							<stateAttribute type="constant"
+								value="#CurrentScenario" />
+							<stateAttribute type="constant"
+								value="ExceptionNumber" />
+						</stateValue>
+					</condition>
+				</if>
+			</test>
+			<action id="entering_exception">
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="ExceptionNumber" />
+					<stateValue type="eventField" value="ExceptionNumber" />
+				</stateChange>
+			</action>
+			<action id="exiting_exception">
+				<segment>
+					<segType>
+						<segName>
+							<stateValue type="query">
+								<stateAttribute type="constant"
+									value="#CurrentScenario" />
+								<stateAttribute type="constant"
+									value="ExceptionNumber" />
+							</stateValue>
+						</segName>
+					</segType>
+				</segment>
+				<stateChange>
+					<stateAttribute type="constant" value="#CurrentScenario" />
+					<stateAttribute type="constant" value="ExceptionNumber" />
+					<stateValue type="null" />
+				</stateChange>
+			</action>
+			<fsm id="org.orbcode.traceing.rtos.analysis.irq_active.fsm"
+				initial="start" multiple="true">
+				<state id="start">
+					<transition event="exception_entered" target="active"
+						action="entering_exception" />
+				</state>
+				<state id="active">
+					<transition event="exception_exited" target="stop"
+						cond="exception_number_condition"
+						action="exiting_exception" />
+				</state>
+				<final id="stop" />
+			</fsm>
+		</patternHandler>
+	</pattern>
 </tmfxml>

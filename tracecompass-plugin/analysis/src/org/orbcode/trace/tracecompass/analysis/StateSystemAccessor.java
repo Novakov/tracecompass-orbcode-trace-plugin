@@ -166,4 +166,14 @@ class StateSystemAccessor {
 		int quark = fStateSystem.getQuarkAbsoluteAndAdd("CountingSemaphore", semaphore, "Count");
 		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), count, quark);
 	}
+	
+	public void setExceptionState(ITmfEvent event, int exceptionNumber, Integer state) {
+		int quark = fStateSystem.getQuarkAbsoluteAndAdd("Exception", Integer.toString(exceptionNumber), "State");
+		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), state, quark);
+	}
+	
+	public void setCurrentExceptionNumber(ITmfEvent event, int exceptionNumber) {
+		int quark = fStateSystem.getQuarkAbsoluteAndAdd("CurrentExceptionNumber");
+		fStateSystem.modifyAttribute(event.getTimestamp().getValue(), exceptionNumber, quark);
+	}
 }

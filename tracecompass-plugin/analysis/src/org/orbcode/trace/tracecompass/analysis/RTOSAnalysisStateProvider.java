@@ -233,4 +233,25 @@ public class RTOSAnalysisStateProvider extends AbstractTmfStateProvider {
 
 		rtos.mutexUnlocked(mutex);
 	}
+	
+	@EventHandler("exception_entered") 
+	private void onExceptionEntered(ITmfEvent event, RTOSOperations rtos) {
+		int exceptionNumber = Integer.parseInt(event.getContent().getFieldValue(String.class, "ExceptionNumber"));
+		
+		rtos.exceptionEntered(exceptionNumber);
+	}
+	
+	@EventHandler("exception_exited") 
+	private void onExceptionExited(ITmfEvent event, RTOSOperations rtos) {
+		int exceptionNumber = Integer.parseInt(event.getContent().getFieldValue(String.class, "ExceptionNumber"));
+		
+		rtos.exceptionExited(exceptionNumber);
+	}
+	
+	@EventHandler("exception_returned") 
+	private void onExceptionReturned(ITmfEvent event, RTOSOperations rtos) {
+		int exceptionNumber = Integer.parseInt(event.getContent().getFieldValue(String.class, "ExceptionNumber"));
+		
+		rtos.exceptionReturned(exceptionNumber);
+	}
 }

@@ -63,4 +63,28 @@
 			<name type="self" />
 		</entry>
 	</timeGraphView>
+
+	<timeGraphView id="org.orbcode.tracing.rtos.analysis.exception_number">
+		<head>
+			<analysis id="org.orbcode.trace.tracecompass.analysis.rtos" />
+			<label value="Current exception" />
+		</head>
+		
+		<definedValue name="Thread" value="0" />
+		<definedValue name="Reset" value="1" />
+		<definedValue name="NMI" value="2" />
+		<definedValue name="HardFault" value="3" />
+		<definedValue name="MemManage" value="4" />
+		<definedValue name="BusFault" value="5" />
+		<definedValue name="UsageFault" value="6" />
+		<definedValue name="SVCall" value="11" />
+		<definedValue name="DebugMonitor" value="12" />
+		<definedValue name="PendSV" value="14" />
+		<definedValue name="SysTick" value="15" />
+		
+		<entry path="CurrentExceptionNumber" displayText="true">
+			<display type="self" />
+			<name type="constant" value="Exception number" />
+		</entry>
+	</timeGraphView>
 </tmfxml>

@@ -27,6 +27,13 @@ def enumerate_packets_from_trace(trace_messages: Iterable[pyorb.TraceMessage]) -
         cumulative_ts += ts.timeInc
 
         for packet in msgs:
+            if isinstance(packet, pyorb.excMsg):
+                yield Packet(
+                    timestamp=cumulative_ts,
+                    event_id=200 + packet.eventType,
+                    payload=[packet.exceptionNumber]
+                )
+
             if not isinstance(packet, pyorb.swMsg):
                 continue
 
