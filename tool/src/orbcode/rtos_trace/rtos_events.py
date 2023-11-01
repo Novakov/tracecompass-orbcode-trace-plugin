@@ -280,9 +280,11 @@ class Collector:
     @event_handler(EVENT_TASK_NOTIFY)
     def task_notified(self, task: int, flags: int, updated_value: int) -> TraceEvent:
         index = (flags & 0xFFFF)
-        action = (flags >> 16) & 0xFFFF
+        action = (flags >> 16) & 0xF
+        is_isr = ((flags >> 24) & 1) == 1
         return {
             'TCB': f'0x{task:08X}',
+            'ISR': is_isr,
             'TaskName': self.resolve_task_name(task),
             'NotifyIndex': index,
             'NotifyAction': NOTIFY_ACTIONS[action],

@@ -288,37 +288,73 @@ TEST_CASES_TASK_NOTIFY = [
         event_id=13,
         payload=[0x12345678, 0x00001234, 200],
         event_name='task_notified',
-        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'NoAction', 'UpdatedValue': 200},
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'NoAction', 'UpdatedValue': 200 ,'ISR': False},
         needs_task=True
     ),
     TestCase(
         event_id=13,
         payload=[0x12345678, 0x00011234, 200],
         event_name='task_notified',
-        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetBits', 'UpdatedValue': 200},
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetBits', 'UpdatedValue': 200, 'ISR': False},
         needs_task=True
     ),
     TestCase(
         event_id=13,
         payload=[0x12345678, 0x00021234, 200],
         event_name='task_notified',
-        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'Increment', 'UpdatedValue': 200},
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'Increment', 'UpdatedValue': 200, 'ISR': False},
         needs_task=True
     ),
     TestCase(
         event_id=13,
         payload=[0x12345678, 0x00031234, 200],
         event_name='task_notified',
-        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetValueWithOverwrite', 'UpdatedValue': 200},
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetValueWithOverwrite', 'UpdatedValue': 200, 'ISR': False},
         needs_task=True
     ),
     TestCase(
         event_id=13,
         payload=[0x12345678, 0x00041234, 200],
         event_name='task_notified',
-        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetValueWithoutOverwrite', 'UpdatedValue': 200},
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetValueWithoutOverwrite', 'UpdatedValue': 200, 'ISR': False},
         needs_task=True
-    )
+    ),
+
+    TestCase(
+        event_id=13,
+        payload=[0x12345678, 0x01001234, 200],
+        event_name='task_notified',
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'NoAction', 'UpdatedValue': 200 ,'ISR': True},
+        needs_task=True
+    ),
+    TestCase(
+        event_id=13,
+        payload=[0x12345678, 0x01011234, 200],
+        event_name='task_notified',
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetBits', 'UpdatedValue': 200, 'ISR': True},
+        needs_task=True
+    ),
+    TestCase(
+        event_id=13,
+        payload=[0x12345678, 0x01021234, 200],
+        event_name='task_notified',
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'Increment', 'UpdatedValue': 200, 'ISR': True},
+        needs_task=True
+    ),
+    TestCase(
+        event_id=13,
+        payload=[0x12345678, 0x01031234, 200],
+        event_name='task_notified',
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetValueWithOverwrite', 'UpdatedValue': 200, 'ISR': True},
+        needs_task=True
+    ),
+    TestCase(
+        event_id=13,
+        payload=[0x12345678, 0x01041234, 200],
+        event_name='task_notified',
+        expected={'TCB': TCB, 'TaskName': TASK_NAME, 'NotifyIndex': 0x1234, 'NotifyAction': 'SetValueWithoutOverwrite', 'UpdatedValue': 200, 'ISR': True},
+        needs_task=True
+    ),
 ]
 
 TEST_CASES_TASK_SWITCHED_OUT = [

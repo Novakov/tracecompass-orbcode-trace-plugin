@@ -97,7 +97,7 @@ void EnableTrace()
     dwt.CycleTap = DWTCycleTap10;
     dwt.CPICounterEvent = false;
     dwt.ExceptionOverheadCounterEvent = false;
-    dwt.ExceptionTrace = false;
+    dwt.ExceptionTrace = true;
     dwt.FoldedInstructionCounterEvent = false;
     dwt.LSUCounterEvent = false;
     dwt.PCSampling = false;

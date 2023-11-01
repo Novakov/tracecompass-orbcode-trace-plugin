@@ -51,6 +51,7 @@ Timestamp: 0.196359 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 0.196377 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -98,6 +99,7 @@ Timestamp: 0.389668 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 0.389687 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -145,6 +147,7 @@ Timestamp: 0.582977 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 0.582996 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -192,6 +195,7 @@ Timestamp: 0.776287 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 0.776306 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -239,6 +243,7 @@ Timestamp: 0.969596 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 0.969615 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -286,6 +291,7 @@ Timestamp: 1.162906 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 1.162925 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -333,6 +339,7 @@ Timestamp: 1.356216 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 1.356234 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -380,6 +387,7 @@ Timestamp: 1.549525 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 1.549544 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -427,6 +435,7 @@ Timestamp: 1.742835 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 1.742854 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -474,6 +483,7 @@ Timestamp: 1.936144 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 1.936163 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -521,6 +531,7 @@ Timestamp: 2.129454 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 2.129473 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -568,6 +579,7 @@ Timestamp: 2.322764 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 2.322782 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -615,6 +627,7 @@ Timestamp: 2.516073 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 2.516092 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -662,6 +675,7 @@ Timestamp: 2.709383 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 2.709401 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -709,6 +723,7 @@ Timestamp: 2.902692 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 2.902711 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -756,6 +771,7 @@ Timestamp: 3.096002 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 3.096021 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -803,6 +819,7 @@ Timestamp: 3.289311 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 3.289330 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -850,6 +867,7 @@ Timestamp: 3.482621 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 3.482640 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -897,6 +915,7 @@ Timestamp: 3.675931 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 3.675949 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -944,6 +963,7 @@ Timestamp: 3.869240 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 3.869259 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -991,6 +1011,7 @@ Timestamp: 4.062550 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 4.062569 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1038,6 +1059,7 @@ Timestamp: 4.255859 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 4.255878 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1085,6 +1107,7 @@ Timestamp: 4.449169 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 4.449188 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1132,6 +1155,7 @@ Timestamp: 4.642478 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 4.642497 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1179,6 +1203,7 @@ Timestamp: 4.835788 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 4.835807 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1226,6 +1251,7 @@ Timestamp: 5.029098 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 5.029116 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1273,6 +1299,7 @@ Timestamp: 5.222407 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 5.222426 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1320,6 +1347,7 @@ Timestamp: 5.415717 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 5.415736 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1367,6 +1395,7 @@ Timestamp: 5.609026 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 5.609045 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1414,6 +1443,7 @@ Timestamp: 5.802336 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 5.802355 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1461,6 +1491,7 @@ Timestamp: 5.995646 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 5.995664 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1508,6 +1539,7 @@ Timestamp: 6.188955 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 6.188974 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1555,6 +1587,7 @@ Timestamp: 6.382265 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 6.382284 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1602,6 +1635,7 @@ Timestamp: 6.575574 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 6.575593 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1649,6 +1683,7 @@ Timestamp: 6.768884 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 6.768903 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1696,6 +1731,7 @@ Timestamp: 6.962193 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 6.962212 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1743,6 +1779,7 @@ Timestamp: 7.155503 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 7.155522 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1790,6 +1827,7 @@ Timestamp: 7.348813 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 7.348831 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1837,6 +1875,7 @@ Timestamp: 7.542122 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 7.542141 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1884,6 +1923,7 @@ Timestamp: 7.735432 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 7.735451 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1931,6 +1971,7 @@ Timestamp: 7.928741 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 7.928760 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -1978,6 +2019,7 @@ Timestamp: 8.122051 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 8.122070 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2025,6 +2067,7 @@ Timestamp: 8.315360 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 8.315379 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2072,6 +2115,7 @@ Timestamp: 8.508670 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 8.508689 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2119,6 +2163,7 @@ Timestamp: 8.701980 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 8.701998 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2166,6 +2211,7 @@ Timestamp: 8.895289 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 8.895308 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2213,6 +2259,7 @@ Timestamp: 9.088599 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 9.088618 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2260,6 +2307,7 @@ Timestamp: 9.281908 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 9.281927 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2307,6 +2355,7 @@ Timestamp: 9.475218 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 9.475237 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2354,6 +2403,7 @@ Timestamp: 9.668528 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 9.668546 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2401,6 +2451,7 @@ Timestamp: 9.861837 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 9.861856 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'
@@ -2448,6 +2499,7 @@ Timestamp: 10.055147 Event type: task_switched_in
     TaskName: 'PeriodicNotifie'
 Timestamp: 10.055166 Event type: task_notified
     TCB: '0x2000049C'
+    ISR: 'False'
     TaskName: '0x2000049C'
     NotifyIndex: '0'
     NotifyAction: 'SetValueWithOverwrite'

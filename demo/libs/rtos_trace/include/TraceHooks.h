@@ -31,7 +31,7 @@ extern "C"
     extern void TraceOnQueuePush(void* queue, bool isr, bool success, uint32_t updatedItemsCount);
     extern void TraceOnQueuePop(void* queue, bool isr, bool success, uint32_t updatedItemsCount);
 
-    extern void OnTaskNotify(void* task, uint32_t index, uint32_t action, uint32_t updatedValue);
+    extern void OnTaskNotify(void* task, uint32_t index, bool isr, uint32_t action, uint32_t updatedValue);
     extern void OnTaskNotifyReceived(void* task, uint32_t index, uint32_t updatedValue);
 
 #ifdef __cplusplus
@@ -318,5 +318,6 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     CurrentTaskSwitchRecord.BlockedOnObject = (void*)index; \
     CurrentTaskSwitchRecord.Reason = SWITCH_REASON_TASK_NOTIFY_WAIT;
 
-#define traceTASK_NOTIFY(index) OnTaskNotify(pxTCB, index, eAction, pxTCB->ulNotifiedValue[index]);
+#define traceTASK_NOTIFY(index) OnTaskNotify(pxTCB, index, false, eAction, pxTCB->ulNotifiedValue[index]);
+#define traceTASK_NOTIFY_FROM_ISR(index) OnTaskNotify(pxTCB, index, true, eAction, pxTCB->ulNotifiedValue[index]);
 #define traceTASK_NOTIFY_WAIT(index) OnTaskNotifyReceived(pxCurrentTCB, index, pxCurrentTCB->ulNotifiedValue[index] & ~ulBitsToClearOnExit);

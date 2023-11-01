@@ -177,12 +177,16 @@ void TraceOnQueuePop(void* queue, bool isr, bool success, uint32_t updatedItemsC
     TraceFooter();
 }
 
-extern void OnTaskNotify(void* task, uint32_t index, uint32_t action, uint32_t updatedValue)
+extern void OnTaskNotify(void* task, uint32_t index, bool isr, uint32_t action, uint32_t updatedValue)
 {
     TraceHeader();
     ITMWrite32(2, TRACE_EVENT_TASK_NOTIFY);
     ITMWrite32(2, reinterpret_cast<std::uintptr_t>(task));
-    ITMWrite32(2, (index & 0xFFFF) | ((action & 0xFFFF)) << 16);
+    uint32_t flags = 0;
+    flags |= index & 0xFFFF;
+    flags |= (action & 0xF) << 16;
+    flags |= (isr ? 1 : 0) << 24;
+    ITMWrite32(2, flags);
     ITMWrite32(2, updatedValue);
     TraceFooter();
 }
