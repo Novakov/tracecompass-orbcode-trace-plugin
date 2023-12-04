@@ -94,8 +94,11 @@ void demo_main()
         std::size(ConsumingQueueBufferStorage), sizeof(int), reinterpret_cast<std::uint8_t*>(ConsumingQueueBufferStorage), &ConsumingQueueBuffer);
 
     xTaskCreateStatic(
-        PeriodicConsumer, "PeriodicConsumer", std::size(PeriodicConsumerStack), nullptr, configMAX_PRIORITIES - 1, PeriodicConsumerStack, &PeriodicConsumerTask);
-    xTaskCreateStatic(Producer, "Producer", std::size(ProducerStack), nullptr, 1, ProducerStack, &ProducerTask);
+            IsrGiveTaskReceiveSemaphore_Receiver, "Receiver",
+            std::size(PeriodicConsumerStack), nullptr, configMAX_PRIORITIES - 1, PeriodicConsumerStack,
+            &PeriodicConsumerTask);
+    xTaskCreateStatic(IsrGiveTaskReceiveSemaphore_Giver, "Giver", std::size(ProducerStack),
+                      nullptr, 1, ProducerStack, &ProducerTask);
 
     vTaskStartScheduler();
 }

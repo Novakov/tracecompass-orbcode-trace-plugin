@@ -86,8 +86,11 @@ void demo_main()
     ConsumingSemaphore = xSemaphoreCreateCountingStatic(10, 0, &ConsumingSemaphoreBuffer);
 
     xTaskCreateStatic(
-        PeriodicConsumer, "PeriodicConsumer", std::size(PeriodicConsumerStack), nullptr, configMAX_PRIORITIES - 1, PeriodicConsumerStack, &PeriodicConsumerTask);
-    xTaskCreateStatic(Producer, "Producer", std::size(ProducerStack), nullptr, 1, ProducerStack, &ProducerTask);
+            IsrGiveTaskReceiveSemaphore_Receiver, "Receiver",
+            std::size(PeriodicConsumerStack), nullptr, configMAX_PRIORITIES - 1, PeriodicConsumerStack,
+            &PeriodicConsumerTask);
+    xTaskCreateStatic(IsrGiveTaskReceiveSemaphore_Giver, "Giver", std::size(ProducerStack),
+                      nullptr, 1, ProducerStack, &ProducerTask);
 
     vTaskStartScheduler();
 }
