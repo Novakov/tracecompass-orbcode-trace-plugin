@@ -47,11 +47,12 @@ enum SwitchReason
     SWITCH_REASON_BLOCKED_MUTEX = 2,
     SWITCH_REASON_BLOCKED_QUEUE_PUSH = 3,
     SWITCH_REASON_BLOCKED_QUEUE_POP = 4,
-    SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE = 5,
+    SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE_RECEIVE = 5,
     SWITCH_REASON_BLOCKED_EVENT_GROUP = 6,
     SWITCH_REASON_COUNTING_SEMAPHORE_GIVE = 7,
     SWITCH_REASON_COUNTING_SEMAPHORE_RECEIVE = 8,
     SWITCH_REASON_TASK_NOTIFY_WAIT = 9,
+    SWITCH_REASON_BINARY_SEMAPHORE_GIVE = 0xA,
     SWITCH_REASON_BLOCKED_OTHER = 0xF,
 };
 
@@ -275,6 +276,10 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     {                                                                           \
         CurrentTaskSwitchRecord.Reason = SWITCH_REASON_COUNTING_SEMAPHORE_GIVE; \
     }                                                                           \
+    if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                  \
+    {                                                                           \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BINARY_SEMAPHORE_GIVE;   \
+    }                                                                           \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                         \
     {                                                                           \
         CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_QUEUE_PUSH;      \
@@ -288,7 +293,7 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     CurrentTaskSwitchRecord.BlockedOnObject = queue;                                                                  \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE;                                      \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE_RECEIVE;                              \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \

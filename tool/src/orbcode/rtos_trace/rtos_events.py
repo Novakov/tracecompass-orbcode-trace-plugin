@@ -104,6 +104,7 @@ class Collector:
         elif switch_reason == 5:
             out_state = 'Blocked'
             blocked_on = 'BinarySemaphore'
+            block_operation = 'Take'
         elif switch_reason == 6:
             out_state = 'Blocked'
             blocked_on = 'EventGroup'
@@ -119,6 +120,10 @@ class Collector:
             out_state = 'Blocked'
             blocked_on = 'TaskNotify'
             block_operation = 'Wait'
+        elif switch_reason == 0xA:
+            out_state = 'Blocked'
+            blocked_on = 'BinarySemaphore'
+            block_operation = 'Give'
         elif switch_reason == 0xF:
             out_state = 'Blocked'
             blocked_on = 'Other'

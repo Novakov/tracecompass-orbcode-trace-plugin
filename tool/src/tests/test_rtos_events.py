@@ -398,11 +398,12 @@ TEST_CASES_TASK_SWITCHED_OUT = [
             (2, 'Mutex', ''),
             (3, 'Queue', 'Push'),
             (4, 'Queue', 'Pop'),
-            (5, 'BinarySemaphore', ''),
+            (5, 'BinarySemaphore', 'Take'),
             (6, 'EventGroup', ''),
             (7, 'CountingSemaphore', 'Give'),
             (8, 'CountingSemaphore', 'Take'),
             (9, 'TaskNotify', 'Wait'),
+            (0xA, 'BinarySemaphore', 'Give'),
             (0xF, 'Other', '')
         ]
     ]
