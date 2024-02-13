@@ -13,3 +13,4 @@ target_link_libraries(${NAME} PRIVATE
 )
 
 target_flash(${NAME})
+target_capture_trace(${NAME})

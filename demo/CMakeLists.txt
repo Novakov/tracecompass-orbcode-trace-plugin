@@ -10,6 +10,8 @@ project(TraceCompassTraceDemoApp C CXX ASM)
 
 include(openocd/functions.cmake)
 
+find_package(Python3)
+
 add_subdirectory(execs)
 add_subdirectory(libs)
 add_subdirectory(openocd)

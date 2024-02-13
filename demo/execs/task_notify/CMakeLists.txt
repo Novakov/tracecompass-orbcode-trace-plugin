@@ -1,4 +1,4 @@
-set(NAME task_nofify)
+set(NAME task_notify)
 
 add_executable(${NAME})
 
@@ -13,3 +13,4 @@ target_link_libraries(${NAME} PRIVATE
 )
 
 target_flash(${NAME})
+target_capture_trace(${NAME})

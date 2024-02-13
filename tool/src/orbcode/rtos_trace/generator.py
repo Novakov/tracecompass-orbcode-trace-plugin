@@ -3,7 +3,7 @@ from typing import IO, Iterable, List, Optional
 
 from orbcode import pyorb
 
-from .rtos_events import Collector, TraceEvent
+from .rtos_events import Collector, TraceEvent, TraceEventData
 from .trace_file import group_trace_packets_by_timestamp
 
 
@@ -65,10 +65,15 @@ def generate_rtos_trace_from_trace(trace_messages: Iterable[pyorb.TraceMessage],
     generate_rtos_trace(packets, output)
 
 
+from .event import Event
+from .address_resolver import AddressResolver, SymbolNameResolver
+
 def generate_rtos_trace(packets: Iterable[Packet], output: IO[str]) -> None:
     collector = Collector()
 
     event_map = collector.event_map()
+
+    output_events: list[Event] = []
 
     for packet in packets:
         timestamp_s = packet.timestamp / 50e6
@@ -79,8 +84,25 @@ def generate_rtos_trace(packets: Iterable[Packet], output: IO[str]) -> None:
             assert isinstance(trace_event, tuple)
             event_type, event_data = trace_event
 
-            output.write(f'Timestamp: {timestamp_s:.6f} Event type: {event_type}\n')
-            for k, v in event_data.items():
-                output.write(f"    {k}: '{v}'\n")
+            output_events.append(Event(
+                timestamp=timestamp_s,
+                event_type=event_type,
+                event_data=event_data
+            ))
         else:
             print(f'Unknown event {packet.event_id}')
+
+    with SymbolNameResolver() as symbol_name_resolver:
+        resolver = AddressResolver(symbol_name_resolver)
+
+        for event in output_events:
+            resolver.learn(event)
+
+        # for event in output_events:
+        #     resolver.resolve(event)
+
+        for event in output_events:
+            resolved = resolver.resolve(event)
+            output.write(f'Timestamp: {resolved.timestamp:.6f} Event type: {resolved.event_type}\n')
+            for k, v in resolved.event_data.items():
+                output.write(f"    {k}: '{v}'\n")

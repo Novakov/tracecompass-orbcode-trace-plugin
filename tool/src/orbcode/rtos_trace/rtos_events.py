@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from functools import wraps
 import inspect
 from typing import Callable, Dict, Optional, Tuple, Union
@@ -31,8 +32,13 @@ NOTIFY_ACTIONS = {
     4: 'SetValueWithoutOverwrite',
 }
 
+@dataclass(frozen=True)
+class AddressReference:
+    object_type: str
+    address: int
 
-TraceEventData = Dict[str, Union[None, str, int, bool]]
+
+TraceEventData = Dict[str, Union[None, str, int, bool, AddressReference]]
 TraceEvent = Union[Tuple[str, TraceEventData], TraceEventData]
 
 
@@ -142,8 +148,7 @@ class Collector:
     @event_handler(EVENT_TASK_READIED)
     def task_readied(self, tcb: int) -> TraceEvent:
         return {
-            'TCB': f'0x{tcb:08X}',
-            'TaskName': self.resolve_task_name(tcb)
+            'TCB': AddressReference('TCB', tcb),
         }
 
     @event_handler(EVENT_BINARY_SEM_CREATED)
@@ -201,7 +206,7 @@ class Collector:
             tcb = self.current_tcb
 
         data: TraceEventData = {
-            'Semaphore': f'0x{queue:08X}',
+            'Semaphore': AddressReference('BinarySemaphore', queue),
             'TCB': f'0x{tcb:08X}',
             'TaskName': self.resolve_task_name(tcb),
             'ISR': is_isr

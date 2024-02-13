@@ -19,4 +19,5 @@ target_sources(${NAME} PRIVATE
     src/bootstrap.cpp
 )
 
+set_property(TARGET ${NAME} PROPERTY OPENOCD_INIT_SCRIPT target/efm32.cfg)
 set_property(TARGET ${NAME} PROPERTY OPENOCD_FLASH_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/openocd/flash.cfg)
