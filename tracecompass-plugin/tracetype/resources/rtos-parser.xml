@@ -14,19 +14,7 @@
                 <InputData action="0" format="" name="Extra field value" tag="EXTRA_FIELD_VALUE"/>
             </InputLine>
         </InputLine>
-       <!--  <InputLine>
-            <Cardinality max="1" min="0"/>
-            <RegEx>Timestamp:\s+(\S+) (Task created TCB: (\S+) Name: (.*))</RegEx>
-            <EventType>task_created</EventType>
-            <InputData action="0" format="TTT.SSSSSS" name="Timestamp" tag="TIMESTAMP"/>
-            <InputData action="0" format="" name="Message" tag="MESSAGE"/>
-            <InputData action="0" format="" name="TCB" tag="OTHER"/>
-            <InputData action="0" format="" name="TaskName" tag="OTHER"/>
-        </InputLine>-->
         <OutputColumn name="Timestamp" tag="TIMESTAMP"/>
-        <OutputColumn name="TCB" tag="OTHER"/>
-        <OutputColumn name="Message" tag="MESSAGE"/>
-        <OutputColumn name="TaskName" tag="OTHER"/>
         <OutputColumn name="Event type" tag="EVENT_TYPE"/>
         <OutputColumn name="Extra fields" tag="EXTRA_FIELDS"/>
     </Definition>

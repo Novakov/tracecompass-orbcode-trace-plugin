@@ -27,11 +27,11 @@
 			<fsm id="org.orbcode.tracing.rtos.analysis.context_switch.fsm"
 				initial="previous_task_running" multiple="true">
 				<state id="previous_task_running">
-					<transition event="task_switched_out"
+					<transition event="TaskSwitchedOut"
 						target="selecting_task" action="switching_out_task" />
 				</state>
 				<state id="selecting_task">
-					<transition event="task_switched_in"
+					<transition event="TaskSwitchedIn"
 						target="next_task_running" action="switching_in_task" />
 				</state>
 				<final id="next_task_running" />
@@ -46,7 +46,7 @@
 			<test id="task_condition">
 				<if>
 					<condition operator="eq">
-						<stateValue type="eventField" value="TaskName" />
+						<stateValue type="eventField" value="task.name" />
 						<stateValue type="query">
 							<stateAttribute type="constant"
 								value="#CurrentScenario" />
@@ -59,7 +59,7 @@
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
 					<stateAttribute type="constant" value="TaskName" />
-					<stateValue type="eventField" value="TaskName" />
+					<stateValue type="eventField" value="task.name" />
 				</stateChange>
 			</action>
 			<action id="switching_out_task">
@@ -83,11 +83,11 @@
 			<fsm id="org.orbcode.tracing.rtos.analysis.task_running.fsm"
 				initial="start" multiple="true">
 				<state id="start">
-					<transition event="task_switched_in" target="task_active"
+					<transition event="TaskSwitchedIn" target="task_active"
 						action="switching_in_task" />
 				</state>
 				<state id="task_active">
-					<transition event="task_switched_out" target="stop"
+					<transition event="TaskSwitchedOut" target="stop"
 						cond="task_condition" action="switching_out_task" />
 				</state>
 				<final id="stop" />
@@ -103,7 +103,7 @@
 			<test id="task_condition">
 				<if>
 					<condition operator="eq">
-						<stateValue type="eventField" value="TaskName" />
+						<stateValue type="eventField" value="task.name" />
 						<stateValue type="query">
 							<stateAttribute type="constant"
 								value="#CurrentScenario" />
@@ -115,8 +115,8 @@
 			<test id="switched_out_ready">
 				<if>
 					<condition operator="eq">
-						<stateValue type="string" value="Ready" />
-						<stateValue type="eventField" value="OutState" />
+						<stateValue type="string" value="True" />
+						<stateValue type="eventField" value="still_ready" />
 					</condition>
 				</if>
 			</test>
@@ -124,7 +124,7 @@
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
 					<stateAttribute type="constant" value="TaskName" />
-					<stateValue type="eventField" value="TaskName" />
+					<stateValue type="eventField" value="task.name" />
 				</stateChange>
 			</action>
 			<action id="switching_in_task">
@@ -150,22 +150,22 @@
 			<fsm id="org.orbcode.tracing.rtos.analysis.task_ready_waiting.fsm"
 				initial="start" multiple="true">
 				<state id="start">
-					<transition event="task_readied" target="ready_waiting"
+					<transition event="TaskReadied" target="ready_waiting"
 						action="task_become_ready" />
-					<transition event="task_switched_out"
+					<transition event="TaskSwitchedOut"
 						cond="switched_out_ready" target="ready_waiting"
 						action="task_become_ready" />
 				</state>
 				<state id="ready_waiting">
-					<transition event="task_readied" cond="task_condition"
+					<transition event="TaskReadied" cond="task_condition"
 						target="ready_waiting" />
-					<transition event="task_switched_in" target="running"
+					<transition event="TaskSwitchedIn" target="running"
 						cond="task_condition" action="switching_in_task" />
 				</state>
 				<state id="running">
-					<transition event="task_readied" cond="task_condition"
+					<transition event="TaskReadied" cond="task_condition"
 						target="running" />
-					<transition event="task_switched_out" cond="task_condition"
+					<transition event="TaskSwitchedOut" cond="task_condition"
 						target="switched_out_again" action="task_done" />
 				</state>
 				<final id="switched_out_again" />
@@ -180,7 +180,7 @@
 			<test id="task_condition">
 				<if>
 					<condition operator="eq">
-						<stateValue type="eventField" value="TaskName" />
+						<stateValue type="eventField" value="task.name" />
 						<stateValue type="query">
 							<stateAttribute type="constant"
 								value="#CurrentScenario" />
@@ -194,16 +194,16 @@
 				<if>
 					<and>
 						<condition operator="eq">
-							<stateValue type="eventField" value="TaskName" />
+							<stateValue type="eventField" value="task.name" />
 							<stateValue type="query">
 								<stateAttribute type="constant"
 									value="#CurrentScenario" />
 								<stateAttribute type="constant" value="TaskName" />
 							</stateValue>
 						</condition>
-						<condition operator="eq">
-							<stateValue type="eventField" value="OutState" />
-							<stateValue type="string" value="Blocked" />
+						<condition operator="ne">
+							<stateValue type="eventField" value="blocked_on.type" />
+							<stateValue type="string" value="None" />
 						</condition>
 					</and>
 				</if>
@@ -213,16 +213,16 @@
 				<if>
 					<and>
 						<condition operator="eq">
-							<stateValue type="eventField" value="TaskName" />
+							<stateValue type="eventField" value="task.name" />
 							<stateValue type="query">
 								<stateAttribute type="constant"
 									value="#CurrentScenario" />
 								<stateAttribute type="constant" value="TaskName" />
 							</stateValue>
 						</condition>
-						<condition operator="ne">
-							<stateValue type="eventField" value="OutState" />
-							<stateValue type="string" value="Blocked" />
+						<condition operator="eq">
+							<stateValue type="eventField" value="blocked_on.type" />
+							<stateValue type="string" value="None" />
 						</condition>
 					</and>
 				</if>
@@ -232,7 +232,7 @@
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
 					<stateAttribute type="constant" value="TaskName" />
-					<stateValue type="eventField" value="TaskName" />
+					<stateValue type="eventField" value="task.name" />
 				</stateChange>
 			</action>
 
@@ -240,7 +240,7 @@
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
 					<stateAttribute type="constant" value="BlockedOnObject" />
-					<stateValue type="eventField" value="BlockedOnObject" />
+					<stateValue type="eventField" value="blocked_on_object.name" />
 				</stateChange>
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
@@ -250,12 +250,12 @@
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
 					<stateAttribute type="constant" value="BlockedOn" />
-					<stateValue type="eventField" value="BlockedOn" />
+					<stateValue type="eventField" value="blocked_on.type" />
 				</stateChange>
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
 					<stateAttribute type="constant" value="BlockingOperation" />
-					<stateValue type="eventField" value="BlockingOperation" />
+					<stateValue type="eventField" value="blocked_on.operation" /> 
 				</stateChange>
 			</action>
 
@@ -324,20 +324,20 @@
 			<fsm id="org.orbcode.tracing.rtos.analysis.task_blocked_on.fsm"
 				initial="start" multiple="true">
 				<state id="start">
-					<transition event="task_switched_in" target="task_running"
+					<transition event="TaskSwitchedIn" target="task_running"
 						action="switching_in_task" />
 				</state>
 				<state id="task_running">
-					<transition event="task_switched_out"
+					<transition event="TaskSwitchedOut"
 						cond="task_condition_and_blocked" target="task_blocked"
 						action="blocking_task" />
-					<transition event="task_switched_out"
+					<transition event="TaskSwitchedOut"
 						cond="task_condition_and_not_blocked"
 						target="task_unblocked"
 						action="switching_out_non_blocking" />
 				</state>
 				<state id="task_blocked">
-					<transition event="task_readied" cond="task_condition"
+					<transition event="TaskReadied" cond="task_condition"
 						target="task_unblocked" action="unblocking_task" />
 				</state>
 				<final id="task_unblocked" />
@@ -352,7 +352,7 @@
 			<test id="mutex_condition">
 				<if>
 					<condition operator="eq">
-						<stateValue type="eventField" value="Mutex" />
+						<stateValue type="eventField" value="mutex.name" />
 						<stateValue type="query">
 							<stateAttribute type="constant"
 								value="#CurrentScenario" />
@@ -365,7 +365,7 @@
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
 					<stateAttribute type="constant" value="Mutex" />
-					<stateValue type="eventField" value="Mutex" />
+					<stateValue type="eventField" value="mutex.name" />
 				</stateChange>
 			</action>
 			<action id="unlocking_mutex">
@@ -389,11 +389,11 @@
 			<fsm id="org.orbcode.tracing.rtos.analysis.mutex_locked.fsm"
 				initial="start" multiple="true">
 				<state id="start">
-					<transition event="mutex_locked" target="locked"
+					<transition event="MutexLocked" target="locked"
 						action="locking_mutex" />
 				</state>
 				<state id="locked">
-					<transition event="mutex_unlocked" target="stop"
+					<transition event="MutexUnlocked" target="stop"
 						cond="mutex_condition" action="unlocking_mutex" />
 				</state>
 				<final id="stop" />
@@ -408,7 +408,7 @@
 			<test id="exception_number_condition">
 				<if>
 					<condition operator="eq">
-						<stateValue type="eventField" value="ExceptionNumber" />
+						<stateValue type="eventField" value="exception_number" />
 						<stateValue type="query">
 							<stateAttribute type="constant"
 								value="#CurrentScenario" />
@@ -422,7 +422,7 @@
 				<stateChange>
 					<stateAttribute type="constant" value="#CurrentScenario" />
 					<stateAttribute type="constant" value="ExceptionNumber" />
-					<stateValue type="eventField" value="ExceptionNumber" />
+					<stateValue type="eventField" value="exception_number" />
 				</stateChange>
 			</action>
 			<action id="exiting_exception">
@@ -447,11 +447,11 @@
 			<fsm id="org.orbcode.traceing.rtos.analysis.irq_active.fsm"
 				initial="start" multiple="true">
 				<state id="start">
-					<transition event="exception_entered" target="active"
+					<transition event="ExceptionEntered" target="active"
 						action="entering_exception" />
 				</state>
 				<state id="active">
-					<transition event="exception_exited" target="stop"
+					<transition event="ExceptionExited" target="stop"
 						cond="exception_number_condition"
 						action="exiting_exception" />
 				</state>
