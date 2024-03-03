@@ -108,6 +108,8 @@ void EnableTrace()
     TpiuSetup(&tpiu);
     ITMSetup(&itm);
     DWTSetup(&dwt);
+
+    DWT->CYCCNT = 0;
 }
 
 int main()
@@ -121,6 +123,13 @@ int main()
     {
         __asm__ volatile("nop");
     }
+
+    for(int i = 0; i < 30; i++)
+    {
+        ITMWrite32(8, 0xDEADBEEF);
+    }
+
+    ITMWrite32(8, 0xCAFEBABE);
 
     demo_main();
 }
