@@ -16,20 +16,28 @@ extern "C"
     extern void TraceOnTaskReadied(void* tcb);
 
     extern void TraceOnBinarySemaphoreCreate(void* queue);
-    extern void TraceOnBinarySemaphoreLock(void* queue, bool isr, bool success);
-    extern void TraceOnBinarySemaphoreUnlock(void* queue, bool isr, bool success);
+    extern void TraceOnBinarySemaphoreLock(void* queue, bool isr);
+    extern void TraceOnBinarySemaphoreUnlock(void* queue, bool isr);
+    extern void TraceOnBinarySemaphoreLockFailed(void* queue, bool isr);
+    extern void TraceOnBinarySemaphoreUnlockFailed(void* queue, bool isr);
 
     extern void TraceOnCountingSemaphoreCreate(void* semaphore, uint32_t maxCount, uint32_t initialCount);
-    extern void TraceOnCountingSemaphoreTake(void* semaphore, bool isr, bool success, uint32_t newCount);
-    extern void TraceOnCountingSemaphoreGive(void* semaphore, bool isr, bool success, uint32_t newCount);
+    extern void TraceOnCountingSemaphoreTake(void* semaphore, bool isr, uint32_t newCount);
+    extern void TraceOnCountingSemaphoreGive(void* semaphore, bool isr, uint32_t newCount);
+    extern void TraceOnCountingSemaphoreTakeFailed(void* semaphore, bool isr);
+    extern void TraceOnCountingSemaphoreGiveFailed(void* semaphore, bool isr);
 
     extern void TraceOnMutexCreate(void* mutex);
-    extern void TraceOnMutexLock(void* mutex, bool isr, bool success);
-    extern void TraceOnMutexUnlock(void* mutex, bool isr, bool success);
+    extern void TraceOnMutexLocked(void* mutex, bool isr);
+    extern void TraceOnMutexUnlocked(void* mutex, bool isr);
+    extern void TraceOnMutexLockFailed(void* mutex, bool isr);
+    extern void TraceOnMutexUnlockFailed(void* mutex, bool isr);
 
     extern void TraceOnQueueCreate(void* queue, uint32_t capacity);
-    extern void TraceOnQueuePush(void* queue, bool isr, bool success, uint32_t updatedItemsCount);
-    extern void TraceOnQueuePop(void* queue, bool isr, bool success, uint32_t updatedItemsCount);
+    extern void TraceOnQueuePush(void* queue, bool isr, uint32_t updatedItemsCount);
+    extern void TraceOnQueuePop(void* queue, bool isr, uint32_t updatedItemsCount);
+    extern void TraceOnQueuePushFailed(void* queue, bool isr);
+    extern void TraceOnQueuePopFailed(void* queue, bool isr);
 
     extern void OnTaskNotify(void* task, uint32_t index, bool isr, uint32_t action, uint32_t updatedValue);
     extern void OnTaskNotifyReceived(void* task, uint32_t index, uint32_t updatedValue);
@@ -40,19 +48,33 @@ extern "C"
 
 __attribute__((unused)) static int xCopyPosition = 0;
 
+enum SwitchReasonObject
+{
+    SWITCH_REASON_OBJECT_BINARY_SEMAPHORE = 1 << 4,
+    SWITCH_REASON_OBJECT_QUEUE = 2 << 4,
+    SWITCH_REASON_OBJECT_COUNTING_SEMAPHORE = 3 << 4,
+    SWITCH_REASON_OBJECT_MUTEX = 4 << 4,
+};
+
 enum SwitchReason
 {
     SWITCH_REASON_TICK = 0,
     SWITCH_REASON_DELAYED = 1,
-    SWITCH_REASON_BLOCKED_MUTEX = 2,
-    SWITCH_REASON_BLOCKED_QUEUE_PUSH = 3,
-    SWITCH_REASON_BLOCKED_QUEUE_POP = 4,
-    SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE_RECEIVE = 5,
+    SWITCH_REASON_TASK_NOTIFY_WAIT = 3,
+
+    SWITCH_REASON_BLOCKED_QUEUE_PUSH = SWITCH_REASON_OBJECT_QUEUE | 0,
+    SWITCH_REASON_BLOCKED_QUEUE_POP = SWITCH_REASON_OBJECT_QUEUE | 1,
+
+    SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE_RECEIVE = SWITCH_REASON_OBJECT_BINARY_SEMAPHORE | 0,
+    SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE_GIVE = SWITCH_REASON_OBJECT_BINARY_SEMAPHORE | 1,
+
     SWITCH_REASON_BLOCKED_EVENT_GROUP = 6,
-    SWITCH_REASON_COUNTING_SEMAPHORE_GIVE = 7,
-    SWITCH_REASON_COUNTING_SEMAPHORE_RECEIVE = 8,
-    SWITCH_REASON_TASK_NOTIFY_WAIT = 9,
-    SWITCH_REASON_BINARY_SEMAPHORE_GIVE = 0xA,
+    SWITCH_REASON_COUNTING_SEMAPHORE_GIVE = SWITCH_REASON_OBJECT_COUNTING_SEMAPHORE | 0,
+    SWITCH_REASON_COUNTING_SEMAPHORE_TAKE = SWITCH_REASON_OBJECT_COUNTING_SEMAPHORE | 1,
+
+    SWITCH_REASON_BLOCKED_MUTEX_LOCK = SWITCH_REASON_OBJECT_MUTEX | 0,
+    SWITCH_REASON_BLOCKED_MUTEX_UNLOCK = SWITCH_REASON_OBJECT_MUTEX | 1,
+
     SWITCH_REASON_BLOCKED_OTHER = 0xF,
 };
 
@@ -96,101 +118,101 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
 #define traceQUEUE_RECEIVE(queue)                                                                                     \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        TraceOnBinarySemaphoreLock(queue, false, true);                                                               \
+        TraceOnBinarySemaphoreLock(queue, false);                                                                     \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        TraceOnCountingSemaphoreTake(queue, false, true, queue->uxMessagesWaiting - 1);                               \
+        TraceOnCountingSemaphoreTake(queue, false, queue->uxMessagesWaiting - 1);                                     \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        TraceOnMutexLock(queue, false, true);                                                                         \
+        TraceOnMutexLocked(queue, false);                                                                             \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
-        TraceOnQueuePop(queue, false, true, queue->uxMessagesWaiting - 1);                                            \
+        TraceOnQueuePop(queue, false, queue->uxMessagesWaiting - 1);                                                  \
     }
 
 #define traceQUEUE_RECEIVE_FAILED(queue)                                                                              \
     taskENTER_CRITICAL();                                                                                             \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        TraceOnBinarySemaphoreLock(queue, false, false);                                                              \
+        TraceOnBinarySemaphoreLockFailed(queue, false);                                                               \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        TraceOnCountingSemaphoreTake(queue, false, false, queue->uxMessagesWaiting);                                  \
+        TraceOnCountingSemaphoreTakeFailed(queue, false);                                                             \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        TraceOnMutexLock(queue, false, false);                                                                        \
+        TraceOnMutexLockFailed(queue, false);                                                                         \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
-        TraceOnQueuePop(queue, false, false, queue->uxMessagesWaiting);                                               \
+        TraceOnQueuePopFailed(queue, false);                                                                          \
     }                                                                                                                 \
     taskEXIT_CRITICAL();
 
 #define traceQUEUE_RECEIVE_FROM_ISR(queue)                                                                            \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        TraceOnBinarySemaphoreLock(queue, true, true);                                                                \
+        TraceOnBinarySemaphoreLock(queue, true);                                                                      \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        TraceOnCountingSemaphoreTake(queue, true, true, queue->uxMessagesWaiting - 1);                                \
+        TraceOnCountingSemaphoreTake(queue, true, queue->uxMessagesWaiting - 1);                                      \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        TraceOnMutexLock(queue, true, true);                                                                          \
+        TraceOnMutexLocked(queue, true);                                                                              \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
-        TraceOnQueuePop(queue, true, true, queue->uxMessagesWaiting - 1);                                             \
+        TraceOnQueuePop(queue, true, queue->uxMessagesWaiting - 1);                                                   \
     }
 
 #define traceQUEUE_RECEIVE_FROM_ISR_FAILED(queue)                                                                     \
     UBaseType_t traceSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();                                            \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        TraceOnBinarySemaphoreLock(queue, true, false);                                                               \
+        TraceOnBinarySemaphoreLockFailed(queue, true);                                                                \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        TraceOnCountingSemaphoreTake(queue, true, true, queue->uxMessagesWaiting);                                    \
+        TraceOnCountingSemaphoreTakeFailed(queue, true);                                                              \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        TraceOnMutexLock(queue, true, false);                                                                         \
+        TraceOnMutexLockFailed(queue, true);                                                                          \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
-        TraceOnQueuePop(queue, true, false, queue->uxMessagesWaiting);                                                \
+        TraceOnQueuePopFailed(queue, true);                                                                           \
     }                                                                                                                 \
     taskEXIT_CRITICAL_FROM_ISR(traceSavedInterruptStatus);
 
 #define traceQUEUE_SEND(queue)                                                                                        \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        TraceOnBinarySemaphoreUnlock(queue, false, true);                                                             \
+        TraceOnBinarySemaphoreUnlock(queue, false);                                                                   \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        TraceOnCountingSemaphoreGive(queue, false, true, queue->uxMessagesWaiting + 1);                               \
+        TraceOnCountingSemaphoreGive(queue, false, queue->uxMessagesWaiting + 1);                                     \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        TraceOnMutexUnlock(queue, false, true);                                                                       \
+        TraceOnMutexUnlocked(queue, false);                                                                           \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
         if((queue->uxMessagesWaiting == queue->uxLength) && (xCopyPosition == queueOVERWRITE))                        \
         {                                                                                                             \
-            TraceOnQueuePush(queue, false, true, queue->uxMessagesWaiting);                                           \
+            TraceOnQueuePush(queue, false, queue->uxMessagesWaiting);                                                 \
         }                                                                                                             \
         else                                                                                                          \
         {                                                                                                             \
-            TraceOnQueuePush(queue, false, true, queue->uxMessagesWaiting + 1);                                       \
+            TraceOnQueuePush(queue, false, queue->uxMessagesWaiting + 1);                                             \
         }                                                                                                             \
     }
 
@@ -198,44 +220,44 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     taskENTER_CRITICAL();                                                                                             \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        TraceOnBinarySemaphoreUnlock(queue, false, false);                                                            \
+        TraceOnBinarySemaphoreUnlockFailed(queue, false);                                                             \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        TraceOnCountingSemaphoreGive(queue, false, false, queue->uxMessagesWaiting);                                  \
+        TraceOnCountingSemaphoreGiveFailed(queue, false);                                                             \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        TraceOnMutexUnlock(queue, false, false);                                                                      \
+        TraceOnMutexUnlockFailed(queue, false);                                                                       \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
-        TraceOnQueuePush(queue, false, false, queue->uxMessagesWaiting);                                              \
+        TraceOnQueuePushFailed(queue, false);                                                                         \
     }                                                                                                                 \
     taskEXIT_CRITICAL();
 
 #define traceQUEUE_SEND_FROM_ISR(queue)                                                                               \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        TraceOnBinarySemaphoreUnlock(queue, true, true);                                                              \
+        TraceOnBinarySemaphoreUnlock(queue, true);                                                                    \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        TraceOnCountingSemaphoreGive(queue, true, true, queue->uxMessagesWaiting + 1);                                \
+        TraceOnCountingSemaphoreGive(queue, true, queue->uxMessagesWaiting + 1);                                      \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        TraceOnMutexUnlock(queue, true, true);                                                                        \
+        TraceOnMutexUnlocked(queue, true);                                                                            \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
         if((queue->uxMessagesWaiting == queue->uxLength) && (xCopyPosition == queueOVERWRITE))                        \
         {                                                                                                             \
-            TraceOnQueuePush(queue, true, true, queue->uxMessagesWaiting);                                            \
+            TraceOnQueuePush(queue, true, queue->uxMessagesWaiting);                                                  \
         }                                                                                                             \
         else                                                                                                          \
         {                                                                                                             \
-            TraceOnQueuePush(queue, true, true, queue->uxMessagesWaiting + 1);                                        \
+            TraceOnQueuePush(queue, true, queue->uxMessagesWaiting + 1);                                              \
         }                                                                                                             \
     }
 
@@ -243,19 +265,19 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     UBaseType_t traceSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();                                            \
     if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                        \
     {                                                                                                                 \
-        TraceOnBinarySemaphoreUnlock(queue, true, false);                                                             \
+        TraceOnBinarySemaphoreUnlockFailed(queue, true);                                                              \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        TraceOnCountingSemaphoreGive(queue, true, false, queue->uxMessagesWaiting);                                   \
+        TraceOnCountingSemaphoreGiveFailed(queue, true);                                                              \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        TraceOnMutexUnlock(queue, true, false);                                                                       \
+        TraceOnMutexUnlockFailed(queue, true);                                                                        \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
-        TraceOnQueuePush(queue, true, false, queue->uxMessagesWaiting);                                               \
+        TraceOnQueuePushFailed(queue, true);                                                                          \
     }                                                                                                                 \
     taskEXIT_CRITICAL_FROM_ISR(traceSavedInterruptStatus);
 
@@ -270,23 +292,27 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
 
 #define traceTASK_DELAY_UNTIL(xTimeToWake) CurrentTaskSwitchRecord.Reason = SWITCH_REASON_DELAYED;
 
-#define traceBLOCKING_ON_QUEUE_SEND(queue)                                      \
-    CurrentTaskSwitchRecord.BlockedOnObject = queue;                            \
-    if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                \
-    {                                                                           \
-        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_COUNTING_SEMAPHORE_GIVE; \
-    }                                                                           \
-    if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                  \
-    {                                                                           \
-        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BINARY_SEMAPHORE_GIVE;   \
-    }                                                                           \
-    else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                         \
-    {                                                                           \
-        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_QUEUE_PUSH;      \
-    }                                                                           \
-    else                                                                        \
-    {                                                                           \
-        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_OTHER;           \
+#define traceBLOCKING_ON_QUEUE_SEND(queue)                                                                            \
+    CurrentTaskSwitchRecord.BlockedOnObject = queue;                                                                  \
+    if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                      \
+    {                                                                                                                 \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_COUNTING_SEMAPHORE_GIVE;                                       \
+    }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_BINARY_SEMAPHORE)                                                   \
+    {                                                                                                                 \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_BINARY_SEMAPHORE_GIVE;                                 \
+    }                                                                                                                 \
+    else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
+    {                                                                                                                 \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_MUTEX_UNLOCK;                                          \
+    }                                                                                                                 \
+    else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
+    {                                                                                                                 \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_QUEUE_PUSH;                                            \
+    }                                                                                                                 \
+    else                                                                                                              \
+    {                                                                                                                 \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_OTHER;                                                 \
     }
 
 #define traceBLOCKING_ON_QUEUE_RECEIVE(queue)                                                                         \
@@ -297,11 +323,11 @@ extern struct SwitchRecord CurrentTaskSwitchRecord;
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_COUNTING_SEMAPHORE)                                                 \
     {                                                                                                                 \
-        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_COUNTING_SEMAPHORE_RECEIVE;                                    \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_COUNTING_SEMAPHORE_TAKE;                                       \
     }                                                                                                                 \
     else if((queue->ucQueueType == queueQUEUE_TYPE_MUTEX) || (queue->ucQueueType == queueQUEUE_TYPE_RECURSIVE_MUTEX)) \
     {                                                                                                                 \
-        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_MUTEX;                                                 \
+        CurrentTaskSwitchRecord.Reason = SWITCH_REASON_BLOCKED_MUTEX_LOCK;                                            \
     }                                                                                                                 \
     else if(queue->ucQueueType == queueQUEUE_TYPE_BASE)                                                               \
     {                                                                                                                 \
