@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: orbcode/orbuculum
-          ref: 09a612d8fae23b0b5e5940aaac885fb5a7657616
+          ref: b74b4e5e0a6061c5aa5e3993a2923c5cfd64f902
       - run: meson setup ./build --prefix A:/
       - run: ninja -C ./build
       - run: meson install -C ./build --destdir ./install --strip
