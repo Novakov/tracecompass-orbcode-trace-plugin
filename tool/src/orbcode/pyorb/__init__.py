@@ -188,3 +188,14 @@ class Orb:
                     return typing.cast(TraceMessage, getattr(p.m, p.m._fields_[p.msgtype][0]))
                 except IndexError:
                     return Empty()
+
+    def iterate_all_messages(self) -> typing.Iterable[TraceMessage]:
+        while True:
+            packet = self.rx()
+
+            if packet is None:
+                break
+            if isinstance(packet, Empty):
+                continue
+
+            yield packet
