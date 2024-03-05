@@ -1,11 +1,12 @@
 from pathlib import Path
 import pytest
+from _pytest.mark.structures import ParameterSet
 
 from orbcode.rtos_trace.rtos_processors.current_task_processor import CurrentTaskProcessor
 from orbcode.rtos_trace.tool.generator import get_trace_events
 from orbcode.rtos_trace.rtos_events import RTOS_TRACE_PACKET_TYPES
-from orbcode.rtos_trace.trace_event import TimestampedEvent
-from _pytest.mark.structures import ParameterSet
+
+from .snapshot import Snapshot
 
 
 def get_test_traces() -> list[ParameterSet]:
@@ -17,12 +18,13 @@ def get_test_traces() -> list[ParameterSet]:
 
 
 @pytest.mark.parametrize('trace', get_test_traces())
-def test_compare_trace_output(trace: Path, snapshot: list[TimestampedEvent]) -> None:
+def test_compare_trace_output(trace: Path, snapshot: Snapshot) -> None:
     with trace.open('rb') as trace_input:
         packets = get_trace_events(
             trace_file=trace_input,
             event_types=RTOS_TRACE_PACKET_TYPES,
             processors=[CurrentTaskProcessor()]
         )
+        list(packets)
 
     assert packets == snapshot

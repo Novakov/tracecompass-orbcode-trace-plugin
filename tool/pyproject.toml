@@ -21,7 +21,6 @@ packages = ['src/orbcode']
 dependencies = [
     'pytest~=8.0',
     'pytest-cov~=4.1',
-    'syrupy==4.6.1',
 ]
 
 [tool.hatch.envs.quality]
@@ -44,8 +43,8 @@ dependencies = [
 ]
 
 [tool.hatch.envs.dev.scripts]
-tests = 'pytest --cov=orbcode --cov-branch --cov-report html src/tests {args:}'
-tests-update = 'pytest --cov=orbcode --cov-branch --cov-report html src/tests --snapshot-update {args:}'
+tests = 'pytest src/tests {args:}'
+tests-cov = 'tests --cov=orbcode --cov-branch --cov-report html src/tests {args:}'
 
 [tool.hatch.envs.quality.scripts]
 check = [
